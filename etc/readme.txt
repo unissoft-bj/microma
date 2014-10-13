@@ -23,7 +23,19 @@ git commit -m "your message"
 git push
 
 === collision ===
+# 如果不同的人修改了不同的位置，不会冲突
+# 如果不同的人修改了同一行，则会引起冲突
+
 # 强制推送，覆盖远程分支
 git push -u origin master -f 
 
-# 手工解决冲突后push
+# 先做pull,git会尝试把远程分支内容与本地分支合并
+git pull
+
+# 如果有冲突，查看冲突
+git status
+# 手工解决，修改冲突内容
+git add -A
+git commit -m "your message"
+git push
+
