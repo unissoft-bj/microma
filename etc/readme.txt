@@ -26,4 +26,4 @@ git push
 # 强制推送，覆盖远程分支
 git push -u origin master -f 
 
-#
+# 手工解决冲突后push
