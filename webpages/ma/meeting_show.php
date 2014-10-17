@@ -15,7 +15,7 @@ $id=$_GET["id"];
 
 <body>
    <?php include 'top.php';?>
-   <?php $sql="select * from news where id=$id";
+   <?php $sql="select * from ma_news where id=$id";
          $rs=$db->r($sql);?>
     <div id="discuss_list">
     	<ul id="discuss_info2">

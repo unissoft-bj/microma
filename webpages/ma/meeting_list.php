@@ -20,8 +20,8 @@ require 'inc/function.inc.php';
     <div id="meeting_list">
     
     	<ul id="info2">
-    	<?php $sql="select * from news order by creattime desc";
-    	     $sqlc="select count(id) as c from news";
+    	<?php $sql="select * from ma_news order by creattime desc";
+    	     $sqlc="select count(id) as c from ma_news";
     	     $counts_r = $db->r($sqlc);
     	      $counts = $counts_r[c];
     	     $page= isset($_GET['page'])?$_GET['page']:1;
