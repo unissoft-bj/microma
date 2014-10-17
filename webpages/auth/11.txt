@@ -1,0 +1,18 @@
+
+Ubuntu ：SSH
+192.168.x.x 
+用户名：root  密码：root
+
+mysql
+http://192.168.x.x/phpmyadmin/
+用户名：root   密码 rootatussp
+
+演示网址：
+http://192.168.x.x/hr/index.php
+
+后台：
+http://192.168.x.x/hr/admin/index.php
+用户名 ：admin  密码：admin
+
+
+033503179745@adsl
