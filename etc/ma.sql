@@ -506,7 +506,7 @@ CREATE TABLE `ma_news` (
   `author` varchar(50) DEFAULT NULL,
   `editor` varchar(50) DEFAULT NULL,
   `content` text,
-  `mapurl` varchar(300) DEFAULT NULL',
+  `mapurl` varchar(300) DEFAULT NULL,
   `telephone` varchar(13) DEFAULT NULL,
   `hj` text,
   `tc` text,
