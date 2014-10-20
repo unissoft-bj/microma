@@ -1,3 +1,6 @@
+<?php if (empty($_COOKIE['uid'])) {
+	echo "<script>location.href='/wap/index.php?m=register';</script>";
+}?>
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
 $.post("http://172.16.0.1/ma/ajax_getmessage.php",

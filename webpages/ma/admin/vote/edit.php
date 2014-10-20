@@ -2,8 +2,8 @@
 require_once('../../global.php');
 require_once('inc/mysql.class.php');
 require_once('inc/function.inc.php');
-$show1="文章";
-$show2="编辑文章";
+$show1="投票";
+$show2="编辑投票";
  
 if($_POST){
 	$p_regdate=dtime();
@@ -11,25 +11,24 @@ if($_POST){
 
 	 
 	//$sql="insert into news (p_login,p_pwd,p_name,p_regdate,p_contact,p_tel) values ('$p_login','$p_pwd','$p_name','$p_regdate','$p_contact','$p_tel')";
-	$sql="update ma_news set ";
-	$sql.="title='".$pro_title."',";
-	$sql.="cid='".$pro_type."',";
-	$sql.="picurl='".$pro_image."',";
-	$sql.="des='".$pro_systemreview."',";
-	$sql.="content='".$pro_summary."' ";
-	$sql.="where id=".$id;
+	$sql="update ma_question set ";
+	//$sql.="qid='".$qid."',";
+	//$sql.="tid='".$tid."',";
+	$sql.="question='".$question."'";
+	
+	$sql.="where qid=".$id;
 	//echo $sql;
 	//exit;
 	if($db->q($sql))
 	{
 		
-		msg("修改文章成功","index.php");
+		msg("修改投票成功","index.php");
 	}
 	
 } 
  
 if (!isset($id)) msg("系统错误！");
-$sql="select * from ma_news where id=".$id;
+$sql="select * from ma_question where qid=".$id;
 //echo $sql;
 $rs=$db->r($sql);
 //dump($rs);
@@ -86,13 +85,13 @@ function check()
 	var i = document.getElementById("team-create-news").value.length;
 	if(i == 0)//内容不为空
 	{
-		alert("文章名称不能为空");
+		alert("投票名称不能为空");
 		return false;
 	}
 	i = document.getElementById("team-create-systemreview").value.length;
 	if(i == 0)
 	{
-		alert("文章简介不能为空");
+		alert("投票简介不能为空");
 		return false;
 	}
 	
@@ -101,7 +100,7 @@ function check()
 	alert(i);
 	if(i == 0)
 	{
-		alert("文章内容不能为空");
+		alert("投票内容不能为空");
 		return false;
 	}
 	*/
@@ -147,7 +146,7 @@ function check()
             <div class="box-top"></div>
             <div class="box-content">
 <div class="head">
-                    <h2>编辑文章</h2>
+                    <h2>编辑投票</h2>
                     <ul class="filter">
                     	<li>
 	                    	                   	
@@ -161,48 +160,31 @@ function check()
 					<!-- <div class="wholetip clear"><h3>1、基本信息</h3></div> -->
 					
 					<div class="field">
-						<label>文章名称</label>
-						<input type="text" size="30" name="pro_title" id="team-create-news" class="f-input" value="<?php echo $rs[title]?>" datatype="require" require="true" />
+						<label>投票选项名称</label>
+						<input type="text" size="10" name="question" id="team-create-news" class="f-input" value="<?php echo $rs[title]?>" datatype="require" require="true" />
 					</div>
-				
+						
+					</div>
 						<div class="field">
-						<label>文章分类</label>
-						<select name="pro_type"  id="partner_select" datatype="require" require="true" class="f-input" style="width:200px;">
-						<?php 
-						$sql="select id,name from ma_newssort order by id desc";
-						$p_rs=$db->a($sql);
-						foreach ($p_rs as $k=>$v){
-                        ?>
 						
-						<option  <?php if($v["id"]==$rs["cid"]){ ?>selected="selected"<?php
-                              }?>
-                               value='<?php echo $v["id"];?>' ><?php echo $v["name"];?></option>
-						<?php 
 						
-						}
-						?>
-						 
-						</select>  
 					</div>
 					
 					 
 					
 					 <div class="field">
-						<label>文章图片</label>
-						<input type="text" name="pro_image" id="pro_image" value="<?php echo $rs[picurl]?>" size="80" /> <input type="button" id="image1" value="选择图片" />
+						
 						
 					 </div>
 					 
 					 
 					 <div class="field">
-						<label>文章简介</label>
-						<div style="float:left;"><textarea cols="45" rows="5" name="pro_systemreview" id="team-create-systemreview" class="f-textarea editor" style="width:710px;height:50px;"><?php echo $rs[des]?></textarea></div>
+						
 					</div>
 					
 					
 					<div class="field">
-						<label>文章内容</label>
-						<div style="float:left;"><textarea cols="45" rows="10" name="pro_summary" id="pro_summary" class="f-textarea" datatype="require" require="true"><?php echo $rs[content]?></textarea></div>
+						
 					</div>
  		 
 					

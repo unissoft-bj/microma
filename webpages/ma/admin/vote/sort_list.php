@@ -2,30 +2,30 @@
 require_once('../../global.php');
 require_once('inc/mysql.class.php');
 require_once('inc/function.inc.php');
-$show1="文章";
-$show2="分类列表";
+$show1="投票";
+$show2="问题列表";
  
 $name=trim($_GET['name']);
  
  
 if (!empty($_GET['botton']))
 {
-	 empty($name)?"":$sqladd=$sqladd." and name like '%".$name."%'";
+	 empty($name)?"":$sqladd=$sqladd." and ttitle like '%".$name."%'";
  
 }
 
 if ($_GET['action']=='delete')
 {
 	if (!isset($id)) msg("系统错误！");
-	$sql="select cid from ma_news where cid=".$id;
+	$sql="select qid from ma_question where tid=".$id;
 	if ($db->rc($sql)>0) {
-		msg("有文章属于该分类，请先删除分类下的文章再进行删除操作");
+		msg("有选项属于该问题，请先删除问题下的选项再进行删除操作");
 		
 	}
- 	$sqldelete="delete from ma_newssort where id=".$id;
+ 	$sqldelete="delete from ma_title where tid=".$id;
  	//echo $sqldelete;
 	if($db->q($sqldelete)){
-		msg("删除分类成功","sort_list.php");
+		msg("删除问题成功","sort_list.php");
 	}
 }
 
@@ -62,12 +62,12 @@ if ($_GET['action']=='delete')
             <div class="box-top"></div>
             <div class="box-content">
 <div class="head">
-                    <h2>分类列表</h2>
+                    <h2>问题列表</h2>
                     <ul class="filter">
                     	<li>
 	                    	<form action="" method="get">	
-	                    	    <a href="<?php echo $cfg['siteurl'];?>admin/news/sort_add.php">添加分类</a>                    	
-		                    	分类名称：<input type="text" name="name" class="h-input" style="width:90px" value="<?php echo $name?>" >
+	                    	    <a href="<?php echo $cfg['siteurl'];?>admin/vote/sort_add.php">添加问题</a>                    	
+		                    	问题名称：<input type="text" name="name" class="h-input" style="width:90px" value="<?php echo $name?>" >
 		                    	 
 		                    	&nbsp;&nbsp;<input type="submit" name="botton" value="筛选" class="formbutton"  style="padding:1px 6px;"/>
 	                    	</form>	                    	
@@ -77,14 +77,14 @@ if ($_GET['action']=='delete')
                 <div class="sect">
 					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
 					<tr><th width="30">ID</th>
-					<th width="350">栏目</th>
-					<th width="50" nowrap>排序</th>
+					<th width="350">问题</th>
+					<th width="50" nowrap></th>
 					 
 					<th width="130">操作</th></tr>
 					
 					<?php 
-					$sql="select * from ma_newssort where 1=1 $sqladd order by `order` desc";
-					$sqlc="select count(id) as c from ma_newssort where 1=1 $sqladd ";
+					$sql="select * from ma_title where 1=1 $sqladd order by `tid` ";
+					$sqlc="select count(tid) as c from ma_title where 1=1 $sqladd ";
 					  //echo $sql;
 					$counts_r = $db->r($sqlc);
 					$counts = $counts_r[c];
@@ -100,12 +100,12 @@ if ($_GET['action']=='delete')
 					?>
 					
 					<tr <?php if ($i % 2 ==1 ) echo "class=\"alt\" ";?> id="team-list-id-<?php echo $rs["id"];?>">
-						<td><?php echo $rs["id"];?></td>
-						<td><?php echo $rs["name"];?>  </td>
-						<td><?php echo $rs["order"];?></td>
+						<td><?php echo $rs["tid"];?></td>
+						<td><?php echo $rs["ttitle"];?>  </td>
+						<td><?php //echo $rs["order"];?></td>
 						 
-						<td class="op"> <a href="<?php echo $cfg['siteurl'];?>admin/news/sort_edit.php?id=<?php echo  $rs["id"];?>">编辑</a>｜ 
-						<a href="<?php echo $cfg['siteurl'];?>admin/news/sort_list.php?action=delete&id=<?php echo  $rs["id"];?>" class="ajaxlink" ask="确定删除该用户吗？">删除</a>  </td>
+						<td class="op"> <a href="<?php echo $cfg['siteurl'];?>admin/vote/sort_edit.php?id=<?php echo  $rs["tid"];?>">编辑</a>｜ 
+						<a href="<?php echo $cfg['siteurl'];?>admin/vote/sort_list.php?action=delete&id=<?php echo  $rs["tid"];?>" class="ajaxlink" ask="确定删除该用户吗？">删除</a>  </td>
 					</tr>
 					<?php }?>
 					 

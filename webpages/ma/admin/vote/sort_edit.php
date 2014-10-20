@@ -2,23 +2,34 @@
 require_once('../../global.php');
 require_once('inc/mysql.class.php');
 require_once('inc/function.inc.php');
-$show1="文章";
-$show2="新建分类";
+$show1="投票";
+$show2="编辑分类";
+
 
 if($_POST){
-	$pro_creattime=dtime();
+	$p_regdate=dtime();
 	//echo $p_regdate;
+	$type=empty($type)?1:$type;
 
-
-	$sql="insert into ma_newssort (name) values ('$title')";
+	//$sql="insert into vote (p_login,p_pwd,p_name,p_regdate,p_contact,p_tel) values ('$p_login','$p_pwd','$p_name','$p_regdate','$p_contact','$p_tel')";
+	$sql="update ma_title set ";
+	$sql.="ttitle='".$title."',";
+	$sql.="listtype='".$type."' ";
+	$sql.="where tid=".$id;
 	//echo $sql;
+	//exit;
 	if($db->q($sql)){
 
-		msg("添加分类成功","sort_list.php",3);
+		msg("修改分类成功","sort_list.php");
 	}
 
 }
 
+if (!isset($id)) msg("系统错误！");
+$sql="select * from ma_title where tid=".$id;
+//echo $sql;
+$rs=$db->r($sql);
+//dump($rs);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -33,10 +44,10 @@ if($_POST){
 	<script charset="utf-8" src="../../Classes/kindeditor/kindeditor.js"></script>
 	 <script charset="utf-8" src="../../Classes/kindeditor/lang/zh_CN.js"></script>
 	 <script type="text/javascript" src="../../js/lhgcore.lhgcalendar.min.js"></script>
-	 <script>
+     <script>
      function check()
     	{
-    		var i = document.getElementById("team-create-news").value.length;
+    		var i = document.getElementById("team-create-vote").value.length;
     		if(i == 0)//内容不为空
     		{
     			alert("分类名称不能为空");
@@ -65,7 +76,7 @@ if($_POST){
             <div class="box-top"></div>
             <div class="box-content">
 <div class="head">
-                    <h2>新建分类</h2>
+                    <h2>编辑分类</h2>
                     <ul class="filter">
                     	<li>
 
@@ -74,15 +85,21 @@ if($_POST){
 			  </div>
                 <div class="sect">
 					 <form id="Login-user-form" method="post" action=""   class="validator">
-					<input type="hidden" name="id" value="0" />
+					<input type="hidden" name="id" value="<?php echo $id?>" />
 					<!-- <div class="wholetip clear"><h3>1、基本信息</h3></div> -->
 					
 					<div class="field">
 						<label>分类名称</label>
-						<input type="text" size="30" name="title" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
+						<input type="text" size="30" name="title" id="team-create-vote" class="f-input" value="<?php echo $rs[name]?>" datatype="require" require="true" />
 					</div>
-					 
-			
+					 <div class="field">
+					 	<label>问题类型</label>
+						<select name="type"  id="partner_select" datatype="require" require="true" class="f-input" style="width:200px;">
+						<option  value=0 selected>------ 请选择问题类型------</option>					
+						<option value=1 >单选</option>
+						<option value=2 >多选</option>
+						<option value=3 >填空</option>
+						</select>
 					</div>
 					<input type="submit" onclick="return check();" value="好了，提交" name="commit" id="leader-submit" class="formbutton" style="margin:10px 0 0 120px;"/>
 				</form>
