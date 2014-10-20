@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-20 16:51:36
+<?php /* Smarty version 2.6.26, created on 2014-10-20 20:27:22
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -26,7 +26,7 @@
 <div class="header_user"><a href="member/"></a></div>
 <div class="logo"><img src="<?php echo $this->_tpl_vars['wapstyle']; ?>
 /images/logo.png"></div>
-<div class="header_user"><a href="member/"></a></div>
+<div class="header_user"><a href=""></a></div>
 </div>
 </header>
 <?php if ($_GET['point']): ?>
@@ -69,7 +69,7 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /ma/message_liebiao.php"><p class="mune_a"><i></i><em>交朋识友</em></p></a></td>
 <td width="30%" rowspan="2"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/index.php?m=register"><p class="mune_c"><i></i><em>线上签到<br><small>(签到后开通互联网)</small></em></p></a></td>
+/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>线上签到<br><small>(签到后开通互联网)</small></em></p></a></td>
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /ma/meeting_list.php"><p class="mune_d"><i></i><em>会议资料</em></p></a></td>
 </tr>

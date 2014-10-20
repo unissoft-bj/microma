@@ -19,7 +19,7 @@ $result = mysql_query("SELECT uid,username,usertype,salt,password FROM member wh
 
 while($userinfo = mysql_fetch_array($result))
   {
-  echo  $userinfo['username']."ï¿½ï¿½Ö¤ï¿½Ð¡ï¿½ï¿½ï¿½";
+  echo  $userinfo['username']."ÑéÖ¤ÖÐ¡­¡­";
   setcookie("uid",$userinfo['uid'],time() + 86400, "/");
   setcookie("username",$userinfo['username'],time() + 86400, "/");
   setcookie("usertype",$userinfo['usertype'],time() + 86400, "/");
