@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-20 19:55:15
+<?php /* Smarty version 2.6.26, created on 2014-10-20 21:10:30
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 268, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 270, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => ($this->_tpl_vars['wapstyle'])."/header_cont.htm", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -147,6 +147,8 @@ xmlhttp.onreadystatechange=function()
     {
 	document.getElementById("sendmsg").value="验证码发送成功";
     document.getElementById("msgInfo").innerHTML=xmlhttp.responseText;
+    document.getElementById("regmsg").value=xmlhttp.responseText;
+    
     }
   }
 

@@ -13,10 +13,10 @@ class register_controller extends common
 	function index_action()
 	{
 		$this->get_moblie();
-		if($this->uid || $this->username)
-		{
-			echo "<script>location.href='member/index.php';</script>";
-		}
+// 		if($this->uid || $this->username)
+// 		{
+// 			echo "<script>location.href='index.php?m=register&usertype=2';</script>";
+// 		}
 		
 		if($_POST['submit'])
 		{
@@ -118,6 +118,15 @@ class register_controller extends common
 				$userid_usermacs = $member2['userid'];
 				$phone_usermacs = $member2['phone'];
 				$mac_usermacs = $_COOKIE["mymac"];
+				
+				//登陆 得到各种用户数据 然后写入cookie
+				$loginMember=$this->obj->DB_select_once("member","`uid`=".$member2['intid']);
+				setcookie("uid",$loginMember['uid'],time() + 86400, "/");
+				setcookie("username",$loginMember['username'],time() + 86400, "/");
+				setcookie("usertype",$loginMember['usertype'],time() + 86400, "/");
+				setcookie("salt",$loginMember['salt'],time() + 86400, "/");
+				setcookie("shell",md5($loginMember['username'].$loginMember['password'].$loginMember['salt']), time() + 86400,"/");
+				
 				
 				$array_usermac['userid'] = $userid_usermacs;
 				$array_usermac['phone'] = $phone_usermacs;
