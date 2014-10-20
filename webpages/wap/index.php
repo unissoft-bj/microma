@@ -20,13 +20,13 @@ $action = $_GET['c'];
 //user类型 求职者或招聘者
 $usertype=$_COOKIE["usertype"];
 
-// //接受到的mac地址
-// $mymac = $_GET['mac'];
-// //将mac写入cookie
-// if($mymac==""){
-// }else{
-// 	setcookie("mymac", $mymac, time()+360000);
-// }
+//接受到的mac地址
+$mymac = $_GET['mac'];
+//将mac写入cookie
+if($mymac==""){
+}else{
+	setcookie("mymac", $mymac, time()+360000);
+}
 
 
 

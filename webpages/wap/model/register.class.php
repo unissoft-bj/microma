@@ -1,12 +1,12 @@
 <?php
 /* *
-* $Author ï¼šPHPYUNå¼€å‘å›¢é˜Ÿ
+* $Author £ºPHPYUN¿ª·¢ÍÅ¶Ó
 *
-* å®˜ç½‘: http://www.phpyun.com
+* ¹ÙÍø: http://www.phpyun.com
 *
-* ç‰ˆæƒæ‰€æœ‰ 2009-2014 å®¿è¿é‘«æ½®ä¿¡æ¯æŠ€æœ¯æœ‰é™å…¬å¸ï¼Œå¹¶ä¿ç•™æ‰€æœ‰æƒåˆ©ã€‚
+* °æÈ¨ËùÓÐ 2009-2014 ËÞÇ¨öÎ³±ÐÅÏ¢¼¼ÊõÓÐÏÞ¹«Ë¾£¬²¢±£ÁôËùÓÐÈ¨Àû¡£
 *
-* è½¯ä»¶å£°æ˜Žï¼šæœªç»æŽˆæƒå‰æä¸‹ï¼Œä¸å¾—ç”¨äºŽå•†ä¸šè¿è¥ã€äºŒæ¬¡å¼€å‘ä»¥åŠä»»ä½•å½¢å¼çš„å†æ¬¡å‘å¸ƒã€‚
+* Èí¼þÉùÃ÷£ºÎ´¾­ÊÚÈ¨Ç°ÌáÏÂ£¬²»µÃÓÃÓÚÉÌÒµÔËÓª¡¢¶þ´Î¿ª·¢ÒÔ¼°ÈÎºÎÐÎÊ½µÄÔÙ´Î·¢²¼¡£
 */
 class register_controller extends common
 {
@@ -15,9 +15,7 @@ class register_controller extends common
 		$this->get_moblie();
 		if($this->uid || $this->username)
 		{
-			//echo "<script id=\"chillijs\" src=\"ussp.js\"></script>";
-			sleep(1);
-		//	echo "<script>location.href='/ma/index.php';</script>";
+			echo "<script>location.href='member/index.php';</script>";
 		}
 		
 		if($_POST['submit'])
@@ -29,34 +27,34 @@ class register_controller extends common
 			$regmsg = $_POST['regmsg'];
 			session_start();
 			if($regmsg!=$_SESSION['msg']){
-				$this->wapheader('index.php?m=register&','çŸ­ä¿¡æ ¡éªŒç é”™è¯¯ï¼');
+				$this->wapheader('index.php?m=register&','¶ÌÐÅÐ£ÑéÂë´íÎó£¡');
 			}
 			
 			if(!$this->CheckRegUser($_POST['username']))
 			{
-				$this->wapheader('index.php?m=register&','æ— æ•ˆçš„ç”¨æˆ·åï¼');
+				$this->wapheader('index.php?m=register&','ÎÞÐ§µÄÓÃ»§Ãû£¡');
 			}
 			
 			
 			
 // 			if(!$this->CheckRegEmail($_POST['email']))
 // 			{
-// 				$this->wapheader('index.php?m=login&','é‚®ç®±æ ¼å¼ä¸æ­£ç¡®ï¼');
+// 				$this->wapheader('index.php?m=login&','ÓÊÏä¸ñÊ½²»ÕýÈ·£¡');
 // 			}
 			$member=$this->obj->DB_select_once("member","`username`='".$_POST['username']."' OR `email`='".$_POST['email']."'");
 			if(is_array($member))
 			{
 // 				if($member['username']==$_POST['username'])
 // 				{
-// 					$this->wapheader('index.php?m=register&usertype='.$usertype.'&','ç”¨æˆ·åå·²å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥ï¼');
+// 					$this->wapheader('index.php?m=register&usertype='.$usertype.'&','ÓÃ»§ÃûÒÑ´æÔÚ£¬ÇëÖØÐÂÊäÈë£¡');
 // 				}elseif($member['email']==$_POST['email']){
-// 					$this->wapheader('index.php?m=register&usertype='.$usertype.'&','é‚®ç®±å·²å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥ï¼');
+// 					$this->wapheader('index.php?m=register&usertype='.$usertype.'&','ÓÊÏäÒÑ´æÔÚ£¬ÇëÖØÐÂÊäÈë£¡');
 // 				}
 			}else{
 				$regname=@explode(",",$this->config['sy_regname']);
 				if(in_array($_POST['username'],$regname))
 				{
-					$this->wapheader('index.php?m=register&usertype='.$usertype.'&','ç”¨æˆ·åå·²å­˜åœ¨ï¼Œè¯·é‡æ–°è¾“å…¥ï¼');
+					$this->wapheader('index.php?m=register&usertype='.$usertype.'&','ÓÃ»§ÃûÒÑ´æÔÚ£¬ÇëÖØÐÂÊäÈë£¡');
 				}
 			}
 			
@@ -70,14 +68,14 @@ class register_controller extends common
 			
 			echo $usertype;
 			
-			//ucenterç»‘å®š
+			//ucenter°ó¶¨
 			if($this->config['sy_uc_type']=="uc_center")
 			{
 				$this->obj->uc_open();
 				$uid=uc_user_register($_POST['username'],$_POST['password'],$_POST['email']);
 				if($uid<=0)
 				{
-					$this->wapheader('index.php?m=register&usertype='.$usertype.'&','è¯¥é‚®ç®±å·²å­˜åœ¨ï¼');
+					$this->wapheader('index.php?m=register&usertype='.$usertype.'&','¸ÃÓÊÏäÒÑ´æÔÚ£¡');
 				}else{
 					list($uid,$username,$password,$email,$salt)=uc_user_login($_POST['username'],$_POST['password']);
 					$pass = md5(md5($_POST['password']).$salt);
@@ -96,7 +94,7 @@ class register_controller extends common
 				$salt = substr(uniqid(rand()), -6);
 				$pass = md5(md5($_POST['password']).$salt);
 			}
-			//èŽ·å–è¡¨å•æ•°æ®
+			//»ñÈ¡±íµ¥Êý¾Ý
 			$idata['username'] = $_POST['username'];
 			$idata['password'] = $pass;
 			//$idata['email']    = $_POST['email'];
@@ -109,12 +107,12 @@ class register_controller extends common
 			$baomi1 = $_POST['baomi1'];
 			$baomi2 = $_POST['baomi2'];
 			$baomi3 = $_POST['baomi3'];
-			//å½“ç±»åž‹ä¸ºæ‹›è˜è€…æ—¶æ‰èŽ·å–regphone
+			//µ±ÀàÐÍÎªÕÐÆ¸ÕßÊ±²Å»ñÈ¡regphone
 			
 			
-			//åœ¨useraccountsä¸­æŸ¥è¯¢åŒæ—¶å­˜åœ¨å§“åå’Œç”µè¯çš„è®°å½•ï¼Œ
+			//ÔÚuseraccountsÖÐ²éÑ¯Í¬Ê±´æÔÚÐÕÃûºÍµç»°µÄ¼ÇÂ¼£¬
 			$member2=$this->obj->DB_select_once("useraccounts","`lname`='".$_POST['username']."' AND `phone`='".$_POST['phone']."'");
-			//å¦‚æžœå­˜åœ¨ï¼Œè¯´æ˜Žæ˜¯è€ç”¨æˆ·éœ€è¦åœ¨usermacè¡¨ä¸­ç»‘å®šmacåœ°å€
+			//Èç¹û´æÔÚ£¬ËµÃ÷ÊÇÀÏÓÃ»§ÐèÒªÔÚusermac±íÖÐ°ó¶¨macµØÖ·
 			if(is_array($member2)){
 				echo "bangding";
 				$userid_usermacs = $member2['userid'];
@@ -125,23 +123,23 @@ class register_controller extends common
 				$array_usermac['phone'] = $phone_usermacs;
 				$array_usermac['mac'] = $mac_usermacs;
 				
-				//å¦‚æžœusermacä¸­æœ‰è¿™ä¸ªæ‰‹æœºå·å¹¶ä¸”useridä¸ºç©º åˆ™æ›´æ–°è¿™æ¡è®°å½•
+				//Èç¹ûusermacÖÐÓÐÕâ¸öÊÖ»úºÅ²¢ÇÒuseridÎª¿Õ Ôò¸üÐÂÕâÌõ¼ÇÂ¼
 				$member_usermacs = $this->obj->DB_select_once("usermacs","`userid`='' AND `phone`='".$_POST['phone']."' AND `mac`='".$mac_usermacs."'");
 				if(is_array($member_usermacs)){
-					//die("æ›´æ–°usermacs");
+					//die("¸üÐÂusermacs");
 					$array_usermac['userid'] = $userid_usermacs;
 					$this->obj->update_once('usermacs',array('userid'=>$array_usermac['userid']),array('id'=>$member_usermacs['id']));
 				}else{
-					//å¦åˆ™åœ¨usermacsä¸­æ’å…¥æ–°çš„è®°å½•
+					//·ñÔòÔÚusermacsÖÐ²åÈëÐÂµÄ¼ÇÂ¼
 					$this->obj->insert_into('usermacs',$array_usermac);
 				}
 				
 			}else{
-				//å¦‚æžœå§“åå’Œç”µè¯ä¸åŒæ—¶å­˜åœ¨ï¼Œ
-				//å¦‚æžœusertype==1 æ˜¯æ±‚èŒè€…æ±‚èŒè€…
-				//åˆ™æ›´æ–°4ä¸ªè¡¨çš„æ•°æ®ï¼Œmemberè¡¨ã€useraccountã€usermacs
+				//Èç¹ûÐÕÃûºÍµç»°²»Í¬Ê±´æÔÚ£¬
+				//Èç¹ûusertype==1 ÊÇÇóÖ°ÕßÇóÖ°Õß
+				//Ôò¸üÐÂ4¸ö±íµÄÊý¾Ý£¬member±í¡¢useraccount¡¢usermacs
 				if($usertype==1){
-					echo "å‡†å¤‡å†™å…¥member";
+					echo "×¼±¸Ð´Èëmember";
 					$userid=$this->obj->insert_into('member',$idata);
 					if($userid)
 					{
@@ -153,6 +151,7 @@ class register_controller extends common
 							$value="`uid`='".$userid."'";
 							$udata['uid'] = $userid;
 							$udata2['uid'] = $userid;
+							$udata2['name'] = $_POST['username'];
 							$udata2['telphone'] = $_POST['phone'];
 						}elseif($usertype=="2"){
 							$table = "company_statis";
@@ -173,23 +172,27 @@ class register_controller extends common
 						setcookie("usertype",$usertype,time() + 86400, "/");
 						setcookie("salt",$salt,time() + 86400, "/");
 						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
-						#beginå°†å½“æœŸç”¨æˆ·uidå’Œusermacæ·»åŠ åˆ°æ•°æ®åº“$myuseraccountsä¸­#
-						echo "beginå°†å½“æœŸç”¨æˆ·uidå’Œusermacæ·»åŠ åˆ°æ•°æ®åº“myuseraccountsä¸­";
+						#begin½«µ±ÆÚÓÃ»§uidºÍusermacÌí¼Óµ½Êý¾Ý¿â$myuseraccountsÖÐ#
+						echo "begin½«µ±ÆÚÓÃ»§uidºÍusermacÌí¼Óµ½Êý¾Ý¿âmyuseraccountsÖÐ";
 						$myuseraccounts['intid'] = $userid;
 						$myuseraccounts['usertype'] = $usertype;
 						$myuseraccounts['lname'] = $_POST['username'];
 						$myuseraccounts['mac'] = $_COOKIE["mymac"];
 						$myuseraccounts['phone'] = $_POST["phone"];
+						$myuseraccounts['danwei'] = $_POST["danwei"];
+						$myuseraccounts['zhiwu'] = $_POST["zhiwu"];
+						$myuseraccounts['shenfen'] = $_POST["shenfen"];
+						
 						$myuserid = $this->obj->insert_into('useraccounts',$myuseraccounts);
-						//å°†useridå’ŒåŒæ­¥
+						//½«useridºÍÍ¬²½
 						if($myuserid){
 							$this->obj->update_once('useraccounts',array('userid'=>$myuserid),array('id'=>$myuserid));
 						}
 					
 						// 				echo $myuserid;
 						// 				die($_COOKIE["mymac"]);
-						//beginå°†å½“æœŸç”¨æˆ·uidå’Œusermacæ·»åŠ åˆ°æ•°æ®åº“ä¸­#
-						echo "æ’å…¥è¡¨ usermacs";
+						//begin½«µ±ÆÚÓÃ»§uidºÍusermacÌí¼Óµ½Êý¾Ý¿âÖÐ#
+						echo "²åÈë±í usermacs";
 						
 						echo $myuserid;
 						$goodluck['userid'] = $myuserid;
@@ -199,20 +202,20 @@ class register_controller extends common
 						$goodluck['phone'] = $_POST["phone"];
 						echo "over";
 						$this->obj->insert_into('usermacs',$goodluck);						
-						echo "æ’å…¥è¡¨ usermacsç»“æŸ";
+						echo "²åÈë±í usermacs½áÊø";
 					}
 				}
 				
-				//å¦‚æžœusertype=2 æ‹›è˜è€… åˆ™éªŒè¯regphone				
+				//Èç¹ûusertype=2 ÕÐÆ¸Õß ÔòÑéÖ¤regphone				
 				if($usertype==2){
-					//å¦‚æžœé¢„ç•™æ‰‹æœºé”™è¯¯ åˆ™è·³åˆ°ç­¾åˆ°é¡µé¢
+					//Èç¹ûÔ¤ÁôÊÖ»ú´íÎó ÔòÌøµ½Ç©µ½Ò³Ãæ
 					$member_compeny = $this->obj->DB_select_once("useraccounts","`regphone`='".$_POST['regphone']."'");
 					if(!is_array($member_compeny)){
-						$this->wapheader('index.php?m=register&usertype=2&point=ä¼ä¸šé¢„ç•™æ‰‹æœºé”™è¯¯');
+						$this->wapheader('index.php?m=register&usertype=2&point=´ú±íÖ¤ºÅ´íÎó');
 					}else{
-					//å¦‚æžœé¢„ç•™æ‰‹æœºæ²¡é—®é¢˜ï¼Œåˆ™æ³¨å†Œä¼ä¸šä¼šå‘˜
-					//ä¼ä¸šä¼šå‘˜é‡‡ç”¨é¢„æ³¨å†Œæ–¹å¼ï¼Œå³å°†ä¼ä¸šæ‰‹æœºå·ï¼ˆè¯†åˆ«ç ï¼‰å†™åˆ°useraccountsè¡¨ä¸­ï¼Œå…¶ä»–ä¿¡æ¯ç”±ä¼ä¸šæ³¨å†ŒåŽè‡ªå·±å¡«å†™
-						echo "å‡†å¤‡å†™å…¥member";
+					//Èç¹ûÔ¤ÁôÊÖ»úÃ»ÎÊÌâ£¬Ôò×¢²áÆóÒµ»áÔ±
+					//ÆóÒµ»áÔ±²ÉÓÃÔ¤×¢²á·½Ê½£¬¼´½«ÆóÒµÊÖ»úºÅ£¨Ê¶±ðÂë£©Ð´µ½useraccounts±íÖÐ£¬ÆäËûÐÅÏ¢ÓÉÆóÒµ×¢²áºó×Ô¼ºÌîÐ´
+						echo "×¼±¸Ð´Èëmember";
 						$userid=$this->obj->insert_into('member',$idata);
 						if($userid)
 						{
@@ -245,26 +248,29 @@ class register_controller extends common
 							setcookie("usertype",$usertype,time() + 86400, "/");
 							setcookie("salt",$salt,time() + 86400, "/");
 							setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
-							#beginå°†å½“æœŸç”¨æˆ·uidå’Œusermacæ·»åŠ åˆ°æ•°æ®åº“$myuseraccountsä¸­#
-							echo "beginå°†å½“æœŸç”¨æˆ·uidå’Œusermacæ·»åŠ åˆ°æ•°æ®åº“myuseraccountsä¸­";
+							#begin½«µ±ÆÚÓÃ»§uidºÍusermacÌí¼Óµ½Êý¾Ý¿â$myuseraccountsÖÐ#
+							echo "begin½«µ±ÆÚÓÃ»§uidºÍusermacÌí¼Óµ½Êý¾Ý¿âmyuseraccountsÖÐ";
 							$myuseraccounts['intid'] = $userid;
 							$myuseraccounts['usertype'] = $usertype;
 							$myuseraccounts['lname'] = $_POST['username'];
 							$myuseraccounts['mac'] = $_COOKIE["mymac"];
 							$myuseraccounts['phone'] = $_POST["phone"];
 							$myuseraccounts['userid'] = $member_compeny['id'];
+							$myuseraccounts['danwei'] = $_POST["danwei"];
+							$myuseraccounts['zhiwu'] = $_POST["zhiwu"];
+							$myuseraccounts['shenfen'] = $_POST["shenfen"];
 							$this->obj->update_once('useraccounts',$myuseraccounts,array('id'=>$member_compeny['id']));
 							
 // 							$myuserid = $this->obj->insert_into('useraccounts',$myuseraccounts);
-// 							//å°†useridå’ŒåŒæ­¥
+// 							//½«useridºÍÍ¬²½
 // 							if($myuserid){
 // 								$this->obj->update_once('useraccounts',array('userid'=>$myuserid),array('id'=>$myuserid));
 // 							}
 								
 							// 				echo $myuserid;
 							// 				die($_COOKIE["mymac"]);
-							//beginå°†å½“æœŸç”¨æˆ·uidå’Œusermacæ·»åŠ åˆ°æ•°æ®åº“ä¸­#
-							echo "æ’å…¥è¡¨ usermacs";
+							//begin½«µ±ÆÚÓÃ»§uidºÍusermacÌí¼Óµ½Êý¾Ý¿âÖÐ#
+							echo "²åÈë±í usermacs";
 						
 							echo $myuserid;
 							$goodluck['userid'] = $myuserid;
@@ -274,7 +280,7 @@ class register_controller extends common
 							$goodluck['phone'] = $_POST["phone"];
 							echo "over";
 							$this->obj->insert_into('usermacs',$goodluck);
-							echo "æ’å…¥è¡¨ usermacsç»“æŸ";
+							echo "²åÈë±í usermacs½áÊø";
 							
 						}
 					}
@@ -282,16 +288,16 @@ class register_controller extends common
 				
 			}
 			
-			echo "è·³è½¬å‰";
-			$this->wapheader('/ma/index.php?point=ç­¾åˆ°æˆåŠŸ ');
-			echo "è·³è½¬åŽ";
+			echo "Ìø×ªÇ°";
+			$this->wapheader('index.php?point=Ç©µ½³É¹¦ ');
+			echo "Ìø×ªºó";
 			
 		}
 		if($_GET['usertype']=="2")
 		{
-			$this->yunset("title","çº¿ä¸Šç­¾åˆ°");
+			$this->yunset("title","Ô¤×¢²á´ú±íÇ©µ½");
 		}else{
-			$this->yunset("title","çº¿ä¸Šç­¾åˆ°");
+			$this->yunset("title","ÏÖ³¡×¢²á´ú±íÇ©µ½");
 		}
 		$this->yuntpl(array('wap/register'));
 	}
