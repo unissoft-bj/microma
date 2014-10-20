@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-14 12:19:00
+<?php /* Smarty version 2.6.26, created on 2014-10-20 16:51:36
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -67,21 +67,21 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 <table class="mune_list">
 <tr>
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/index.php?m=com"><p class="mune_a"><i></i><em>职位搜索</em></p></a></td>
+/ma/message_liebiao.php"><p class="mune_a"><i></i><em>交朋识友</em></p></a></td>
 <td width="30%" rowspan="2"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/index.php?m=register"><p class="mune_c"><i></i><em>点击签到</em></p></a></td>
+/wap/index.php?m=register"><p class="mune_c"><i></i><em>线上签到<br><small>(签到后开通互联网)</small></em></p></a></td>
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/index.php?m=once"><p class="mune_d"><i></i><em>微招聘</em></p></a></td>
+/ma/meeting_list.php"><p class="mune_d"><i></i><em>会议资料</em></p></a></td>
 </tr>
 <tr>
 <td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/index.php?m=tiny"><p class="mune_b"><i></i><em>微简历</em></p></a></td>
+/ma/vote.php"><p class="mune_b"><i></i><em>参与讨论</em></p></a></td>
 <td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/index.php?m=news"><p class="mune_e"><i></i><em>职场资讯</em></p></a></td>
+/ma/discuss.php"><p class="mune_e"><i></i><em>会务留言</em></p></a></td>
 </tr>
 <tr>
 <td colspan="3"> <a  href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/index.php?m=user"><p class="mune_f">招人才</p></a></td>
+/ma/meeting_list.php"><p class="mune_f">会议日程</p></a></td>
 </tr>
 </table>
 

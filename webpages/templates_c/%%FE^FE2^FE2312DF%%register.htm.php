@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-13 09:27:38
+<?php /* Smarty version 2.6.26, created on 2014-10-20 17:14:35
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 181, false),)), $this); ?>
@@ -9,12 +9,12 @@ unset($_smarty_tpl_vars);
  ?>
 <br>
 <p>
-      <div align="center">选择签到身份： <a href="/wap/index.php?m=register&usertype=1">求职者</a>    <a href="/wap/index.php?m=register&usertype=2">招聘者</a></div>
+      <div align="center"><a href="/wap/index.php?m=register&usertype=2">预注册代表</a>    <a href="/wap/index.php?m=register&usertype=1">现场注册代表</a></div>
     </p>
 <br>
-<h1> &nbsp;老用户快速通道：</h1>
+<h1> &nbsp;快速通道：</h1>
 <hr>
-<iframe  width="100%" frameborder="0" src="/wap/user.php"  height="15%"/></iframe>
+<iframe  width="100%" frameborder="0" src="/wap/user.php"  height="5%"/></iframe>
 <script src="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /js/jquery-1.8.0.min.js"></script>
 <script>
@@ -136,7 +136,7 @@ function setName(str){
 </script>
 <section class="wap_login">
 	
-	以新身份登记：
+	
 	<hr>
   <form action="" method="post" onSubmit="return checkfrom();">
     <input name="usertype" id ="usertype" type="hidden" value="<?php echo $_GET['usertype']; ?>
@@ -144,7 +144,7 @@ function setName(str){
     
      <?php if ($_GET['usertype'] == 2): ?>
     <p>
-      <input name="regphone" id="regphone" type="text" class="input-common placeholder" placeholder="企业识别码" />
+      <input name="regphone" id="regphone" type="text" class="input-common placeholder" placeholder="代表证上的4位代表号" />
     </p>
     <?php endif; ?>
     <p>

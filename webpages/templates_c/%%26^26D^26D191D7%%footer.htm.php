@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-03 12:56:59
+<?php /* Smarty version 2.6.26, created on 2014-10-20 16:35:47
          compiled from ../template/wap/footer.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', '../template/wap/footer.htm', 3, false),)), $this); ?>
