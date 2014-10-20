@@ -26,7 +26,9 @@ $uid=$_COOKIE["uid"];
 
 <body>
 	<?php include 'top.php';?>
-    
+    <div class="send_note">
+    	<a href="message_linkman.php">发便笺</a>
+    </div>
     <div class="note_content">
     	<ul id="note_menu">
         	<li class="left">已收到</li>

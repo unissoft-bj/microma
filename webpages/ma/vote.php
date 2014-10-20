@@ -48,6 +48,7 @@ if ($_POST) {
 		}
 
 	}
+	/*
 	if ($upid=="1") {
 		$str = '   <script language=javascript>alert("投票失败！");</script>';
 		$str .= '    <script language=javascript>setTimeout("history.go(-1)",'.(3*1000).');</script>';
@@ -58,6 +59,7 @@ if ($_POST) {
 		
 		exit;;
 	}
+	*/
 	$cok="isvote".$sid;
 	//echo $cok;
 	//echo $$cok;
