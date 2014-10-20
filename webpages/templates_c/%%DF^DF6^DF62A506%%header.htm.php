@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-20 20:27:22
+<?php /* Smarty version 2.6.26, created on 2014-10-20 21:48:22
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
 <meta http-equiv="Cache-Control" content="no-cache"/>
 <title><?php echo $this->_tpl_vars['config']['sy_webname']; ?>
- -  手机人才网</title>
+</title>
 <meta http-equiv="keywords" content="人才招聘,网络招聘,wap" />
 <meta http-equiv="description" content="人才招聘网wap网站" />
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['wapstyle']; ?>

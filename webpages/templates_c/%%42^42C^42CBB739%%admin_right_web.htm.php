@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-05 10:14:13
+<?php /* Smarty version 2.6.26, created on 2014-10-20 21:12:30
          compiled from admin/admin_right_web.htm */ ?>
 <div class="maininfo" style="height:180px">
     	<div class="mainboxtop"><h6>мЬу╬пео╒</h6></div>
