@@ -88,7 +88,7 @@ if ($auth == 0){
         //如果authmac里没有此设备mac，跳转到注册页面，注册成功后将mac写入authmac表
 if ($auth == 0){
         $point = "请点击左上角登记或签到页面签到联网";
-        header("location: /ma/index.php?point=".$point."&auth=".$auth."&userurl=".$_GET['userurl']);
+        header("location: /wap/index.php?point=".$point."&auth=".$auth."&userurl=".$_GET['userurl']);
 
     }
 else{
@@ -98,7 +98,7 @@ else{
 //     #echo "</div>";
 //     #echo "<br />";
      $point="请点击左上角按钮继续访问互联网";
-     $url = "/ma/index.php?point=".$point."&auth=".$auth."&userurl=".$_GET['userurl'];
+     $url = "/wap/index.php?point=".$point."&auth=".$auth."&userurl=".$_GET['userurl'];
      echo "<font size=20>已为您接通Internet<br />Connected to the Internet";
 //     #echo "<br>";    
 //     echo "<br /><ul>";  

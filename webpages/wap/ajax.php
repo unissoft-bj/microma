@@ -43,8 +43,37 @@ if(isset($_GET['phone'])){
 /**
  * 招聘单位预留手机号
  */
-if(isset($_GET['regphone'])){
-	echo "regPhone";
+if(isset($_GET['regPhone'])){
+	//echo "regPhone";
+	$regPhone =  $_GET['regPhone'];
+	if (strlen($regPhone)!=4) {
+		echo "0";
+		die();
+	}
+	
+	//	echo $phone.$usertype;
+	
+	$result = mysql_query("SELECT * FROM useraccounts where regphone='".$regPhone."'");
+	if(mysql_num_rows($result)==0){
+		echo "0";
+		die();
+	}
+	while($row = mysql_fetch_array($result))
+	{
+	
+		// 		echo "<a href=userlogin.php?userid=".$row['intid'].">[". $usertype."]".$row['lname']."</a>";
+		// 		echo "<br />";
+	
+		$row['lname'] = iconv('gbk', 'utf-8', $row['lname']);
+		$row['phone'] = iconv('gbk', 'utf-8', $row['phone']);
+		$row['danwei'] = iconv('gbk', 'utf-8', $row['danwei']);
+		$row['zhiwu'] = iconv('gbk', 'utf-8', $row['zhiwu']);
+		$row['shenfen'] = iconv('gbk', 'utf-8', $row['shenfen']);
+			
+		
+		echo $row['lname']."|".$row['phone']."|" . $row['danwei']."|" . $row['zhiwu']."|" . $row['shenfen'];
+	
+	}
 }
 
 

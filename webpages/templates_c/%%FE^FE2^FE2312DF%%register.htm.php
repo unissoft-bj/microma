@@ -1,23 +1,90 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-13 09:27:38
+<?php /* Smarty version 2.6.26, created on 2014-10-20 21:10:30
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 181, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 270, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => ($this->_tpl_vars['wapstyle'])."/header_cont.htm", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 <br>
+
+<link rel="stylesheet" type="text/css" href="../ma/css/css.css">
+<script type="text/javascript" src="../ma/js/jquery-1.7.1.min.js"></script>
+
 <p>
-      <div align="center">选择签到身份： <a href="/wap/index.php?m=register&usertype=1">求职者</a>    <a href="/wap/index.php?m=register&usertype=2">招聘者</a></div>
+      <div align="center"><a href="/wap/index.php?m=register&usertype=2">预注册代表</a>    <a href="/wap/index.php?m=register&usertype=1">现场注册代表</a></div>
+    <div class="note_content">
+    <ul id="note_menu">
+        	<li class="left"><a href="/wap/index.php?m=register&usertype=2">预注册代表</a></li>
+            <li class="right"><a href="/wap/index.php?m=register&usertype=1">现场注册代表</a></li>
+        </ul>
+        </div>
     </p>
 <br>
-<h1> &nbsp;老用户快速通道：</h1>
+<h1> &nbsp;快速通道：</h1>
 <hr>
-<iframe  width="100%" frameborder="0" src="/wap/user.php"  height="15%"/></iframe>
+<iframe  width="100%" frameborder="0" src="/wap/user.php"  height="5%"/></iframe>
 <script src="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /js/jquery-1.8.0.min.js"></script>
 <script>
+//getInfoByRegPhone
+//根据预注册手机 判断是否已注册用户
+function getInfoByRegPhone(str)
+{
+var xmlhttp;
+if (str=="")
+  {
+  //document.getElementById("txtHint").innerHTML="";
+  return;
+  }
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+	//得到返回的多个username ，以|进行分割
+    var names=xmlhttp.responseText;
+	//如果得到字符串为0 则代表号错误
+	
+	if(names==0){
+		//alert("===");
+		document.getElementById("regInfo").innerHTML="代表号错误";
+	}else{
+		
+		var array = names.split("|");
+	   
+	    document.getElementById("username").value=array[0];
+	    document.getElementById("phone").value=array[1];
+	    document.getElementById("danwei").value=array[2];
+	    document.getElementById("zhiwu").value=array[3];
+	    if(array[4]=="代表"){
+	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表  checked=checked>代表<input type=radio name=shenfen value=专家 >专家<input type=radio name=shenfen value=会务 >会务";
+	    }
+	    if(array[4]=="专家"){
+	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表 >代表<input type=radio name=shenfen value=专家  checked=checked>专家<input type=radio name=shenfen value=会务 >会务";
+	    }
+	    if(array[4]=="会务"){
+	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表 >代表<input type=radio name=shenfen value=专家 >专家<input type=radio name=shenfen value=会务  checked=checked>会务";
+	    }
+	    
+	}
+    
+    }
+  }
+
+var usertype= document.getElementById("usertype").value;
+xmlhttp.open("GET","ajax.php?regPhone="+str+"&usertype="+usertype,true);
+xmlhttp.send();
+}
+
 
 
 //根据注册手机 判断是否已注册用户
@@ -80,6 +147,8 @@ xmlhttp.onreadystatechange=function()
     {
 	document.getElementById("sendmsg").value="验证码发送成功";
     document.getElementById("msgInfo").innerHTML=xmlhttp.responseText;
+    document.getElementById("regmsg").value=xmlhttp.responseText;
+    
     }
   }
 
@@ -136,7 +205,7 @@ function setName(str){
 </script>
 <section class="wap_login">
 	
-	以新身份登记：
+	
 	<hr>
   <form action="" method="post" onSubmit="return checkfrom();">
     <input name="usertype" id ="usertype" type="hidden" value="<?php echo $_GET['usertype']; ?>
@@ -144,7 +213,8 @@ function setName(str){
     
      <?php if ($_GET['usertype'] == 2): ?>
     <p>
-      <input name="regphone" id="regphone" type="text" class="input-common placeholder" placeholder="企业识别码" />
+      <input name="regphone" id="regphone" type="text" class="input-common placeholder" placeholder="代表证上的4位代表号" onblur="return getInfoByRegPhone(this.value);"/>
+      <div id="regInfo"></div>
     </p>
     <?php endif; ?>
     <p>
@@ -159,11 +229,30 @@ function setName(str){
       <font id="checkMsg"></font>
     </p>
     <p>
-      <input name="username" id="username" type="text" class="input-common placeholder" placeholder="姓名" />
       <div id="username2"></div>
+      <input name="username" id="username" type="text" class="input-common placeholder" placeholder="姓名" />
+      
     </p>
     
-    <p class="input-common placeholder">
+    <p>
+      
+      <input name="danwei" id="danwei" type="text" class="input-common placeholder" placeholder="工作单位" />
+      
+    </p>
+    <p>
+      	
+      <input name="zhiwu" id="zhiwu" type="text" class="input-common placeholder" placeholder="职务" />
+      
+    </p>
+    <p class="input-common placeholder" id="shenfen">
+      <input type="radio" name="shenfen" value="代表" checked=checked>代表	
+      <input type="radio" name="shenfen" value="专家" >专家
+      <input type="radio" name="shenfen" value="会务" >会务
+      
+      
+    </p>
+    
+    <!-- p class="input-common placeholder">
       <input name="baomi0" id="baomi0" type="checkbox" checked/>为他人签到
     </p>
     <p class="input-common placeholder">
@@ -174,7 +263,7 @@ function setName(str){
     </p>
      <p class="input-common placeholder">
       <input name="baomi3" id="baomi3" type="checkbox" class=""  checked/>用短信增强安全性
-    </p>
+    </p-->
     <p>
       <input name="email" id="email" type="hidden"class="input-common placeholder" placeholder="邮箱"/>
     </p>

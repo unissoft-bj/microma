@@ -2,15 +2,16 @@
 require_once('../../global.php');
 require_once('inc/mysql.class.php');
 require_once('inc/function.inc.php');
-$show1="文章";
+$show1="投票";
 $show2="新建分类";
 
 if($_POST){
 	$pro_creattime=dtime();
 	//echo $p_regdate;
+	$type=empty($type)?1:$type;
+	
 
-
-	$sql="insert into ma_newssort (name) values ('$title')";
+	$sql="insert into ma_title (ttitle,listtype) values ('$title','$type')";
 	//echo $sql;
 	if($db->q($sql)){
 
@@ -81,7 +82,15 @@ if($_POST){
 						<label>分类名称</label>
 						<input type="text" size="30" name="title" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
 					</div>
-					 
+					 <div class="field">
+					 	<label>问题类型</label>
+						<select name="type"  id="partner_select" datatype="require" require="true" class="f-input" style="width:200px;">
+						<option  value=0 selected>------ 请选择问题类型------</option>					
+						<option value=1 >单选</option>
+						<option value=2 >多选</option>
+						<option value=3 >填空</option>
+						</select>
+					</div>
 			
 					</div>
 					<input type="submit" onclick="return check();" value="好了，提交" name="commit" id="leader-submit" class="formbutton" style="margin:10px 0 0 120px;"/>

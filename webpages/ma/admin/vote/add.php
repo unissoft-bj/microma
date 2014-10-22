@@ -2,20 +2,20 @@
 require_once('../../global.php');
 require_once('inc/mysql.class.php');
 require_once('inc/function.inc.php');
-$show1="文章";
-$show2="新建文章";
+$show1="投票";
+$show2="增加投票";
  
 if($_POST){
 	$pro_creattime=dtime();
 	//echo $p_regdate;
 	 
 	 
-	$sql="insert into ma_news (title,cid,picurl,content,des,creattime) 
-	values ('$pro_title','$pro_type','$pro_image','$pro_summary','$pro_systemreview','$pro_creattime')";
+	$sql="insert into ma_question(question,tid) 
+	values ('$pro_title','$pro_type')";
 	//echo $sql;
 	if($db->q($sql))
 	{
-		msg("添加文章成功","index.php",3);
+		msg("添加投票成功","index.php",3);
 	}
 	
 } 
@@ -60,13 +60,13 @@ if($_POST){
     		var i = document.getElementById("title").value.length;
     		if(i == 0)//内容不为空
     		{
-    			alert("文章名称不能为空");
+    			alert("投票名称不能为空");
     			return false;
     		}
     		i = document.getElementById("team-create-systemreview").value.length;
     		if(i == 0)
     		{
-    			alert("文章简介不能为空");
+    			alert("投票简介不能为空");
     			return false;
     		}
     		
@@ -74,7 +74,7 @@ if($_POST){
     		var index=document.getElementById("partner_select").selectedIndex; //序号，取当前选中选项的序号
     		if(index == 0)
     		{
-    			alert("请选择文章分类");
+    			alert("请选择投票分类");
     			return false;
     		}
     		/*
@@ -82,7 +82,7 @@ if($_POST){
     		alert(i);
     		if(i == 0)
     		{
-    			alert("文章内容不能为空");
+    			alert("投票内容不能为空");
     			return false;
     		}
     		*/
@@ -127,7 +127,7 @@ if($_POST){
             <div class="box-top"></div>
             <div class="box-content">
 <div class="head">
-                    <h2>新建文章</h2>
+                    <h2>新建投票选项</h2>
                     <ul class="filter">
                     	<li>
 
@@ -141,20 +141,20 @@ if($_POST){
 					<!-- <div class="wholetip clear"><h3>1、基本信息</h3></div> -->
 					
 					<div class="field">
-						<label>文章名称</label>
+						<label>投票名称</label>
 						<input type="text" id="title" size="30" name="pro_title" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
 					</div>
 
 					<div class="field">
-						<label>文章分类</label>
+						<label>投票分类</label>
 						<select name="pro_type"  id="partner_select" datatype="require" require="true" class="f-input" style="width:200px;">
-						<option  value=0 selected>------ 请选择文章类别------</option>
+						<option  value=0 selected>------ 请选择投票类别------</option>
 						<?php 
-						$sql="select id,name from ma_newssort order by id desc";
+						$sql="select tid,ttitle from ma_title order by tid ";
 						$p_rs=$db->a($sql);
 						foreach ($p_rs as $k=>$v){?>
 						
-						<option value='<?php echo $v["id"];?>' ><?php echo $v["name"];?></option>
+						<option value='<?php echo $v["tid"];?>' ><?php echo $v["ttitle"];?></option>
 						<?php 
 						
 						}
@@ -165,22 +165,7 @@ if($_POST){
 					
 					 
 					
-					 <div class="field">
-						<label>文章图片</label>
-						<input type="text" name="pro_image" id="pro_image" value="" size="80" /> <input type="button" id="image1" value="选择图片" />
-						
-					 </div>
-					 
-					 <div class="field">
-						<label>文章简介</label>
-						<div style="float:left;"><textarea cols="45" rows="5" name="pro_systemreview" id="team-create-systemreview" class="f-textarea editor" style="width:710px;height:50px;"></textarea></div>
-					</div>
 					
-					
-					<div class="field">
-						<label>文章内容</label>
-						<div style="float:left;"><textarea cols="45" rows="10" name="pro_summary" id="pro_summary" class="f-textarea" datatype="require" require="true"></textarea></div>
-					</div>
  		 
 					
 					 

@@ -12,7 +12,7 @@ if($_POST){
 
 
 	//$sql="insert into news (p_login,p_pwd,p_name,p_regdate,p_contact,p_tel) values ('$p_login','$p_pwd','$p_name','$p_regdate','$p_contact','$p_tel')";
-	$sql="update newssort set ";
+	$sql="update ma_newssort set ";
 	$sql.="name='".$title."' ";
 	$sql.="where id=".$id;
 	//echo $sql;

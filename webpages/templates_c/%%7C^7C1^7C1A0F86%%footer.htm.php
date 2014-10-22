@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-20 17:54:22
-         compiled from ../template/wap/footer.htm */ ?>
+<?php /* Smarty version 2.6.26, created on 2014-10-20 20:14:48
+         compiled from C:%5CUsers%5Cycyn521%5Cgit%5Cmicroma%5Cwebpages//template/wap/footer.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', '../template/wap/footer.htm', 6, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'C:\\Users\\ycyn521\\git\\microma\\webpages//template/wap/footer.htm', 6, false),)), $this); ?>
 <nav class="footer_nav">
 
 <a href="javascript:window.scrollTo(0,0);">TOP</a><a href="/wap">Ê×Ò³</a> &nbsp;-<?php if (! $this->_tpl_vars['cookie']['uid']): ?>

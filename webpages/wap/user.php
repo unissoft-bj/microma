@@ -23,9 +23,9 @@ if (!$con)
 
 mysql_select_db($db_config['dbname'], $con);
 
-$result = mysql_query("SELECT useraccounts.intid,useraccounts.lname,useraccounts.usertype FROM usermacs,useraccounts where usermacs.userid=useraccounts.userid and usermacs.mac='".$mymac."'");
+$result = mysql_query("SELECT useraccounts.intid,useraccounts.lname,useraccounts.usertype,useraccounts.shenfen FROM usermacs,useraccounts where usermacs.userid=useraccounts.userid and usermacs.mac='".$mymac."'");
 if(mysql_num_rows($result)==0){
-	echo "没有可匹配的快速通道<br>请用下面的新登记页面签到";
+	echo "请输入代表号：";
 }
 while($row = mysql_fetch_array($result))
   {
@@ -36,7 +36,7 @@ while($row = mysql_fetch_array($result))
   }else{
   	$usertype = "招聘者";
   }
-  echo "<a href=userlogin.php?userid=".$row['intid'].">[". $usertype."]".$row['lname']."</a>";
+  echo "<a href=userlogin.php?userid=".$row['intid'].">".$row['lname']."[".$row['shenfen']."]</a>";
   echo "&nbsp;\t";
 
   }

@@ -13,10 +13,14 @@ if (! $cookia_a_flag) {
 			</div> -->
 			<div id="guides-city-change" class="change"></div>
 		</div>
-		<ul class="nav cf"><li<?php if ($show1=="首页") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/index.php">首页</a></li>
-			
-			<li<?php if ($show1=="文章") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/news/index.php">文章</a></li>
- 			
+		<ul class="nav cf">
+							<li<?php if ($show1=="首页") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/index.php">首页</a></li>
+		
+							<li<?php if ($show1=="文章") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/news/index.php">文章</a></li>
+							
+							<li<?php if ($show1=="留言") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/discuss/index.php">留言</a></li>
+							
+ 							<li<?php if ($show1=="投票") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/vote/index.php">投票</a></li>
 		</ul> 
 		<div class="vcoupon">»&nbsp;<a href="<?php echo $cfg['siteurl'];?>admin/logout.php">管理员退出</a></div>	</div>
 </div>

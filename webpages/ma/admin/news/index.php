@@ -22,7 +22,7 @@ if ($_GET['action']=='delete')
 	//	msg("此商户有商品存在不能删除，请先删除商品再进行删除操作");
 		
 	//}
- 	$sqldelete="delete from news where id=".$id;
+ 	$sqldelete="delete from ma_news where id=".$id;
  	//echo $sqldelete;
 	if($db->q($sqldelete)){
 		msg("删除文章成功","index.php");
@@ -65,6 +65,7 @@ if ($_GET['action']=='delete')
                     <ul class="filter">
                     	<li>
 	                    	<form action="" method="get">
+	                    	
 	                    	    <a href="<?php echo $cfg['siteurl'];?>admin/news/add.php">添加文章</a>                    	
 		                    	文章标题：<input type="text" name="title" class="h-input" style="width:90px" value="<?php echo $title?>" >
 		                    	 
@@ -77,13 +78,13 @@ if ($_GET['action']=='delete')
 					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
 					<tr><th width="30">ID</th>
 					<th width="350">标题</th>
-				
+					<th width="100" nowrap>分类</th>
 					<th width="150">时间</th>
 					<th width="130">操作</th></tr>
 					
 					<?php 
-					$sql="select * from news where 1=1 $sqladd order by id desc";
-					$sqlc="select count(id) as c from news where 1=1 $sqladd ";
+					$sql="select * from ma_news where 1=1 $sqladd order by id desc";
+					$sqlc="select count(id) as c from ma_news where 1=1 $sqladd ";
 					  //echo $sql;
 					$counts_r = $db->r($sqlc);
 					$counts = $counts_r[c];
@@ -101,7 +102,16 @@ if ($_GET['action']=='delete')
 					<tr <?php if ($i % 2 ==1 ) echo "class=\"alt\" ";?> id="team-list-id-<?php echo $rs["id"];?>">
 						<td><?php echo $rs["id"];?></td>
 						<td><?php echo $rs["title"];?>  </td>
-						
+						<td><?php 
+						$query = "select name from ma_newssort where id=".$rs[cid]; 
+                        $result = mysql_query($query);   
+                        while($row = mysql_fetch_object
+                         ($result)) {  
+                         $name = $row->name;   
+                         echo $name;  
+                         }
+						?></td>
+						 
 						 
 						<td><?php echo  $rs["creattime"];?></td>
 						<td class="op"> 
