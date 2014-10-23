@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-20 21:48:22
+<?php /* Smarty version 2.6.26, created on 2014-10-23 18:04:42
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
