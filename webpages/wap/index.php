@@ -13,6 +13,44 @@
 
 
 include(dirname(dirname(__FILE__))."/global.php");
+//根据mac自动签到
+$con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
+mysql_query("SET NAMES 'GBK'");
+if (!$con)
+{
+	die('Could not connect: ' . mysql_error());
+}
+
+mysql_select_db($db_config['dbname'], $con);
+//如果cookie为空，则自动创建cookie
+if($_COOKIE["username"]==""){
+	//根据mac地址得到最后登录的id
+	$sql = "SELECT intid FROM `useraccounts` WHERE mac='".$_COOKIE["mymac"]."' and stat>=100 order by id desc limit 1;";
+	
+	$result = mysql_query($sql);
+	$userinfoId = mysql_fetch_array($result);
+	$userid =  $userinfoId['intid'];
+	
+	$result2 = mysql_query("SELECT uid,username,usertype,salt,password FROM member where uid=".$userid);
+	
+	while($userinfo = mysql_fetch_array($result2))
+	{
+		//echo  $userinfo['username']."验证中……";
+		setcookie("uid",$userinfo['uid'],time() + 86400, "/");
+		setcookie("username",$userinfo['username'],time() + 86400, "/");
+		setcookie("usertype",$userinfo['usertype'],time() + 86400, "/");
+		setcookie("salt",$userinfo['salt'],time() + 86400, "/");
+		setcookie("shell",md5($userinfo['username'].$userinfo['password'].$userinfo['salt']), time() + 86400,"/");
+	
+	}
+	
+	mysql_close($con);
+	//die($_COOKIE['username']);
+}
+
+
+
+
 //当前类
 $model = $_GET['m'];
 //当前行为，即类的方法

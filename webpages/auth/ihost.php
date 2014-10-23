@@ -87,7 +87,9 @@ if ($auth == 0){
     }
         //如果authmac里没有此设备mac，跳转到注册页面，注册成功后将mac写入authmac表
 if ($auth == 0){
-        $point = "请点击左上角登记或签到页面签到联网";
+	
+		//请点击左上角登记或签到页面签到联网 %c7%eb%b5%e3%bb%f7%d7%f3%c9%cf%bd%c7%b5%c7%bc%c7%bb%f2%c7%a9%b5%bd%d2%b3%c3%e6%c7%a9%b5%bd%c1%aa%cd%f8
+        $point = "%c7%eb%b5%e3%bb%f7%d7%f3%c9%cf%bd%c7%b5%c7%bc%c7%bb%f2%c7%a9%b5%bd%d2%b3%c3%e6%c7%a9%b5%bd%c1%aa%cd%f8";
         header("location: /wap/index.php?point=".$point."&auth=".$auth."&userurl=".$_GET['userurl']);
 
     }
@@ -97,7 +99,8 @@ else{
     echo "<script id=\"chillijs\" src=\"ussp.js\"></script>";
 //     #echo "</div>";
 //     #echo "<br />";
-     $point="请点击左上角按钮继续访问互联网";
+	//请点击左上角按钮继续访问互联网
+     $point="%c7%eb%b5%e3%bb%f7%d7%f3%c9%cf%bd%c7%b0%b4%c5%a5%bc%cc%d0%f8%b7%c3%ce%ca%bb%a5%c1%aa%cd%f8";
      $url = "/wap/index.php?point=".$point."&auth=".$auth."&userurl=".$_GET['userurl'];
      echo "<font size=20>已为您接通Internet<br />Connected to the Internet";
 //     #echo "<br>";    

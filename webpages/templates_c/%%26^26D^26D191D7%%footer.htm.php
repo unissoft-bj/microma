@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-20 17:54:22
+<?php /* Smarty version 2.6.26, created on 2014-10-23 17:49:24
          compiled from ../template/wap/footer.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', '../template/wap/footer.htm', 6, false),)), $this); ?>
@@ -32,7 +32,7 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', '.
 -
 <a href="javascript:window.history.back();">·µ»Ø</a>
 -
-<a href="http://www.phpyun.com/" ><small>Powered by yang</small></a>
+<a href="" ><small>Powered by yang</small></a>
 </footer>
 </div>
 </body>

@@ -21,18 +21,28 @@ class register_controller extends common
 		if($_POST['submit'])
 		{
 			echo "submit";
-			
+// 			if($_POST['step']==""){
+// 				$_POST['step'] = 1;
+// 				echo $_POST['step'];
+// 				die($_POST['step']);
+// 			}	
 			$usertype=$_POST['usertype']?$_POST['usertype']:1;
 			
 			$regmsg = $_POST['regmsg'];
-			session_start();
-			if($regmsg!=$_SESSION['msg']){
-				$this->wapheader('index.php?m=register&','短信校验码错误！');
+			if($usertype==1&&$_GET['step']!=2){
+				session_start();
+				if($regmsg!=$_SESSION['msg']){
+					$this->wapheader('index.php?m=register&','短信校验码错误！');
+				}
+			}
+			
+			if($usertype==1&&($_GET['step']==1||$_GET['step']=="")){
+				$_POST['username']="noname";
 			}
 			
 			if(!$this->CheckRegUser($_POST['username']))
 			{
-				$this->wapheader('index.php?m=register&','无效的用户名！');
+				$this->wapheader('index.php?m=register&usertype=1&','无效的用户名！');
 			}
 			
 			
@@ -102,8 +112,12 @@ class register_controller extends common
 			$idata['status']   = $status;
 			$idata['salt']     = $salt;
 			$idata['reg_date'] = time();
-			
 			$phone = $_POST['phone'];
+			if($_GET['step']==2){
+				$phone = $_COOKIE["myphone"];
+				//die($phone);
+			}
+			
 			$baomi1 = $_POST['baomi1'];
 			$baomi2 = $_POST['baomi2'];
 			$baomi3 = $_POST['baomi3'];
@@ -111,7 +125,7 @@ class register_controller extends common
 			
 			
 			//在useraccounts中查询同时存在姓名和电话的记录，
-			$member2=$this->obj->DB_select_once("useraccounts","`lname`='".$_POST['username']."' AND `phone`='".$_POST['phone']."'");
+			$member2=$this->obj->DB_select_once("useraccounts","`lname`='".$_POST['username']."' AND `phone`='".$phone."'");
 			//如果存在，说明是老用户需要在usermac表中绑定mac地址
 			if(is_array($member2)){
 				echo "bangding";
@@ -133,7 +147,7 @@ class register_controller extends common
 				$array_usermac['mac'] = $mac_usermacs;
 				
 				//如果usermac中有这个手机号并且userid为空 则更新这条记录
-				$member_usermacs = $this->obj->DB_select_once("usermacs","`userid`='' AND `phone`='".$_POST['phone']."' AND `mac`='".$mac_usermacs."'");
+				$member_usermacs = $this->obj->DB_select_once("usermacs","`userid`='' AND `phone`='".$phone."' AND `mac`='".$mac_usermacs."'");
 				if(is_array($member_usermacs)){
 					//die("更新usermacs");
 					$array_usermac['userid'] = $userid_usermacs;
@@ -147,6 +161,11 @@ class register_controller extends common
 				//如果姓名和电话不同时存在，
 				//如果usertype==1 是求职者求职者
 				//则更新4个表的数据，member表、useraccount、usermacs
+				if($_GET['step']==2){
+					//删除当前手机号，姓名为noname的记录
+					$this->obj->DB_delete_all("useraccounts","`lname`='noname' and `phone`='".$_COOKIE['myphone']."'");
+					
+				}
 				if($usertype==1){
 					echo "准备写入member";
 					$userid=$this->obj->insert_into('member',$idata);
@@ -161,7 +180,7 @@ class register_controller extends common
 							$udata['uid'] = $userid;
 							$udata2['uid'] = $userid;
 							$udata2['name'] = $_POST['username'];
-							$udata2['telphone'] = $_POST['phone'];
+							$udata2['telphone'] = $phone;
 						}elseif($usertype=="2"){
 							$table = "company_statis";
 							$table2 = "company";
@@ -187,7 +206,7 @@ class register_controller extends common
 						$myuseraccounts['usertype'] = $usertype;
 						$myuseraccounts['lname'] = $_POST['username'];
 						$myuseraccounts['mac'] = $_COOKIE["mymac"];
-						$myuseraccounts['phone'] = $_POST["phone"];
+						$myuseraccounts['phone'] = $phone;
 						$myuseraccounts['danwei'] = $_POST["danwei"];
 						$myuseraccounts['zhiwu'] = $_POST["zhiwu"];
 						$myuseraccounts['shenfen'] = $_POST["shenfen"];
@@ -236,7 +255,7 @@ class register_controller extends common
 								$value="`uid`='".$userid."'";
 								$udata['uid'] = $userid;
 								$udata2['uid'] = $userid;
-								$udata2['telphone'] = $_POST['phone'];
+								$udata2['telphone'] = $phone;
 							}elseif($usertype=="2"){
 								$table = "company_statis";
 								$table2 = "company";
@@ -245,7 +264,7 @@ class register_controller extends common
 								$udata2['uid'] = $userid;
 								$udata2['linkmail'] = $_POST['email'];
 								$udata2['linkman'] = $_POST['username'];
-								$udata2['linkphone'] = $_POST['phone'];
+								$udata2['linkphone'] = $phone;
 								$udata=$this->rating_info($udata);
 							}
 							$this->obj->insert_into($table,$udata);
@@ -298,6 +317,18 @@ class register_controller extends common
 			}
 			
 			echo "跳转前";
+			
+			if($_POST['usertype']==1 && ($_GET['step']==1||$_GET['step']=="")){
+				$myphone = $_POST['phone'];
+				//将mac写入cookie
+				
+					setcookie("myphone", $myphone, time()+360000);
+				
+				
+				$this->wapheader('index.php?m=register&usertype=1&step=2&point=签到成功,请填写详细信息获取更多权限 ');
+			}
+			
+			
 			$this->wapheader('index.php?point=签到成功 ');
 			echo "跳转后";
 			

@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-20 21:10:30
+<?php /* Smarty version 2.6.26, created on 2014-10-23 17:47:24
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 270, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 358, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => ($this->_tpl_vars['wapstyle'])."/header_cont.htm", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -66,13 +66,16 @@ xmlhttp.onreadystatechange=function()
 	    document.getElementById("danwei").value=array[2];
 	    document.getElementById("zhiwu").value=array[3];
 	    if(array[4]=="代表"){
-	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表  checked=checked>代表<input type=radio name=shenfen value=专家 >专家<input type=radio name=shenfen value=会务 >会务";
+	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表  checked=checked>代表<input type=radio name=shenfen value=专家 >专家<input type=radio name=shenfen value=会务 >会务<input type=radio name=shenfen value=媒体 >媒体";
 	    }
 	    if(array[4]=="专家"){
-	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表 >代表<input type=radio name=shenfen value=专家  checked=checked>专家<input type=radio name=shenfen value=会务 >会务";
+	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表 >代表<input type=radio name=shenfen value=专家  checked=checked>专家<input type=radio name=shenfen value=会务 >会务<input type=radio name=shenfen value=媒体 >媒体";
 	    }
 	    if(array[4]=="会务"){
-	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表 >代表<input type=radio name=shenfen value=专家 >专家<input type=radio name=shenfen value=会务  checked=checked>会务";
+	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表 >代表<input type=radio name=shenfen value=专家 >专家<input type=radio name=shenfen value=会务  checked=checked>会务<input type=radio name=shenfen value=媒体 >媒体";
+	    }
+	    if(array[4]=="媒体"){
+	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表 >代表<input type=radio name=shenfen value=专家 >专家<input type=radio name=shenfen value=会务  >会务<input type=radio name=shenfen value=媒体  checked=checked>媒体";
 	    }
 	    
 	}
@@ -176,6 +179,7 @@ function checkfrom(){
 	if(phone==false){alert('请正确填写手机号码！');return false;}
 	
 	//校验短信验证码
+	/*
 	var regmsg=$("#regmsg").val();
 	if(regmsg==""){
 		alert("校验码不能为空！");
@@ -184,6 +188,7 @@ function checkfrom(){
 		alert("校验码长度应是6位！");
 		return false;
 	}
+	*/
 	
 }
 
@@ -207,6 +212,7 @@ function setName(str){
 	
 	
 	<hr>
+	<?php if ($_GET['usertype'] == 2): ?>
   <form action="" method="post" onSubmit="return checkfrom();">
     <input name="usertype" id ="usertype" type="hidden" value="<?php echo $_GET['usertype']; ?>
 "/>
@@ -220,6 +226,7 @@ function setName(str){
     <p>
       <input name="phone" id="phone" type="text" class="input-common placeholder" placeholder="签到手机" onblur="return getInfoByPhone(this.value);"/>
     </p>
+    <?php if ($_GET['usertype'] == 1): ?>
     <p>
       <input name="sendmsg" id="sendmsg" type="button"  value="发送验证码" size="30" onclick="return sendMsg(this.value);"/> 
       <font id="msgInfo"></font>
@@ -228,6 +235,7 @@ function setName(str){
       <input name="regmsg" id="regmsg" type="text" class="input-common placeholder" placeholder="短信验证码" />
       <font id="checkMsg"></font>
     </p>
+    <?php endif; ?>
     <p>
       <div id="username2"></div>
       <input name="username" id="username" type="text" class="input-common placeholder" placeholder="姓名" />
@@ -248,6 +256,7 @@ function setName(str){
       <input type="radio" name="shenfen" value="代表" checked=checked>代表	
       <input type="radio" name="shenfen" value="专家" >专家
       <input type="radio" name="shenfen" value="会务" >会务
+      <input type="radio" name="shenfen" value="媒体" >媒体
       
       
     </p>
@@ -275,6 +284,86 @@ function setName(str){
     </p>
     <input type="submit" name="submit" value="签到" class="btn-large" />
   </form>
+  <?php endif; ?>
+  
+  <?php if ($_GET['usertype'] == 1): ?>
+  <form action="" method="post" onSubmit="return checkfrom();">
+    <input name="usertype" id ="usertype" type="hidden" value="<?php echo $_GET['usertype']; ?>
+"/>
+    
+     <?php if ($_GET['usertype'] == 2): ?>
+    <p>
+      <input name="regphone" id="regphone" type="text" class="input-common placeholder" placeholder="代表证上的4位代表号" onblur="return getInfoByRegPhone(this.value);"/>
+      <div id="regInfo"></div>
+    </p>
+    <?php endif; ?>
+    
+    <?php if ($_GET['step'] == 1 || $_GET['step'] == ""): ?>
+    <p>
+      <input name="phone" id="phone" type="text" class="input-common placeholder" placeholder="签到手机" onblur="return getInfoByPhone(this.value);"/>
+    </p>
+    
+    <p>
+      <input name="sendmsg" id="sendmsg" type="button"  value="发送验证码" size="30" onclick="return sendMsg(this.value);"/> 
+      <font id="msgInfo"></font>
+    </p>
+    <p>
+      <input name="regmsg" id="regmsg" type="text" class="input-common placeholder" placeholder="短信验证码" />
+      <font id="checkMsg"></font>
+    </p>
+    <input type="submit" name="submit" value="签到" class="btn-large" />
+    <?php endif; ?>
+    <?php if ($_GET['step'] == 2): ?>
+    <p>
+      <div id="username2"></div>
+      <input name="username" id="username" type="text" class="input-common placeholder" placeholder="姓名" />
+      
+    </p>
+    
+    <p>
+      
+      <input name="danwei" id="danwei" type="text" class="input-common placeholder" placeholder="工作单位" />
+      
+    </p>
+    <p>
+      	
+      <input name="zhiwu" id="zhiwu" type="text" class="input-common placeholder" placeholder="职务" />
+      
+    </p>
+    <p class="input-common placeholder" id="shenfen">
+      <input type="radio" name="shenfen" value="代表" checked=checked>代表	
+      <input type="radio" name="shenfen" value="专家" >专家
+      <input type="radio" name="shenfen" value="会务" >会务
+      <input type="radio" name="shenfen" value="媒体" >媒体
+      
+      
+    </p>
+    
+    <!-- p class="input-common placeholder">
+      <input name="baomi0" id="baomi0" type="checkbox" checked/>为他人签到
+    </p>
+    <p class="input-common placeholder">
+      <input name="baomi1" id="baomi1" type="checkbox"  checked/>对现场招聘者公开我的信息
+    </p>
+     <p class="input-common placeholder">
+      <input name="baomi2" id="baomi2" type="checkbox" class="selecter placeholder" />对现场其他求职者保密
+    </p>
+     <p class="input-common placeholder">
+      <input name="baomi3" id="baomi3" type="checkbox" class=""  checked/>用短信增强安全性
+    </p-->
+    <p>
+      <input name="email" id="email" type="hidden"class="input-common placeholder" placeholder="邮箱"/>
+    </p>
+    <p>
+      <input name="password" id="password" type="hidden"class="input-common placeholder" placeholder="密码"  value="111111"/>
+    </p>
+    <p>
+      <input name="password2" id="password2" type="hidden"class="input-common placeholder" placeholder="重复密码" value="111111"/>
+    </p>
+    <input type="submit" name="submit" value="提交" class="btn-large" />
+    <?php endif; ?>
+  </form>
+  <?php endif; ?>
   <!-- section class="wap_login_no">已有账号？
   <?php if ($_GET['usertype'] == 2): ?>
 <a href="<?php echo smarty_function_wapurl(array('m' => 'login','url' => "usertype:2"), $this);?>
