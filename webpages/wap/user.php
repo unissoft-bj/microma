@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
 <meta http-equiv="Cache-Control" content="no-cache"/>
-<title>{yun:}$config.sy_webname{/yun} -  手机人才网</title>
+<title>{yun:}$config.sy_webname{/yun} </title>
 <meta http-equiv="keywords" content="人才招聘,网络招聘,wap" />
 <meta http-equiv="description" content="人才招聘网wap网站" />
 <link rel="stylesheet" type="text/css" href="{yun:}$wapstyle{/yun}/css/wap.css"/>
@@ -25,7 +25,7 @@ mysql_select_db($db_config['dbname'], $con);
 
 $result = mysql_query("SELECT useraccounts.intid,useraccounts.lname,useraccounts.usertype,useraccounts.shenfen FROM usermacs,useraccounts where usermacs.userid=useraccounts.userid and usermacs.mac='".$mymac."'");
 if(mysql_num_rows($result)==0){
-	echo "请输入代表号：";
+	echo "请输入手机号：";
 }
 while($row = mysql_fetch_array($result))
   {

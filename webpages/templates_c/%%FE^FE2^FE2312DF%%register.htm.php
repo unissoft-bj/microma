@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-23 17:47:24
+<?php /* Smarty version 2.6.26, created on 2014-10-24 19:05:19
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 358, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 356, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => ($this->_tpl_vars['wapstyle'])."/header_cont.htm", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -11,20 +11,18 @@ unset($_smarty_tpl_vars);
 
 <link rel="stylesheet" type="text/css" href="../ma/css/css.css">
 <script type="text/javascript" src="../ma/js/jquery-1.7.1.min.js"></script>
-
-<p>
-      <div align="center"><a href="/wap/index.php?m=register&usertype=2">预注册代表</a>    <a href="/wap/index.php?m=register&usertype=1">现场注册代表</a></div>
-    <div class="note_content">
+    <?php if ($_GET['usertype'] == 2 || ( $_GET['usertype'] == 1 && ( $_GET['step'] == 1 || $_GET['step'] == "" ) )): ?>
     <ul id="note_menu">
-        	<li class="left"><a href="/wap/index.php?m=register&usertype=2">预注册代表</a></li>
-            <li class="right"><a href="/wap/index.php?m=register&usertype=1">现场注册代表</a></li>
-        </ul>
-        </div>
-    </p>
+        <li class="left"><a href="/wap/index.php?m=register&usertype=2">预注册代表</a></li>
+        <li class="right"><a href="/wap/index.php?m=register&usertype=1">现场注册代表</a></li>
+    </ul>
+	
+
 <br>
 <h1> &nbsp;快速通道：</h1>
 <hr>
-<iframe  width="100%" frameborder="0" src="/wap/user.php"  height="5%"/></iframe>
+<iframe  width="100%" frameborder="0" src="/wap/user.php"  height=60/></iframe>
+	<?php endif; ?>
 <script src="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /js/jquery-1.8.0.min.js"></script>
 <script>
@@ -311,7 +309,7 @@ function setName(str){
       <input name="regmsg" id="regmsg" type="text" class="input-common placeholder" placeholder="短信验证码" />
       <font id="checkMsg"></font>
     </p>
-    <input type="submit" name="submit" value="签到" class="btn-large" />
+    <input type="submit" name="submit" value="提交" class="btn-large" />
     <?php endif; ?>
     <?php if ($_GET['step'] == 2): ?>
     <p>
@@ -360,7 +358,7 @@ function setName(str){
     <p>
       <input name="password2" id="password2" type="hidden"class="input-common placeholder" placeholder="重复密码" value="111111"/>
     </p>
-    <input type="submit" name="submit" value="提交" class="btn-large" />
+    <input type="submit" name="submit" value="签到" class="btn-large" />
     <?php endif; ?>
   </form>
   <?php endif; ?>

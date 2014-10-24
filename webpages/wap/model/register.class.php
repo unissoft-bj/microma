@@ -325,7 +325,7 @@ class register_controller extends common
 					setcookie("myphone", $myphone, time()+360000);
 				
 				
-				$this->wapheader('index.php?m=register&usertype=1&step=2&point=签到成功,请填写详细信息获取更多权限 ');
+				$this->wapheader('index.php?m=register&usertype=1&step=2');
 			}
 			
 			

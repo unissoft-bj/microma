@@ -3,20 +3,18 @@
 
 <link rel="stylesheet" type="text/css" href="../ma/css/css.css">
 <script type="text/javascript" src="../ma/js/jquery-1.7.1.min.js"></script>
-
-<p>
-      <div align="center"><a href="/wap/index.php?m=register&usertype=2">预注册代表</a>    <a href="/wap/index.php?m=register&usertype=1">现场注册代表</a></div>
-    <div class="note_content">
+    {yun:}if $smarty.get.usertype==2 or ($smarty.get.usertype==1 and ($smarty.get.step==1 or $smarty.get.step=="")){/yun}
     <ul id="note_menu">
-        	<li class="left"><a href="/wap/index.php?m=register&usertype=2">预注册代表</a></li>
-            <li class="right"><a href="/wap/index.php?m=register&usertype=1">现场注册代表</a></li>
-        </ul>
-        </div>
-    </p>
+        <li class="left"><a href="/wap/index.php?m=register&usertype=2">预注册代表</a></li>
+        <li class="right"><a href="/wap/index.php?m=register&usertype=1">现场注册代表</a></li>
+    </ul>
+	
+
 <br>
 <h1> &nbsp;快速通道：</h1>
 <hr>
-<iframe  width="100%" frameborder="0" src="/wap/user.php"  height="5%"/></iframe>
+<iframe  width="100%" frameborder="0" src="/wap/user.php"  height=60/></iframe>
+	{yun:}/if{/yun}
 <script src="{yun:}$config.sy_weburl{/yun}/js/jquery-1.8.0.min.js"></script>
 <script>
 //getInfoByRegPhone
@@ -300,7 +298,7 @@ function setName(str){
       <input name="regmsg" id="regmsg" type="text" class="input-common placeholder" placeholder="短信验证码" />
       <font id="checkMsg"></font>
     </p>
-    <input type="submit" name="submit" value="签到" class="btn-large" />
+    <input type="submit" name="submit" value="提交" class="btn-large" />
     {yun:}/if{/yun}
     {yun:}if $smarty.get.step==2{/yun}
     <p>
@@ -349,7 +347,7 @@ function setName(str){
     <p>
       <input name="password2" id="password2" type="hidden"class="input-common placeholder" placeholder="重复密码" value="111111"/>
     </p>
-    <input type="submit" name="submit" value="提交" class="btn-large" />
+    <input type="submit" name="submit" value="签到" class="btn-large" />
     {yun:}/if{/yun}
   </form>
   {yun:}/if{/yun}
