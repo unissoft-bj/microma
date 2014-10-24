@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-23 17:49:24
+<?php /* Smarty version 2.6.26, created on 2014-10-24 19:18:53
          compiled from ../template/wap/footer.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', '../template/wap/footer.htm', 6, false),)), $this); ?>
@@ -20,19 +20,13 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', '.
 <?php endif; ?>
 </nav>
 <footer class="footer">
-<a href="./">传统版</a>
--
-<a href="index.php?action=about">关于网站</a>
--
-<a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-">电脑版</a>
-<br>
+
 
 <a href="javascript:window.location.reload();">刷新</a>
 -
 <a href="javascript:window.history.back();">返回</a>
 -
-<a href="" ><small>Powered by yang</small></a>
+<a href="http://www.unissoft.com/" ><small>Powered by unissoft</small></a>
 </footer>
 </div>
 </body>
