@@ -1,0 +1,13 @@
+
+1, copy wlspupload.xml to /root/
+2, copy wlsp2iserver.py to /root/
+3, crontab -e
+@reboot sudo python /root/wlsp2iserver.py &
+
+check upload
+
+ssh to 182.92.195.40
+
+root
+
+bash  /root/chkdb.sh
