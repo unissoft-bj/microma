@@ -28,7 +28,7 @@ $(function(){
 
 <div class="note_content">
 <ul id="note_menu">
-<li class="left">听众</li>
+<li class="left">代表</li>
 <li class="right">嘉宾</li>
 </ul>
 
@@ -55,7 +55,7 @@ if(empty($num)){
                             <li>电话：<span><?php echo $rs["phone"];?></span></li>
                             <li>职位：<b><?php echo $rs["title"];?></b></span></li>
                         </ul>
-                        <div class="jt">发送</div>
+                        <div class="jt">发送便签</div>
                     </div>
                     
                 </a>
