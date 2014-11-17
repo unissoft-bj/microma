@@ -92,7 +92,7 @@ EOT;
 	}
 	
 	$font_css_markup = implode('|',$font_css_array);
-	$font_css_markup = "<link href='http://fonts.googleapis.com/css?family={$font_css_markup}' rel='stylesheet' type='text/css'>\n";
+	$font_css_markup = '';//"<link href='http://fonts.googleapis.com/css?family={$font_css_markup}' rel='stylesheet' type='text/css'>\n";
 	
 	//determine if the font list is reaching the end or not
 	$query = "select max(font_id) max_font_id from ".MF_TABLE_PREFIX."fonts";

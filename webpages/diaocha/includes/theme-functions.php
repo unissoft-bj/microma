@@ -975,7 +975,7 @@ EOT;
 
 			$font_css_markup = implode('|',$font_css_array);
 			if(!empty($font_css_array)){
-				$font_css_markup = "<link href='http{$ssl_suffix}://fonts.googleapis.com/css?family={$font_css_markup}' rel='stylesheet' type='text/css'>\n";
+				$font_css_markup = '';//"<link href='http{$ssl_suffix}://fonts.googleapis.com/css?family={$font_css_markup}' rel='stylesheet' type='text/css'>\n";
 			}else{
 				$font_css_markup = '';
 			}
