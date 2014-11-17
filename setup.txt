@@ -1,12 +1,12 @@
 # get php codes
-cd /usr/src
+cd /media/data
 git clone https://github.com/unissoft-bj/microma.git
 # update database wlsp
-mysql -uroot -prootatussp wlsp < /usr/src/microma/db/ihost-ma.sql 
+mysql -uroot -prootatussp wlsp < /media/data/microma/db/ihost-ma.sql 
 # put to working directory
 unlink /var/www
 mkdir /var/www
-cp -r /usr/src/microma/webpages/* /var/www/
+cp -r /media/data/microma/webpages/* /var/www/
 chmod -R 777 /var/www
 # update chilli, push to ma page
 sed -i 's|/auth/ihost.php|/wap/index.php|g' /etc/chilli/defaults 
@@ -14,3 +14,4 @@ sed -i 's|/auth/ihost.php|/wap/index.php|g' /etc/chilli/defaults
 cat /etc/chilli/defaults | grep /wap/index.php
 # reboot
 reboot
+
