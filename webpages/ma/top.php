@@ -70,23 +70,11 @@ function CountDown() {
 			  });
 }
 </script>
-	<div class="top">
-    	<ul>
-        	<li><img src="images/logo.png" alt=""/></li>
-            <!--<li>欢迎您，xx</li>-->
-            <li class="num"><a href="message_liebiao.php">便笺：<span id='messnum'>
-              0
-             </span></a></li>
-            <li class="num"><a href="message_linkman.php">关注：<span id="online">0</span></a></li>
-            <li class="wifi">
-            <?php if ($_GET[auth]) {?>
-            	 <a href='<?php echo $_GET[userurl];?>' target="_blank"><?php ?> <img src="images/wifi1.png" alt=""/></a>
-          <?php   }else{?>
-          
-          <a href='/wap/index.php?m=register'   target="_blank"><?php ?> <img src="images/wifi1.png" alt=""/></a>
-            <?php   }?>
-          
-            
-            </li>
-        </ul>
-    </div>
+<link rel="stylesheet" type="text/css" href="/template/wap/css/wap.css"/>
+<header class="header">
+<div class="header_cont">
+ <div class="left-box"> <a class="hd-lbtn" href="javascript:history.back()"><span>返回</span></a></div>
+<div class="header_name"><?php echo $_GET['title']?></div>
+<div class="header_user"><a href="../wap/member/"></a></div>
+</div>
+</header>

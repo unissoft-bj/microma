@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-23 18:04:42
+<?php /* Smarty version 2.6.26, created on 2014-11-16 22:28:40
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -16,12 +16,12 @@
 <div class="main_body">
 <header class="header">
 <div class="header_cont">
-<?php if ($_GET['auth'] == 0): ?>
-<div class="left-box"> <a class="hd-lbtn" href="/wap/index.php?m=register"><span>开启网络</span></a></div>
+<?php if (! $this->_tpl_vars['cookie']['uid']): ?>
+<div class="left-box"> <a class="hd-lbtn" href="/wap/index.php?m=register"><span>申请Internet</span></a></div>
 <?php endif; ?>
-<?php if ($_GET['auth'] == 1): ?>
+<?php if ($this->_tpl_vars['cookie']['uid']): ?>
 <div class="left-box"> <a class="hd-lbtn" href="<?php echo $_GET['userurl']; ?>
-"><span>访问网络</span></a></div>
+"><span>访问Internet</span></a></div>
 <?php endif; ?>
 <div class="header_user"><a href="member/"></a></div>
 <div class="logo"><img src="<?php echo $this->_tpl_vars['wapstyle']; ?>
@@ -67,21 +67,32 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 <table class="mune_list">
 <tr>
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/ma/message_liebiao.php"><p class="mune_a"><i></i><em>交朋识友</em></p></a></td>
+/ma/message_liebiao.php?title=%e7%ba%bf%e4%b8%8a%e6%b6%88%e6%81%af"><p class="mune_a"><i></i><em>线上消息</em></p></a></td>
+<?php if (! $this->_tpl_vars['cookie']['uid']): ?>
+
+
 <td width="30%" rowspan="2"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>线上签到<br><small>(签到后开通互联网)</small></em></p></a></td>
+/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>实名认证<br><small>接通外网</small><br><small>参与线上互动活动</small></em></p></a></td>
+<?php else: ?>
+<td width="30%" rowspan="2"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
+/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>欢迎，<?php echo $this->_tpl_vars['cookie']['username']; ?>
+！<br><small>您可以访问互联网</small><br><small>或者</small><br><small>参与线上互动和活动</small></em></p></a></td>
+
+<?php endif; ?>
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/ma/meeting_list.php"><p class="mune_d"><i></i><em>会议资料</em></p></a></td>
+/ma/meeting_list.php?title=%e8%b5%84%e6%96%99%e4%b8%8b%e8%bd%bd"><p class="mune_d"><i></i><em>资料下载</em></p></a></td>
 </tr>
 <tr>
+<!-- <td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
+/ma/vote.php?title=%e6%85%88%e5%96%84%e6%8b%87%e6%8c%87"><p class="mune_b"><i></i><em>慈善拇指</em></p></a></td> -->
 <td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/ma/vote.php"><p class="mune_b"><i></i><em>参与讨论</em></p></a></td>
+/diaocha/view.php?id=10392"><p class="mune_b"><i></i><em>慈善拇指</em></p></a></td>
 <td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/ma/discuss.php"><p class="mune_e"><i></i><em>会务留言</em></p></a></td>
+/ma/discuss.php?title=%e7%95%99%e8%a8%80%e5%8f%8d%e9%a6%88"><p class="mune_e"><i></i><em>留言反馈</em></p></a></td>
 </tr>
 <tr>
 <td colspan="3"> <a  href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/ma/meeting_list.php"><p class="mune_f">会议日程</p></a></td>
+/ma/meeting_list.php?title=%e4%bc%9a%e8%ae%ae%e6%97%a5%e7%a8%8b"><p class="mune_f">会议日程</p></a></td>
 </tr>
 </table>
 

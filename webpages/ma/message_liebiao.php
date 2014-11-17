@@ -14,8 +14,17 @@ $uid=$_COOKIE["uid"];
 <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 <script type="text/javascript">
  $(function(){
+	 <?php 
+	 	if ($_GET['flag']=="sendok") {
+	 		
+	 	
+	 ?>
+	$("#note_menu>li:not(:first)").addClass("se");
+	$("#note_info>div:first").hide();
+	<?php }else{?>
 	$("#note_menu>li:first").addClass("se");
 	$("#note_info>div:not(:first)").hide();
+	<?php }?>
 	$("#note_menu>li").click(function(){
 		$("#note_info").children(":eq("+$(this).index()+")").show().siblings().hide();
 		$(this).addClass().addClass("se").siblings().removeClass("se")
@@ -26,9 +35,20 @@ $uid=$_COOKIE["uid"];
 
 <body>
 	<?php include 'top.php';?>
-    <div class="send_note">
-    	<a href="message_linkman.php">发便笺</a>
-    </div>
+    
+    <nav class="footer_nav">
+
+<a href="javascript:window.scrollTo(0,0);">TOP</a><a href="/wap">首页</a> &nbsp;-
+<?php if ($_COOKIE['uid']) {
+	;
+?>
+&nbsp;
+
+
+欢迎,<strong><?php echo iconv('GB2312', 'UTF-8', $_COOKIE['username']);?></strong> 
+<a href="message_linkman.php?title=在场用户"><font color="#ff7600">选择在场用户</font></a>
+<?php }?>
+</nav>
     <div class="note_content">
     	<ul id="note_menu">
         	<li class="left">已收到</li>

@@ -120,13 +120,17 @@ class action {
 		$SQL = "INSERT INTO `" . $this->def . $tablename . "` SET $value";
 		$this->db->query("set sql_mode=''");
 		$this->db->query($SQL);
+		
 		$nid= $this->db->insert_id();
+		
 		return $nid;
 	}
 	function DB_update_all($tablename, $value, $where = 1){
     	$SQL = "UPDATE `" . $this->def . $tablename . "` SET $value WHERE $where";
  		$this->db->query("set sql_mode=''");
+ 		//echo $SQL;
 		$return=$this->db->query($SQL);
+		
 		return $return;
 	}
 	function DB_delete_all($tablename, $where, $limit = 'limit 1'){
@@ -493,14 +497,16 @@ class action {
 			}
 		}
 		$value=@implode(",",$value);
+		//echo $this->DB_insert_once($table,$value);
 		return $this->DB_insert_once($table,$value);
 	}
 	function update_once($table,$data=array(),$w=''){
+		echo "sql";
 		$value="";
 		$where="";
 		$FieldSQL = "SELECT `COLUMN_NAME` FROM INFORMATION_SCHEMA.Columns WHERE TABLE_NAME = '".$this->def.$table."'";
 		$Fquery = $this->db->query($FieldSQL);
-
+		
 		while($Frow=$this->db->fetch_array($Fquery)){
 			$Freturn[]=$Frow;
 		}

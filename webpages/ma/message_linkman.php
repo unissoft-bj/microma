@@ -25,7 +25,19 @@ $(function(){
 
 <body>
 <?php include 'top.php';?>
+<nav class="footer_nav">
 
+<a href="javascript:window.scrollTo(0,0);">TOP</a><a href="/wap">首页</a> &nbsp;-
+<?php if ($_COOKIE['uid']) {
+	;
+?>
+&nbsp;
+
+
+欢迎,<strong><?php echo iconv('GB2312', 'UTF-8', $_COOKIE['username']);?></strong> 
+<a href="message_liebiao.php?title=线上消息"><font color="#ff7600">返回消息列表</font></a>
+<?php }?>
+</nav>
 <div class="note_content">
 <ul id="note_menu">
 <li class="left">代表</li>
@@ -48,7 +60,7 @@ if(empty($num)){
 }else{
 	while($rs=mysql_fetch_array($query)){
 		?>
-                <a href="message_fasong.php?uid=<?php echo $rs[intid];?>" title="">
+                <a href="message_fasong.php?uid=<?php echo $rs[intid];?>&title=To:<?php echo $rs['lname'];?>" title="">
                     <div class="clearfix">
                         <ul class="note_liebiao">
                             <li class="clearfix name"><span class="left">姓名</span><?php echo $rs["lname"];echo $rs["fname"];?></li>

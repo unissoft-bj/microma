@@ -1,9 +1,4 @@
-<html>
-<title>用户认证界面</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
-<body>
-<div style= 'font-size: 12px;'>
+
 <?php
 /**
  * 如果ihost验证成功 则跳转到首页 提示继续浏览互联网
@@ -25,8 +20,8 @@
 $mymac = $_GET['mac'];
 //将mac写入cookie
 
-        setcookie("mymac", $mymac, time()+3600,"/");
-        //setcookie("mymac", $mymac, time()+3600);
+setcookie("mymac", $mymac, time()+3600,"/");
+//setcookie("mymac", $mymac, time()+3600);
 
 
 include "dbconn.php";
@@ -100,23 +95,11 @@ else{
 //     #echo "</div>";
 //     #echo "<br />";
 	//请点击左上角按钮继续访问互联网
-     $point="%c7%eb%b5%e3%bb%f7%d7%f3%c9%cf%bd%c7%b0%b4%c5%a5%bc%cc%d0%f8%b7%c3%ce%ca%bb%a5%c1%aa%cd%f8";
-     $url = "/wap/index.php?point=".$point."&auth=".$auth."&userurl=".$_GET['userurl'];
-     echo "<font size=20>已为您接通Internet<br />Connected to the Internet";
-//     #echo "<br>";    
-//     echo "<br /><ul>";  
-     echo "<li><a href=\"" . $url . "\"> 点击此处继续您的Internet之旅</a>";
-//      echo "<li><a href=/wap/index.php> 点击此处访问我们的微人才</a></ul></font>";
+//      $point="%c7%eb%b5%e3%bb%f7%d7%f3%c9%cf%bd%c7%b0%b4%c5%a5%bc%cc%d0%f8%b7%c3%ce%ca%bb%a5%c1%aa%cd%f8";
+//      $url = "/wap/index.php?point=".$point."&auth=".$auth."&userurl=".$_GET['userurl'];
+//      echo "<font size=20>已为您接通Internet<br />Connected to the Internet";
+//      echo "<li><a href=\"" . $url . "\"> 点击此处继续您的Internet之旅</a>";
 
-//      $url = "/wap/index.php";  
-//      echo "<script language='javascript' type='text/javascript'>";  
-//      echo "window.location.href='$url'";  
-//      echo "< /script>";
-//      sleep(5);
-//      $point="请点击左上角按钮继续访问互联网"; 
-//    header("location: /wap/index.php?point=".$point."&auth=".$auth."&userurl=".$_GET['userurl']);
-
- 
     }
 
 

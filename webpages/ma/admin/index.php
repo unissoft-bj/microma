@@ -20,9 +20,9 @@ if (empty($endtime)) {
 <title><?php echo $cfg_webname;?> - 管理后台</title>
 <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 <link rel="shortcut icon" href="http://localhost/tuan/static/icon/favicon.ico">
-<link rel="stylesheet" href="<?php echo $cfg['siteurl'];?>css/index.css" type="text/css" media="screen" charset="utf-8">
- <link rel="stylesheet" href="<?php echo $cfg['siteurl'];?>css/lhgcalendar/lhgcalendar.css" type="text/css" media="screen" charset="utf-8">
-<script type="text/javascript" src="<?php echo $cfg['siteurl'];?>js/lhgcore.lhgcalendar.min.js"></script>
+<link rel="stylesheet" href="../css/index.css" type="text/css" media="screen" charset="utf-8">
+ <link rel="stylesheet" href="../css/lhgcalendar/lhgcalendar.css" type="text/css" media="screen" charset="utf-8">
+<script type="text/javascript" src="../js/lhgcore.lhgcalendar.min.js"></script>
 	<script type="text/javascript">
   	(function(config){
   	    config['format'] = "yyyy-MM-dd HH:mm:ss"; // 注意，此配置参数只能在这里使用全局配置，在调用窗口的传参数使用无效

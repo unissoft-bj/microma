@@ -23,10 +23,12 @@ if (!$con)
 
 mysql_select_db($db_config['dbname'], $con);
 
-$result = mysql_query("SELECT useraccounts.intid,useraccounts.lname,useraccounts.usertype,useraccounts.shenfen FROM usermacs,useraccounts where usermacs.userid=useraccounts.userid and usermacs.mac='".$mymac."'");
+$result = mysql_query("SELECT useraccounts.intid,useraccounts.lname,useraccounts.usertype,useraccounts.userrole FROM usermacs,useraccounts where usermacs.userid=useraccounts.userid and usermacs.mac='".$mymac."'");
+
 if(mysql_num_rows($result)==0){
 	echo "请输入手机号：";
 }
+
 while($row = mysql_fetch_array($result))
   {
   	
@@ -36,7 +38,7 @@ while($row = mysql_fetch_array($result))
   }else{
   	$usertype = "招聘者";
   }
-  echo "<a href=userlogin.php?userid=".$row['intid'].">".$row['lname']."[".$row['shenfen']."]</a>";
+  echo "<a href=userlogin.php?userid=".$row['intid'].">".$row['lname']."[".$row['userrole']."]</a>";
   echo "&nbsp;\t";
 
   }

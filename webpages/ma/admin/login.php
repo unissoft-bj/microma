@@ -13,7 +13,7 @@ if ($_POST['b']=="登录")
 			_setcookie("cookia_a_id",$rs['a_id'],3600*24);
 			_setcookie("cookia_a_user",$rs['a_user'],3600*24);
 			_setcookie("cookia_a_flag",1,3600*24);
-			msg("恭喜您登录成功！",$cfg['siteurl']."admin/index.php","2");
+			msg("恭喜您登录成功！","index.php","2");
 		}else{
 			msg("登录失败！","","2");
 		}

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-09 20:11:21
+<?php /* Smarty version 2.6.26, created on 2014-11-13 21:10:52
          compiled from wap/member/com/info.htm */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => ($this->_tpl_vars['wap_style'])."/member/cheader.htm", 'smarty_include_vars' => array()));

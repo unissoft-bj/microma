@@ -13,7 +13,7 @@ class news_controller extends common
 	function index_action()
 	{
 		$this->get_moblie();
-		$this->yunset("title","职场资讯");
+		$this->yunset("title","资料下载");
 		$this->yuntpl(array('wap/news'));
 	}
 	function show_action()
@@ -22,7 +22,7 @@ class news_controller extends common
 		$id=(int)$_GET[id];
 		$row=$this->obj->DB_select_alls("news_base","news_content","a.id=b.nbid and a.id='".$id."'");
 		$this->yunset("row",$row[0]);
-		$this->yunset("title","职场资讯");
+		$this->yunset("title","资料下载");
 		$this->yuntpl(array('wap/news_show'));
 	}
 }

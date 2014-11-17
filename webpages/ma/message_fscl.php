@@ -12,13 +12,13 @@ if(mysql_query($sqlinsert)){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript">
 	alert("发送成功");
-	window.location.href="message_linkman.php";
+	window.location.href="message_liebiao.php?title=线上消息&flag=sendok";
 </script>
 <?php 
 }else{?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript">
 	alert("发送失败");
-	window.location.href="message_linkman.php";
+	window.location.href="message_liebiao.php?title=线上消息&flag=sendok";
 </script>
 <?php }?>

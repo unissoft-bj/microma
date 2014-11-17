@@ -1,15 +1,4 @@
 <?php
-/* *
-* $Author ：PHPYUN开发团队
-*
-* 官网: http://www.phpyun.com
-*
-* 版权所有 2009-2014 宿迁鑫潮信息技术有限公司，并保留所有权利。
-*
-* 软件声明：未经授权前提下，不得用于商业运营、二次开发以及任何形式的再次发布。
-*/
-
-
 
 
 include(dirname(dirname(__FILE__))."/global.php");
@@ -25,12 +14,12 @@ mysql_select_db($db_config['dbname'], $con);
 //如果cookie为空，则自动创建cookie
 if($_COOKIE["username"]==""){
 	//根据mac地址得到最后登录的id
-	$sql = "SELECT intid FROM `useraccounts` WHERE mac='".$_COOKIE["mymac"]."' and stat>=100 order by id desc limit 1;";
-	
+	$sql = "SELECT intid FROM `useraccounts` WHERE mac='".$_COOKIE["mymac"]."' and stat>=100 order by stat desc limit 1;";
+	//echo $sql;
 	$result = mysql_query($sql);
 	$userinfoId = mysql_fetch_array($result);
 	$userid =  $userinfoId['intid'];
-	
+	//echo "SELECT uid,username,usertype,salt,password FROM member where uid=".$userid;
 	$result2 = mysql_query("SELECT uid,username,usertype,salt,password FROM member where uid=".$userid);
 	
 	while($userinfo = mysql_fetch_array($result2))

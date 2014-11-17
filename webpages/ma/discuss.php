@@ -1,4 +1,3 @@
-
 <?php
 require_once 'global.php';
 require_once 'inc/function.inc.php';
@@ -7,7 +6,6 @@ require_once 'inc/mysql.Class.php';
  
 $sql="select a.lname,b.creattime,b.content from useraccounts a,ma_guestbook b where a.intid=b.uid $sqladd order by b.creattime desc";
 $sqlc="select count(uid) as c from ma_guestbook where 1=1 $sqladd ";
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -24,14 +22,13 @@ function checkform(){
  
   return true;
 }
-
 function $(id){
   return document.getElementById(id);
 } 
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
-<title>热议</title>
+<title><?php echo $_GET['title']?></title>
 <link rel="stylesheet" type="text/css" href="css/css.css">
 </head>
 
@@ -52,14 +49,14 @@ function $(id){
 	<?php include 'top.php';?>
     
     <div class="discuss">
- 	<div class="tit">在线热议话题</div>
+ 	
     <div id="discuss_list">
     	<ul id="discuss_info2">
         	<?php
         	$rs=mysql_query($sql);
         	while($row=mysql_fetch_array($rs)){
 				echo "<li><ul>
-				<li class='clearfix'><span class='left'>$row[0]说：</span><span class='right'>$row[1]</span></li><li>$row[2]</li></ul></li>";
+				<li class='clearfix'><span class='left'>$row[0] 说：</span><span class='right'>$row[1]</span></li><li>$row[2]</li></ul></li>";
 }				 
         	?>  
         	  	

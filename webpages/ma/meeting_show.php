@@ -15,13 +15,26 @@ $id=$_GET["id"];
 
 <body>
    <?php include 'top.php';?>
+   <nav class="footer_nav">
+
+<a href="javascript:window.scrollTo(0,0);">TOP</a><a href="/wap">首页</a> &nbsp;-
+<?php if ($_COOKIE['uid']) {
+	;
+?>
+&nbsp;
+
+
+欢迎,<strong><?php echo iconv('GB2312', 'UTF-8', $_COOKIE['username']);?></strong> 
+<a href="meeting_list.php?title=资料下载"><font color="#ff7600">返回下载列表</font></a>
+<?php }?>
+</nav>
    <?php $sql="select * from ma_news where id=$id";
          $rs=$db->r($sql);?>
     <div id="discuss_list">
     	<ul id="discuss_info2">
         	<li>
             	<ul>
-                	<li class="clearfix"><span class="left2"><?php echo $rs["title"];?></span></li>
+                	<li class="clearfix"><span class="left2" ><?php echo $rs["title"];?></span></li>
                     <li class="jianjie"><?php echo $rs["des"]?></li>
                     <li><?php echo $rs["content"];?></li>
                 </ul>

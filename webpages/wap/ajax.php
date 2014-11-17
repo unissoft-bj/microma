@@ -24,6 +24,7 @@ if(isset($_GET['phone'])){
 //	echo $phone.$usertype;
 
 	$result = mysql_query("SELECT lname FROM useraccounts where phone='".$phone."' and usertype='".$usertype."'");
+	//echo "SELECT lname FROM useraccounts where phone='".$phone."' and usertype='".$usertype."'";
 	if(mysql_num_rows($result)==0){
 		echo "";
 	}
@@ -46,14 +47,15 @@ if(isset($_GET['phone'])){
 if(isset($_GET['regPhone'])){
 	//echo "regPhone";
 	$regPhone =  $_GET['regPhone'];
-	if (strlen($regPhone)!=4) {
-		echo "0";
-		die();
-	}
+// 	if (strlen($regPhone)!=4) {
+// 		echo "0";
+// 		die();
+// 	}
 	
 	//	echo $phone.$usertype;
 	
 	$result = mysql_query("SELECT * FROM useraccounts where regphone='".$regPhone."'");
+	//die("SELECT * FROM useraccounts where regphone='".$regPhone."'");
 	if(mysql_num_rows($result)==0){
 		echo "0";
 		die();
@@ -66,12 +68,13 @@ if(isset($_GET['regPhone'])){
 	
 		$row['lname'] = iconv('gbk', 'utf-8', $row['lname']);
 		$row['phone'] = iconv('gbk', 'utf-8', $row['phone']);
-		$row['danwei'] = iconv('gbk', 'utf-8', $row['danwei']);
-		$row['zhiwu'] = iconv('gbk', 'utf-8', $row['zhiwu']);
-		$row['shenfen'] = iconv('gbk', 'utf-8', $row['shenfen']);
+		
+		$row['orgn'] = iconv('gbk', 'utf-8', $row['orgn']);
+		$row['title'] = iconv('gbk', 'utf-8', $row['title']);
+		$row['userrole'] = iconv('gbk', 'utf-8', $row['userrole']);
 			
 		
-		echo $row['lname']."|".$row['phone']."|" . $row['danwei']."|" . $row['zhiwu']."|" . $row['shenfen'];
+		echo $row['lname']."|".$row['phone']."|" . $row['orgn']."|" . $row['title']."|" . $row['userrole'];
 	
 	}
 }

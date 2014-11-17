@@ -1,28 +1,43 @@
-<?php /* Smarty version 2.6.26, created on 2014-10-24 19:05:19
+<?php /* Smarty version 2.6.26, created on 2014-11-13 21:23:41
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 356, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 18, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => ($this->_tpl_vars['wapstyle'])."/header_cont.htm", 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-<br>
+
 
 <link rel="stylesheet" type="text/css" href="../ma/css/css.css">
 <script type="text/javascript" src="../ma/js/jquery-1.7.1.min.js"></script>
-    <?php if ($_GET['usertype'] == 2 || ( $_GET['usertype'] == 1 && ( $_GET['step'] == 1 || $_GET['step'] == "" ) )): ?>
+	
+    <!-- 
     <ul id="note_menu">
         <li class="left"><a href="/wap/index.php?m=register&usertype=2">预注册代表</a></li>
         <li class="right"><a href="/wap/index.php?m=register&usertype=1">现场注册代表</a></li>
     </ul>
-	
-
+	 -->
+<nav class="footer_nav">
+<a href="javascript:window.scrollTo(0,0);">TOP</a>
+<a href="/wap">首页</a> &nbsp;-<?php if (! $this->_tpl_vars['cookie']['uid']): ?>
+&nbsp;
+<!--
+<a href="<?php echo smarty_function_wapurl(array('m' => 'login'), $this);?>
+">个人登录</a>&nbsp;&nbsp;-
+<a href="<?php echo smarty_function_wapurl(array('m' => 'login','url' => "usertype:2"), $this);?>
+">企业登录</a>&nbsp;&nbsp;<br/>
+  -->
+<?php else: ?>
+欢迎,<a href="member"><strong><?php echo $this->_tpl_vars['cookie']['username']; ?>
+</strong> </a>
+<?php endif; ?>
+</nav>
 <br>
 <h1> &nbsp;快速通道：</h1>
 <hr>
 <iframe  width="100%" frameborder="0" src="/wap/user.php"  height=60/></iframe>
-	<?php endif; ?>
+	
 <script src="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /js/jquery-1.8.0.min.js"></script>
 <script>
@@ -54,9 +69,13 @@ xmlhttp.onreadystatechange=function()
 	
 	if(names==0){
 		//alert("===");
-		document.getElementById("regInfo").innerHTML="代表号错误";
+		document.getElementById("regInfo").innerHTML="代表号错误，<br>预注册用户重新输入预注册手机号，<br>否则请在下方输入手机号";
+		document.getElementById("yuzhuce1").style.display="none";
+		document.getElementById("usertype").value=1;
 	}else{
 		
+		document.getElementById("usertype").value=2;
+		document.getElementById("yuzhuce2").style.display="none";
 		var array = names.split("|");
 	   
 	    document.getElementById("username").value=array[0];
@@ -121,6 +140,7 @@ xmlhttp.onreadystatechange=function()
   }
 
 var usertype= document.getElementById("usertype").value;
+
 xmlhttp.open("GET","ajax.php?phone="+str+"&usertype="+usertype,true);
 xmlhttp.send();
 }
@@ -210,21 +230,23 @@ function setName(str){
 	
 	
 	<hr>
-	<?php if ($_GET['usertype'] == 2): ?>
+	
   <form action="" method="post" onSubmit="return checkfrom();">
-    <input name="usertype" id ="usertype" type="hidden" value="<?php echo $_GET['usertype']; ?>
-"/>
+    <input name="usertype" id ="usertype" type="hidden" value="1"/>
     
-     <?php if ($_GET['usertype'] == 2): ?>
+     
     <p>
-      <input name="regphone" id="regphone" type="text" class="input-common placeholder" placeholder="代表证上的4位代表号" onblur="return getInfoByRegPhone(this.value);"/>
+    
+      <input name="regphone" id="regphone" type="text" class="input-common placeholder" placeholder="请输入预注册手机号" onblur="return getInfoByRegPhone(this.value);"/>
       <div id="regInfo"></div>
-    </p>
-    <?php endif; ?>
+    
+    <div id="yuzhuce1" style="display: block;">
+    或
+    </div>
     <p>
-      <input name="phone" id="phone" type="text" class="input-common placeholder" placeholder="签到手机" onblur="return getInfoByPhone(this.value);"/>
+      <input name="phone" id="phone" type="text" class="input-common placeholder" placeholder="请输入手机号" onblur="return getInfoByPhone(this.value);"/>
     </p>
-    <?php if ($_GET['usertype'] == 1): ?>
+    <div id="yuzhuce2" style="display: block;">
     <p>
       <input name="sendmsg" id="sendmsg" type="button"  value="发送验证码" size="30" onclick="return sendMsg(this.value);"/> 
       <font id="msgInfo"></font>
@@ -233,7 +255,7 @@ function setName(str){
       <input name="regmsg" id="regmsg" type="text" class="input-common placeholder" placeholder="短信验证码" />
       <font id="checkMsg"></font>
     </p>
-    <?php endif; ?>
+    </div>
     <p>
       <div id="username2"></div>
       <input name="username" id="username" type="text" class="input-common placeholder" placeholder="姓名" />
@@ -282,86 +304,9 @@ function setName(str){
     </p>
     <input type="submit" name="submit" value="签到" class="btn-large" />
   </form>
-  <?php endif; ?>
   
-  <?php if ($_GET['usertype'] == 1): ?>
-  <form action="" method="post" onSubmit="return checkfrom();">
-    <input name="usertype" id ="usertype" type="hidden" value="<?php echo $_GET['usertype']; ?>
-"/>
-    
-     <?php if ($_GET['usertype'] == 2): ?>
-    <p>
-      <input name="regphone" id="regphone" type="text" class="input-common placeholder" placeholder="代表证上的4位代表号" onblur="return getInfoByRegPhone(this.value);"/>
-      <div id="regInfo"></div>
-    </p>
-    <?php endif; ?>
-    
-    <?php if ($_GET['step'] == 1 || $_GET['step'] == ""): ?>
-    <p>
-      <input name="phone" id="phone" type="text" class="input-common placeholder" placeholder="签到手机" onblur="return getInfoByPhone(this.value);"/>
-    </p>
-    
-    <p>
-      <input name="sendmsg" id="sendmsg" type="button"  value="发送验证码" size="30" onclick="return sendMsg(this.value);"/> 
-      <font id="msgInfo"></font>
-    </p>
-    <p>
-      <input name="regmsg" id="regmsg" type="text" class="input-common placeholder" placeholder="短信验证码" />
-      <font id="checkMsg"></font>
-    </p>
-    <input type="submit" name="submit" value="提交" class="btn-large" />
-    <?php endif; ?>
-    <?php if ($_GET['step'] == 2): ?>
-    <p>
-      <div id="username2"></div>
-      <input name="username" id="username" type="text" class="input-common placeholder" placeholder="姓名" />
-      
-    </p>
-    
-    <p>
-      
-      <input name="danwei" id="danwei" type="text" class="input-common placeholder" placeholder="工作单位" />
-      
-    </p>
-    <p>
-      	
-      <input name="zhiwu" id="zhiwu" type="text" class="input-common placeholder" placeholder="职务" />
-      
-    </p>
-    <p class="input-common placeholder" id="shenfen">
-      <input type="radio" name="shenfen" value="代表" checked=checked>代表	
-      <input type="radio" name="shenfen" value="专家" >专家
-      <input type="radio" name="shenfen" value="会务" >会务
-      <input type="radio" name="shenfen" value="媒体" >媒体
-      
-      
-    </p>
-    
-    <!-- p class="input-common placeholder">
-      <input name="baomi0" id="baomi0" type="checkbox" checked/>为他人签到
-    </p>
-    <p class="input-common placeholder">
-      <input name="baomi1" id="baomi1" type="checkbox"  checked/>对现场招聘者公开我的信息
-    </p>
-     <p class="input-common placeholder">
-      <input name="baomi2" id="baomi2" type="checkbox" class="selecter placeholder" />对现场其他求职者保密
-    </p>
-     <p class="input-common placeholder">
-      <input name="baomi3" id="baomi3" type="checkbox" class=""  checked/>用短信增强安全性
-    </p-->
-    <p>
-      <input name="email" id="email" type="hidden"class="input-common placeholder" placeholder="邮箱"/>
-    </p>
-    <p>
-      <input name="password" id="password" type="hidden"class="input-common placeholder" placeholder="密码"  value="111111"/>
-    </p>
-    <p>
-      <input name="password2" id="password2" type="hidden"class="input-common placeholder" placeholder="重复密码" value="111111"/>
-    </p>
-    <input type="submit" name="submit" value="签到" class="btn-large" />
-    <?php endif; ?>
-  </form>
-  <?php endif; ?>
+  
+  
   <!-- section class="wap_login_no">已有账号？
   <?php if ($_GET['usertype'] == 2): ?>
 <a href="<?php echo smarty_function_wapurl(array('m' => 'login','url' => "usertype:2"), $this);?>

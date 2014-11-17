@@ -12,11 +12,11 @@
 <div class="main_body">
 <header class="header">
 <div class="header_cont">
-{yun:}if $smarty.get.auth==0{/yun}
-<div class="left-box"> <a class="hd-lbtn" href="/wap/index.php?m=register"><span>开启网络</span></a></div>
+{yun:}if !$cookie.uid{/yun}
+<div class="left-box"> <a class="hd-lbtn" href="/wap/index.php?m=register"><span>申请Internet</span></a></div>
 {yun:}/if{/yun}
-{yun:}if $smarty.get.auth==1{/yun}
-<div class="left-box"> <a class="hd-lbtn" href="{yun:}$smarty.get.userurl{/yun}"><span>访问网络</span></a></div>
+{yun:}if $cookie.uid{/yun}
+<div class="left-box"> <a class="hd-lbtn" href="{yun:}$smarty.get.userurl{/yun}"><span>访问Internet</span></a></div>
 {yun:}/if{/yun}
 <div class="header_user"><a href="member/"></a></div>
 <div class="logo"><img src="{yun:}$wapstyle{/yun}/images/logo.png"></div>
@@ -59,16 +59,24 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 </script>
 <table class="mune_list">
 <tr>
-<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/ma/message_liebiao.php"><p class="mune_a"><i></i><em>交朋识友</em></p></a></td>
-<td width="30%" rowspan="2"><a href="{yun:}$config.sy_weburl{/yun}/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>线上签到<br><small>(签到后开通互联网)</small></em></p></a></td>
-<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/ma/meeting_list.php"><p class="mune_d"><i></i><em>会议资料</em></p></a></td>
+<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/ma/message_liebiao.php?title=%e7%ba%bf%e4%b8%8a%e6%b6%88%e6%81%af"><p class="mune_a"><i></i><em>线上消息</em></p></a></td>
+{yun:}if !$cookie.uid{/yun}
+
+
+<td width="30%" rowspan="2"><a href="{yun:}$config.sy_weburl{/yun}/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>实名认证<br><small>接通外网</small><br><small>参与线上互动活动</small></em></p></a></td>
+{yun:}else{/yun}
+<td width="30%" rowspan="2"><a href="{yun:}$config.sy_weburl{/yun}/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>欢迎，{yun:}$cookie.username{/yun}！<br><small>您可以访问互联网</small><br><small>或者</small><br><small>参与线上互动和活动</small></em></p></a></td>
+
+{yun:}/if{/yun}
+<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/ma/meeting_list.php?title=%e8%b5%84%e6%96%99%e4%b8%8b%e8%bd%bd"><p class="mune_d"><i></i><em>资料下载</em></p></a></td>
 </tr>
 <tr>
-<td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/vote.php"><p class="mune_b"><i></i><em>参与讨论</em></p></a></td>
-<td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/discuss.php"><p class="mune_e"><i></i><em>会务留言</em></p></a></td>
+<!-- <td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/vote.php?title=%e6%85%88%e5%96%84%e6%8b%87%e6%8c%87"><p class="mune_b"><i></i><em>慈善拇指</em></p></a></td> -->
+<td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/diaocha/view.php?id=10392"><p class="mune_b"><i></i><em>慈善拇指</em></p></a></td>
+<td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/discuss.php?title=%e7%95%99%e8%a8%80%e5%8f%8d%e9%a6%88"><p class="mune_e"><i></i><em>留言反馈</em></p></a></td>
 </tr>
 <tr>
-<td colspan="3"> <a  href="{yun:}$config.sy_weburl{/yun}/ma/meeting_list.php"><p class="mune_f">会议日程</p></a></td>
+<td colspan="3"> <a  href="{yun:}$config.sy_weburl{/yun}/ma/meeting_list.php?title=%e4%bc%9a%e8%ae%ae%e6%97%a5%e7%a8%8b"><p class="mune_f">会议日程</p></a></td>
 </tr>
 </table>
 

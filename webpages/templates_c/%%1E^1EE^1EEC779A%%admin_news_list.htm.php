@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-09-11 09:17:53
+<?php /* Smarty version 2.6.26, created on 2014-11-14 19:28:43
          compiled from admin/admin_news_list.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'seacrh_url', 'admin/admin_news_list.htm', 82, false),array('modifier', 'date_format', 'admin/admin_news_list.htm', 122, false),)), $this); ?>

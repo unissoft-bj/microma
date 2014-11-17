@@ -1,7 +1,7 @@
 <?php 
 //echo _getcookie(cookia_l_user);
 if (! $cookia_a_flag) {
-	msg("您还未登录请重新登录！",$cfg['siteurl']."admin/login.php","3");
+	msg("您还未登录请重新登录！","login.php","3");
 }?> 
 <!--一级导航--> 
 <div id="hdw">

@@ -14,9 +14,21 @@ require 'inc/function.inc.php';
 
 <body>
 	<?php include 'top.php';?>
-    
+       <nav class="footer_nav">
+
+<a href="javascript:window.scrollTo(0,0);">TOP</a><a href="/wap">首页</a> &nbsp;-
+<?php if ($_COOKIE['uid']) {
+	;
+?>
+&nbsp;
+
+
+欢迎,<strong><?php echo iconv('GB2312', 'UTF-8', $_COOKIE['username']);?></strong> 
+<a href="meeting_list.php?title=资料下载"><font color="#ff7600"></font></a>
+<?php }?>
+</nav>
     <div class="meeting">
- 	<div class="tit2">会议</div>
+ 	
     <div id="meeting_list">
     
     	<ul id="info2">
@@ -34,7 +46,7 @@ require 'inc/function.inc.php';
            }else{
                while($rs=mysql_fetch_array($query)){
           ?>
-        <a href="meeting_show.php?id=<?php echo $rs[id]?>">
+        <a href="meeting_show.php?id=<?php echo $rs[id]?>&title=<?php echo $rs['title']?>">
     	<li>
         	<ul>
             	<li class="clearfix"><span class="left"><?php echo $rs["title"]?></span><span class="right"><?php echo $rs["creattime"]?></span></li>

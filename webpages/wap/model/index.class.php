@@ -17,6 +17,12 @@ class index_controller extends common
 	{
 		$this->get_moblie();
 		$this->yunset("title","阿萨斯");
+		if ($_GET['mac']) {
+			
+
+			include "../auth/ihost.php";
+		}
+		
 		$this->yuntpl(array('wap/index'));
 	}
 	
