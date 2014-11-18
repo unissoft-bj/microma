@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-11-13 21:23:41
+<?php /* Smarty version 2.6.26, created on 2014-11-18 11:00:58
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 18, false),)), $this); ?>
@@ -82,17 +82,17 @@ xmlhttp.onreadystatechange=function()
 	    document.getElementById("phone").value=array[1];
 	    document.getElementById("danwei").value=array[2];
 	    document.getElementById("zhiwu").value=array[3];
-	    if(array[4]=="代表"){
-	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表  checked=checked>代表<input type=radio name=shenfen value=专家 >专家<input type=radio name=shenfen value=会务 >会务<input type=radio name=shenfen value=媒体 >媒体";
+	    if(array[4]=="100"){
+	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=100  checked=checked>代表<input type=radio name=shenfen value=200 >专家<input type=radio name=shenfen value=400 >会务<input type=radio name=shenfen value=300 >媒体";
 	    }
-	    if(array[4]=="专家"){
-	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表 >代表<input type=radio name=shenfen value=专家  checked=checked>专家<input type=radio name=shenfen value=会务 >会务<input type=radio name=shenfen value=媒体 >媒体";
+	    if(array[4]=="200"){
+	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=100 >代表<input type=radio name=shenfen value=200  checked=checked>专家<input type=radio name=shenfen value=400 >会务<input type=radio name=shenfen value=300 >媒体";
 	    }
-	    if(array[4]=="会务"){
-	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表 >代表<input type=radio name=shenfen value=专家 >专家<input type=radio name=shenfen value=会务  checked=checked>会务<input type=radio name=shenfen value=媒体 >媒体";
+	    if(array[4]=="400"){
+	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=100 >代表<input type=radio name=shenfen value=200 >专家<input type=radio name=shenfen value=400  checked=checked>会务<input type=radio name=shenfen value=300 >媒体";
 	    }
-	    if(array[4]=="媒体"){
-	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=代表 >代表<input type=radio name=shenfen value=专家 >专家<input type=radio name=shenfen value=会务  >会务<input type=radio name=shenfen value=媒体  checked=checked>媒体";
+	    if(array[4]=="300"){
+	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=100 >代表<input type=radio name=shenfen value=200 >专家<input type=radio name=shenfen value=400  >会务<input type=radio name=shenfen value=300  checked=checked>媒体";
 	    }
 	    
 	}
@@ -273,10 +273,10 @@ function setName(str){
       
     </p>
     <p class="input-common placeholder" id="shenfen">
-      <input type="radio" name="shenfen" value="代表" checked=checked>代表	
-      <input type="radio" name="shenfen" value="专家" >专家
-      <input type="radio" name="shenfen" value="会务" >会务
-      <input type="radio" name="shenfen" value="媒体" >媒体
+      <input type="radio" name="shenfen" value="100" checked=checked>代表	
+      <input type="radio" name="shenfen" value="200" >专家
+      <input type="radio" name="shenfen" value="400" >会务
+      <input type="radio" name="shenfen" value="300" >媒体
       
       
     </p>

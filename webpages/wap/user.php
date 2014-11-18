@@ -38,7 +38,21 @@ while($row = mysql_fetch_array($result))
   }else{
   	$usertype = "招聘者";
   }
-  echo "<a href=userlogin.php?userid=".$row['intid'].">".$row['lname']."[".$row['userrole']."]</a>";
+  
+  $userrole='';
+  if ($row['userrole']=="100") {
+  	$userrole = "代表";
+  }
+  if ($row['userrole']=="200") {
+  	$userrole = "专家";
+  }
+  if ($row['userrole']=="300") {
+  	$userrole = "媒体";
+  }
+  if ($row['userrole']=="400") {
+  	$userrole = "会务";
+  }
+  echo "<a href=userlogin.php?userid=".$row['intid'].">".$row['lname']."[".$userrole."]</a>";
   echo "&nbsp;\t";
 
   }
