@@ -12,6 +12,16 @@
 	echo "<script>location.href='/wap/index.php?m=register&point=%C7%EB%CF%C8%C8%CF%D6%A4';</script>";
 	}
 	
+// 	if (empty($_COOKIE['diaocha_url'])) {
+// 		$url='http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+// 		echo $url;
+// 		die();
+// 	}
+	//yc 每次单个题目提交之后，将下一个题目的url写入cookie
+	$url='http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
+	$url = basename($url);
+	setcookie("diaocha_url", $url, time()+360000,"/");
+
 	require('includes/init.php');
 
 	header("p3p: CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\"");
