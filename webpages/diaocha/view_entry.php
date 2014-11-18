@@ -242,10 +242,13 @@
 	$entry_details = mf_get_entry_details($dbh,$form_id,$entry_id,$param);
 
 	//get entry information (date created/updated/ip address)
+	//yc sql语句中添加userid和username
 	$query = "select 
 					date_format(date_created,'%e %b %Y - %r') date_created,
 					date_format(date_updated,'%e %b %Y - %r') date_updated,
-					ip_address 
+					ip_address,
+					userid,
+					username
 				from 
 					`".MF_TABLE_PREFIX."form_{$form_id}` 
 			where id=?";
@@ -261,6 +264,9 @@
 		$date_updated = '&nbsp;';
 	}
 	$ip_address   = $row['ip_address'];
+	//yc 取出userid和username的值
+	$userid = $row['userid'];
+	$username =$row['username']; 
 
 	//check for any 'signature' field, if there is any, we need to include the javascript library to display the signature
 	$query = "select 
@@ -315,7 +321,15 @@ EOT;
 					<div id="ve_details" data-formid="<?php echo $form_id; ?>" data-entryid="<?php echo $entry_id; ?>">
 						<table id="ve_detail_table" width="100%" border="0" cellspacing="0" cellpadding="0">
 						  <tbody>
-
+						  		<!-- //yc 显示userid和username -->
+								<tr class="alt">
+							  	    <td><strong>userid</strong></td>
+							  		<td><?php echo $userid; ?></td>
+							  	</tr>
+							  	<tr class="alt">
+							  	    <td><strong>username</strong></td>
+							  		<td><?php echo $username; ?></td>
+							  	</tr>
 							<?php 
 									$toggle = false;
 									
@@ -494,6 +508,15 @@ EOT;
 								<tr class="alt">
 							  	    <td><strong>IP Address</strong></td>
 							  		<td><?php echo $ip_address; ?></td>
+							  	</tr>
+							  	<!-- //yc 显示userid和username -->
+							  	<tr class="alt">
+							  	    <td><strong>userid</strong></td>
+							  		<td><?php echo $userid; ?></td>
+							  	</tr>
+							  	<tr class="alt">
+							  	    <td><strong>username</strong></td>
+							  		<td><?php echo $username; ?></td>
 							  	</tr>
 							</tbody>
 						</table>

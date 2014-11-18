@@ -10,6 +10,8 @@
 		插入userid和username到$table_data中，$table_data是所有表单数据的载体，将ip_address字段存储userid，用来做用户只能填写一次问卷的校验
 	
 	1-3.后台查看问卷结果时，显示userid和username
+		view_entry.php中，显示userid和username line:249
+		
 	
 	1-4.每个用户只能答一次问卷（form_id中做校验）
 		在1-2已经解决，需要在表单设置中选中每个ip只能填写一次问卷。
