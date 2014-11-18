@@ -1774,7 +1774,7 @@
 		
 		//$table_data['ip_address']   = $user_ip_address;
 		$table_data['date_created'] = date("Y-m-d H:i:s");
-		//yc ²åÈëuseridºÍusernameµ½$table_dataÖĞ£¬$table_dataÊÇËùÓĞ±íµ¥Êı¾İµÄÔØÌå£¬½«ip_address×Ö¶Î´æ´¢userid£¬ÓÃÀ´×öÓÃ»§Ö»ÄÜÌîĞ´Ò»´ÎÎÊ¾íµÄĞ£Ñé
+		//yc æ’å…¥useridå’Œusernameåˆ°$table_dataä¸­ï¼Œ$table_dataæ˜¯æ‰€æœ‰è¡¨å•æ•°æ®çš„è½½ä½“ï¼Œå°†ip_addresså­—æ®µå­˜å‚¨useridï¼Œç”¨æ¥åšç”¨æˆ·åªèƒ½å¡«å†™ä¸€æ¬¡é—®å·çš„æ ¡éªŒ
 		$table_data['ip_address']   = $_COOKIE['uid'];
 		$table_data['userid']   = $_COOKIE['uid'];
 		$table_data['username']   = $_COOKIE['username'];
