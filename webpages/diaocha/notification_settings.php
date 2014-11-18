@@ -600,6 +600,10 @@ EOT;
 												}
 											?>
 											<optgroup label="Entry Information">
+												<!-- yc
+												<option value="userid">userid</option>
+												<option value="username">username</option>
+												 -->
 												<option value="entry_no">Entry No.</option>
 												<option value="date_created">Date Created</option>
 												<option value="ip_address">IP Address</option>

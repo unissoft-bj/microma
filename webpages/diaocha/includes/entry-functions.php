@@ -802,6 +802,11 @@
 		$column_name_lookup['date_updated']   = 'Date Updated';
 		$column_name_lookup['ip_address'] 	  = 'IP Address';
 		
+		// yc 显示表头
+		$column_name_lookup['username'] 	  = 'username';
+		$column_name_lookup['userid'] 	  = 'userid';
+		//yc 显示表头结束
+		
 		$column_type_lookup['id'] 			= 'number';
 		$column_type_lookup['row_num']		= 'number';
 		$column_type_lookup['date_created'] = 'date';
@@ -1886,11 +1891,17 @@
 		$column_name_lookup['date_created'] = 'Date Created';
 		$column_name_lookup['date_updated'] = 'Date Updated';
 		$column_name_lookup['ip_address'] 	= 'IP Address';
+		//yc
+		$column_name_lookup['userid'] 	= 'userid';
+		$column_name_lookup['username'] 	= 'username';
 
 		$column_type_lookup['id'] 			= 'number';
 		$column_type_lookup['date_created'] = 'date';
 		$column_type_lookup['date_updated'] = 'date';
 		$column_type_lookup['ip_address'] 	= 'text';
+		//yc
+		$column_type_lookup['userid'] 	= 'text';
+		$column_type_lookup['username'] 	= 'text';
 		
 		
 		//get column properties for other fields
