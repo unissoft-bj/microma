@@ -71,11 +71,14 @@
 		mf_ap_forms_update($form_id,$form_input,$dbh);
 		
 		//create new table for this form
+		//yc 修改 在创建表单数据库表的时候，添加userid和username
 		$query = "CREATE TABLE `".MF_TABLE_PREFIX."form_{$form_id}` (
   													`id` int(11) NOT NULL auto_increment,
   													`date_created` datetime NOT NULL default '0000-00-00 00:00:00',
   													`date_updated` datetime default NULL,
   													`ip_address` varchar(15) default NULL,
+  													`userid` varchar(15) default NULL,
+  													`username` varchar(15) default NULL,
   													`status` int(4) unsigned NOT NULL DEFAULT '1',
   													`resume_key` varchar(10) default NULL,
   													PRIMARY KEY (`id`)

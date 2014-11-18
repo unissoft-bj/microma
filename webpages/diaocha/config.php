@@ -6,10 +6,10 @@ MachForm Configuration File
 /** MySQL settings **/
 define('MF_DB_HOST', 'localhost'); //The hostname for your database
 define('MF_DB_USER', 'root'); //Your database username
-// define('MF_DB_PASSWORD', 'root'); //Your database users password
-// define('MF_DB_NAME', 'ihost-ma'); //The name of your database. Note that this database must exist before running installer.php
-define('MF_DB_PASSWORD', 'rootatussp'); //Your database users password
-define('MF_DB_NAME', 'wlsp'); //The name of your database. Note that this database must exist before running installer.php
+ define('MF_DB_PASSWORD', 'root'); //Your database users password
+ define('MF_DB_NAME', 'ihost-ma'); //The name of your database. Note that this database must exist before running installer.php
+//define('MF_DB_PASSWORD', 'rootatussp'); //Your database users password
+//define('MF_DB_NAME', 'wlsp'); //The name of your database. Note that this database must exist before running installer.php
 
 
 /** YOU CAN LEAVE THE SETTINGS BELOW THIS LINE UNCHANGED **/
