@@ -21,16 +21,22 @@
 		在1-2已经解决，需要在表单设置中选中每个ip只能填写一次问卷。
 	<font size="green">完成</font>
 	
-	1-5.关于慈善金额（待整理……）
+	1-5.关于问卷的权限，只有登录用户才有资格。
+		view.php line:10
+	完成
+	
+	1-6.关于慈善金额（待整理……）
 		后台有该功能，在表单设置-》更多功能中，可以给每一题设置酬劳。
 		需要解决的问题 酬劳是如何存放到数据库中的？
 	<font size="red">进行中……</font>
 	
 2.关于进度保存呢
 
-	1-1.每次单个题目提交之后，将下一个题目的url写入cookie
-	
+	1-1.每次答题时，将当期url写入cookie
+		view.php line:20
 	1-2.如果cookie中的题目url不为空，则慈善拇指的url设定为cookie中的url
+		header.htm line:75
+	完成
 
 3.关于UI view
 
@@ -48,10 +54,12 @@
 
 2.关于进度保存呢
 
-	1-1.每次单个题目提交之后，将下一个题目的url写入cookie
-	
+	1-1.每次答题时，将当期url写入cookie
+		view.php line:20
 	1-2.如果cookie中的题目url不为空，则慈善拇指的url设定为cookie中的url
+		header.htm line:75
 
+	完成
 3.关于UI view
 
 

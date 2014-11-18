@@ -3,6 +3,8 @@
 
 include(dirname(dirname(__FILE__))."/global.php");
 //根据mac自动签到
+
+
 $con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
 mysql_query("SET NAMES 'GBK'");
 if (!$con)
