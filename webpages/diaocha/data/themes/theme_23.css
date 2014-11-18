@@ -2,7 +2,7 @@
 
 #main_body h1 a
 {
-background-image: url('http://diaocha.yc/images/form_resources/machform.png');
+background-image: url('./images/form_resources/machform.png');
 background-repeat: no-repeat;
 height: 40px;
 }

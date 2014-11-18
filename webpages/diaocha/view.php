@@ -7,6 +7,11 @@
  
  More info at: http://www.appnitro.com/
  ********************************************************************************/
+	//yc 验证用户是否登录
+	if (empty($_COOKIE['uid'])) {
+	echo "<script>location.href='/wap/index.php?m=register&point=%C7%EB%CF%C8%C8%CF%D6%A4';</script>";
+	}
+	
 	require('includes/init.php');
 
 	header("p3p: CP=\"IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT\"");
