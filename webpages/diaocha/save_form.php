@@ -71,7 +71,7 @@
 		mf_ap_forms_update($form_id,$form_input,$dbh);
 		
 		//create new table for this form
-		//yc ĞŞ¸Ä ÔÚ´´½¨±íµ¥Êı¾İ¿â±íµÄÊ±ºò£¬Ìí¼ÓuseridºÍusername
+		//yc 75è¡Œ ä¿®æ”¹ åœ¨åˆ›å»ºè¡¨å•æ•°æ®åº“è¡¨çš„æ—¶å€™ï¼Œæ·»åŠ useridå’Œusername
 		$query = "CREATE TABLE `".MF_TABLE_PREFIX."form_{$form_id}` (
   													`id` int(11) NOT NULL auto_increment,
   													`date_created` datetime NOT NULL default '0000-00-00 00:00:00',
