@@ -5,12 +5,17 @@
 	1-1.save-form.php  创建表单时将userid和username添加到form_id表的字段中
 		save_form.php  75行 修改 在创建表单数据库表的时候，添加userid和username
 	1-2.提交表单时，将cookie中的userid和username写入是form_id表中
+		post-function.php
+		1777行
+		插入userid和username到$table_data中，$table_data是所有表单数据的载体，将ip_address字段存储userid，用来做用户只能填写一次问卷的校验
 	
 	1-3.后台查看问卷结果时，显示userid和username
 	
 	1-4.每个用户只能答一次问卷（form_id中做校验）
+		在1-2已经解决，需要在表单设置中选中每个ip只能填写一次问卷。
 	
 	1-5.关于慈善金额（待整理……）
+		后台有该功能，在表单设置-》更多功能中，可以给每一题设置酬劳。
 
 2.关于进度保存呢
 

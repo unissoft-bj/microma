@@ -1771,8 +1771,13 @@
 		}
 		
 		//insert ip address and date created
-		$table_data['ip_address']   = $user_ip_address;
+		
+		//$table_data['ip_address']   = $user_ip_address;
 		$table_data['date_created'] = date("Y-m-d H:i:s");
+		//yc 插入userid和username到$table_data中，$table_data是所有表单数据的载体，将ip_address字段存储userid，用来做用户只能填写一次问卷的校验
+		$table_data['ip_address']   = $_COOKIE['uid'];
+		$table_data['userid']   = $_COOKIE['uid'];
+		$table_data['username']   = $_COOKIE['username'];
 		
 		
 		$is_inserted = false;
