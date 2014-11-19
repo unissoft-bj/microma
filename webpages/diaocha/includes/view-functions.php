@@ -4625,7 +4625,7 @@ EOT;
 				$form->description = nl2br($form->description);
 				$form_desc_div =<<<EOT
 		<div class="form_description">
-			<h2>{$form->name}</h2>
+			
 			<p>{$form->description}</p>
 		</div>
 EOT;
@@ -4966,12 +4966,12 @@ EOT;
 			}elseif ($form->payment_price_type == 'fixed') {
 				$other_page_total_data_tag = 'data-basetotal="'.$form->payment_price_amount.'"';
 			}
-			
+			//yc 
 			$payment_total_markup = <<<EOT
 			<li class="total_payment" {$other_page_total_data_tag}>
 				<span>
-					<h3>{$currency_symbol}<var>0</var></h3>
-					<h5>{$mf_lang['payment_total']}</h5>
+					<h3></h3>
+					<h5>你已经筹得：总计{$currency_symbol}<var>0</var></h5>
 				</span>
 			</li>
 EOT;
@@ -5035,6 +5035,7 @@ html{
 
 <div id="main_body" class="{$container_class}">
 
+
 	<div id="form_container">
 	
 		<h1><a>{$form->name}</a></h1>
@@ -5055,11 +5056,12 @@ html{
 			{$powered_by_markup}
 		</div>
 	</div>	
+						
 </div>
 
 EOT;
 		}else{
-
+//yc view.php的模板代码
 			$form_markup = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html {$html_class_tag} xmlns="http://www.w3.org/1999/xhtml">
@@ -5080,16 +5082,24 @@ EOT;
 {$logic_js}
 {$auto_height_js}
 </head>
+
 <body id="main_body" class="{$container_class}">
-	
+	<link rel="stylesheet" type="text/css" href="/template/wap/css/wap.css"/>
+<header class="header">
+<div class="header_cont">
+ <div class="left-box"> <a class="hd-lbtn" href="/wap"><span>返回</span></a></div>
+<div class="header_name">{$form->name}</div>
+<div class="header_user"><a href="../wap/member/"></a></div>
+</div>
+</header>
 	<div id="form_container" class="{$form_container_class}">
 	
-		<h1><a>{$form->name}</a></h1>
+		
 		<form id="form_{$form->id}" class="appnitro {$form->label_alignment}" {$form_enc_type} method="post" data-highlightcolor="{$field_highlight_color}" action="#main_body">
 			{$form_desc_div}						
 			<ul {$ul_class}>
-			{$pagination_header}
 			{$payment_total_markup_top}
+			{$pagination_header}			
 			{$form->error_message}
 			{$all_element_markup}
 			{$custom_element}
@@ -5102,7 +5112,16 @@ EOT;
 			{$powered_by_markup}
 		</div>
 	</div>
-	
+			
+	<footer class="footer" style="bottom:0; left:0">
+
+
+<a href="javascript:window.location.reload();">刷新</a>
+-
+<a href="javascript:window.history.back();">返回</a>
+-
+<a href="http://www.unissoft.com/" ><small>Powered by unissoft</small></a>
+</footer>
 	</body>
 </html>
 EOT;
@@ -5670,10 +5689,12 @@ EOT;
 			$resume_success_content = sprintf($mf_lang['resume_success_content'],$_SESSION['mf_form_resume_url'][$form_id]);
 
 			$success_markup = <<<EOT
-			<h2>{$resume_success_title}</h2>
-			<h3>{$resume_success_content}</h3>
+			<h2>{$resume_success_title}你为本次活动筹得资金：100</h2>
+			<h3>{$resume_success_content}==</h3>
 EOT;
 		}else{
+			//$success_markup = "<h2>{$form->success_message}</h2><h3>你为本次活动筹得资金：100</>";
+			//yc
 			$success_markup = "<h2>{$form->success_message}</h2>";		
 		}
 
@@ -5726,7 +5747,7 @@ EOT;
 			}else{
 				$embed_class = '';
 			}
-			
+	//yc		
 			$form_markup = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html {$embed_class} xmlns="http://www.w3.org/1999/xhtml">
@@ -5741,7 +5762,14 @@ EOT;
 {$auto_height_js}
 </head>
 <body id="main_body">
-	
+	<link rel="stylesheet" type="text/css" href="/template/wap/css/wap.css"/>
+<header class="header">
+<div class="header_cont">
+ <div class="left-box"> <a class="hd-lbtn" href="/wap"><span>返回</span></a></div>
+<div class="header_name">{$form->name}</div>
+<div class="header_user"><a href="../wap/member/"></a></div>
+</div>
+</header>
 	<img id="top" src="{$machform_path}images/top.png" alt="" />
 	<div id="form_container" class="{$form_container_class}">
 	
@@ -5755,6 +5783,15 @@ EOT;
 		</div>		
 	</div>
 	<img id="bottom" src="{$machform_path}images/bottom.png" alt="" />
+	<footer class="footer">
+
+
+<a href="javascript:window.location.reload();">刷新</a>
+-
+<a href="javascript:window.history.back();">返回</a>
+-
+<a href="http://www.unissoft.com/" ><small>Powered by unissoft</small></a>
+</footer>
 </body>
 </html>
 EOT;
@@ -6991,7 +7028,7 @@ EOT;
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>{$form_name}</title>
+<title>{$form_name}===</title>
 <link rel="stylesheet" type="text/css" href="{$machform_path}{$css_dir}view.css" media="all" />
 <link rel="stylesheet" type="text/css" href="{$machform_path}view.mobile.css" media="all" />
 {$theme_css_link}
@@ -7003,7 +7040,7 @@ EOT;
 {$auto_height_js}
 </head>
 <body id="main_body" class="no_guidelines" data-machformpath="{$machform_path}">
-	
+	a
 	<img id="top" src="{$machform_path}images/top.png" alt="" />
 	<div id="form_container" class="{$form_container_class}">
 	

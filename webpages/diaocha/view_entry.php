@@ -146,6 +146,7 @@
 		$payment_status 	= $row['payment_status'];
 		$payment_fullname 	= $row['payment_fullname'];
 		$payment_amount 	= (double) $row['payment_amount'];
+		//echo $payment_amount;
 		$payment_currency 	= strtoupper($row['payment_currency']);
 		$payment_test_mode 	= (int) $row['payment_test_mode'];
 		$payment_merchant_type = $row['payment_merchant_type'];

@@ -2296,13 +2296,13 @@
 			$languages['time_ss']				=	'秒';
 			
 			//error message
-			$languages['error_title']			=	'您的提交內容有問題。';
-			$languages['error_desc']			=	'錯誤已被 <strong>標示</strong> 在下方。';
+			$languages['error_title']			=	'您的提交内容有问题。';
+			$languages['error_desc']			=	'错误<strong>标示</strong> 在下方。';
 			
 			//form buttons
 			$languages['submit_button']			=	'提交/送出';
-			$languages['continue_button']		=	'繼續';
-			$languages['back_button']			=	'上一頁';
+			$languages['continue_button']		=	'继续';
+			$languages['back_button']			=	'上一页';
 			
 			//form status
 			$languages['form_inactive']			=	'這個表單目前不接受填寫。';
@@ -2318,7 +2318,7 @@
 			$languages['review_message']		=	'請檢視回顧以下的填寫內容並按提交/送出按鈕完成程序';
 			
 			//validation message 
-			$languages['val_required'] 			=	'這是必填欄位，請輸入適當內容';
+			$languages['val_required'] 			=	'这是必填项，请输入正确内容';
 			$languages['val_required_file'] 	=	'這是必填欄位，請選擇上傳檔案';
 			$languages['val_unique'] 			=	'這個欄位的內容必須唯一，此內容已經存在';
 			$languages['val_integer'] 			=	'這個欄位的內容必須是整數';
@@ -2398,7 +2398,7 @@
 			$languages['payment_billing']	= 'Billing Address';		
 
 			//multipage
-			$languages['page_title']				= '目前頁數 %s 總頁數 %s';
+			$languages['page_title']				= '当前页 %s 总页 %s';
 		}else if($target_language == 'bulgarian'){
 			//simple name and extended name
 			$languages['name_first']			= 'Име';
