@@ -2,6 +2,8 @@
 
 
 include(dirname(dirname(__FILE__))."/global.php");
+
+
 //根据mac自动签到
 
 
@@ -11,6 +13,7 @@ if (!$con)
 {
 	die('Could not connect: ' . mysql_error());
 }
+
 
 mysql_select_db($db_config['dbname'], $con);
 //如果cookie为空，则自动创建cookie
@@ -23,7 +26,7 @@ if($_COOKIE["username"]==""){
 	$userid =  $userinfoId['intid'];
 	//echo "SELECT uid,username,usertype,salt,password FROM member where uid=".$userid;
 	$result2 = mysql_query("SELECT uid,username,usertype,salt,password FROM member where uid=".$userid);
-	
+
 	while($userinfo = mysql_fetch_array($result2))
 	{
 		//echo  $userinfo['username']."验证中……";
@@ -32,14 +35,12 @@ if($_COOKIE["username"]==""){
 		setcookie("usertype",$userinfo['usertype'],time() + 86400, "/");
 		setcookie("salt",$userinfo['salt'],time() + 86400, "/");
 		setcookie("shell",md5($userinfo['username'].$userinfo['password'].$userinfo['salt']), time() + 86400,"/");
-	
+
 	}
-	
+
 	mysql_close($con);
 	//die($_COOKIE['username']);
 }
-
-
 
 
 //当前类
@@ -54,7 +55,7 @@ $mymac = $_GET['mac'];
 //将mac写入cookie
 if($mymac==""){
 }else{
-	setcookie("mymac", $mymac, time()+360000);
+	setcookie("mymac", $mymac, time()+360000,"/");
 }
 
 

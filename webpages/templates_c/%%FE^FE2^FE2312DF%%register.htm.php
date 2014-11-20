@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-11-18 11:00:58
+<?php /* Smarty version 2.6.26, created on 2014-11-20 16:19:12
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 18, false),)), $this); ?>
@@ -73,7 +73,7 @@ xmlhttp.onreadystatechange=function()
 		document.getElementById("yuzhuce1").style.display="none";
 		document.getElementById("usertype").value=1;
 	}else{
-		
+		document.getElementById("regInfo").innerHTML="";
 		document.getElementById("usertype").value=2;
 		document.getElementById("yuzhuce2").style.display="none";
 		var array = names.split("|");

@@ -4,6 +4,7 @@ class register_controller extends common
 {
 	function index_action()
 	{
+		
  		$this->get_moblie();
 // 		if($this->uid || $this->username)
 // 		{
@@ -11,6 +12,16 @@ class register_controller extends common
 // 		}
 		if($_POST['submit'])
 		{
+			include '../data/db.config.php';				
+			$con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
+			mysql_query("SET NAMES 'GBK'");
+			if (!$con)
+			{
+				die('Could not connect: ' . mysql_error());
+			}			
+			mysql_select_db($db_config['dbname'], $con);
+			
+			
 			$usertype=$_POST['usertype']?$_POST['usertype']:1;
 
 			
@@ -82,8 +93,20 @@ class register_controller extends common
 						setcookie("usertype",$usertype,time() + 86400, "/");
 						setcookie("salt",$salt,time() + 86400, "/");
 						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
-					}else{
+					}
+					
+					if ($member['mac']!=$_COOKIE['mymac']) {
+						$this->obj->update_once('useraccounts',array('mac'=>$_COOKIE["mymac"],'lname'=>$idata['username'],'userrole'=>$idata['userrole'],'usertype'=>$idata['usertype'],'orgn'=>$idata['orgn'],'title'=>$idata['title'],'phone'=>$idata['phone'],'updtime'=> date("Y-m-d H:i:s",time())),array('id'=>$member['id']));
+						//插入usermacs表
+						$idata['userid']=$member['id'];
+						$idata['rectime'] =  date("Y-m-d H:i:s",time());
+						$this->obj->insert_into('usermacs',$idata);
 						
+						setcookie("uid",$member['intid'],time() + 86400, "/");
+						setcookie("username",$_POST['username'],time() + 86400, "/");
+						setcookie("usertype",$usertype,time() + 86400, "/");
+						setcookie("salt",$salt,time() + 86400, "/");
+						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
 					}
 				}else{
 					$this->wapheader('index.php?m=register&','预注册手机号错误！');
@@ -123,16 +146,33 @@ class register_controller extends common
 					setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
 				}else{
 					//新用户：写入member、useraccent、usermacs三个表
-					//插入member表
-					$idata['rectime'] =  date("Y-m-d H:i:s",time());
-					$intid=$this->obj->insert_into('member',$idata);
+															
+					$idata['rectime'] =  date("Y-m-d H:i:s",time());	
+					
+					//$intid=$this->obj->insert_into('member',$idata);
+					$sql = "INSERT INTO member (username, password,usertype,salt) VALUES 
+							('".$idata['username']."', 
+							 '".$idata['password']."', 
+							 '".$idata['usertype']."',
+							 '".$idata['salt']."')";
+					mysql_query($sql,$con);
+					$intid =mysql_insert_id();
+					echo $intid;
+					//die();
 					//插入useraccent表
 					$idata['intid'] = $intid;
+					
 					$userid=$this->obj->insert_into('useraccounts',$idata);
+					print_r($idata)  ;
+					//die("新用户");
 					$this->obj->update_once('useraccounts',array('userid'=>$userid),array('id'=>$userid));
 					//插入usermacs表
+					
 					$idata['userid'] = $userid;
+					
 					$this->obj->insert_into('usermacs',$idata);
+					
+					
 					
 					setcookie("uid",$intid,time() + 86400, "/");
 					setcookie("username",$_POST['username'],time() + 86400, "/");

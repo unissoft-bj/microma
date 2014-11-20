@@ -20,7 +20,7 @@
 $mymac = $_GET['mac'];
 //将mac写入cookie
 
-setcookie("mymac", $mymac, time()+3600,"/");
+setcookie("mymac", $mymac, time()+360000,"/");
 //setcookie("mymac", $mymac, time()+3600);
 
 

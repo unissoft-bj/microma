@@ -23,7 +23,7 @@ if (!$con)
 
 mysql_select_db($db_config['dbname'], $con);
 
-$result = mysql_query("SELECT useraccounts.intid,useraccounts.lname,useraccounts.usertype,useraccounts.userrole FROM usermacs,useraccounts where usermacs.userid=useraccounts.userid and usermacs.mac='".$mymac."'");
+$result = mysql_query("SELECT DISTINCT useraccounts.intid,useraccounts.lname,useraccounts.usertype,useraccounts.userrole FROM usermacs,useraccounts where usermacs.userid=useraccounts.userid and usermacs.mac='".$mymac."'");
 
 if(mysql_num_rows($result)==0){
 	echo "«Î ‰»Î ÷ª˙∫≈£∫";
