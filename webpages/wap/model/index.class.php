@@ -19,7 +19,7 @@ class index_controller extends common
 		$this->yunset("title","阿萨斯");
 		
 		
-		if ($_GET['mac']) {
+		if ($_GET['mac'] || $_GET['internet']) {
 			
 
 			include "../auth/ihost.php";
@@ -44,6 +44,12 @@ class index_controller extends common
 			//将mac写入cookie
 			
 			setcookie("mymac", $mymac, time()+360000,"/");
+			if ($_GET['internet']) {
+				
+			}else{
+				setcookie("userurl", $_GET['userurl'], time()+360000,"/");
+			}
+			
 			//setcookie("mymac", $mymac, time()+3600);		
 			
 			include "../auth/dbconn.php";

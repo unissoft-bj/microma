@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-11-18 18:35:59
+<?php /* Smarty version 2.6.26, created on 2014-11-20 21:43:15
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -20,13 +20,13 @@
 <div class="left-box"> <a class="hd-lbtn" href="/wap/index.php?m=register"><span>…Í«ÎInternet</span></a></div>
 <?php endif; ?>
 <?php if ($this->_tpl_vars['cookie']['uid']): ?>
-<div class="left-box"> <a class="hd-lbtn" href="<?php echo $_GET['userurl']; ?>
+<div class="left-box"> <a class="hd-lbtn" href="<?php echo $this->_tpl_vars['cookie']['userurl']; ?>
 "><span>∑√Œ Internet</span></a></div>
 <?php endif; ?>
 <div class="header_user"><a href="member/"></a></div>
 <div class="logo"><img src="<?php echo $this->_tpl_vars['wapstyle']; ?>
 /images/logo.png"></div>
-<div class="header_user"><a href=""></a></div>
+<div class="header_user"><a href="member/"></a></div>
 </div>
 </header>
 <?php if ($_GET['point']): ?>

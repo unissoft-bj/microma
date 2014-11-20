@@ -114,7 +114,7 @@ class register_controller extends common
 				
 				
 					
-				$this->wapheader('index.php?','预注册用户认证成功');
+				$this->wapheader('index.php?internet=ok&','预注册用户认证成功');
 				
 			}
 			
@@ -181,7 +181,7 @@ class register_controller extends common
 					setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
 				}
 				
-				$this->wapheader('index.php?','现场用户认证成功');
+				$this->wapheader('index.php?internet=ok&','现场用户认证成功');
 			}
 			
 			
