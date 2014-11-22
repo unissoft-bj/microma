@@ -1,10 +1,10 @@
 <?php
 $GLOBALS['cfg_dbhost']="127.0.0.1";
 $GLOBALS['cfg_dbuser']="root";
- $GLOBALS['cfg_dbpwd']="root";
- $GLOBALS['cfg_dbname']="ihost-ma";
-//$GLOBALS['cfg_dbpwd']="rootatussp";
-//$GLOBALS['cfg_dbname']="wlsp";
+// $GLOBALS['cfg_dbpwd']="root";
+// $GLOBALS['cfg_dbname']="ihost-ma";
+$GLOBALS['cfg_dbpwd']="rootatussp";
+$GLOBALS['cfg_dbname']="wlsp";
 $GLOBALS['cfg_dbprefix']="";
 $GLOBALS['cfg_charset']="utf8";
 date_default_timezone_set("Asia/Shanghai");

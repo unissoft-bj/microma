@@ -18,8 +18,17 @@ class index_controller extends common
 		$this->get_moblie();
 		$this->yunset("title","阿萨斯");
 		
+		if ($_GET['internet']) {
+			//echo "<script id=\"chillijs\" src=\"../auth/ussp.js\"></script>";
+			$this->yuntpl(array('wap/index'));
+			echo "<script id=\"chillicontroller\" src=\"http://172.16.0.1:3990/www/chillijs.chi\"></script>";
+			
+			//echo "hel";
+			
+			die("");
+		}
 		
-		if ($_GET['mac'] || $_GET['internet']) {
+		if ($_GET['mac'] ) {
 			
 
 			include "../auth/ihost.php";
@@ -119,7 +128,12 @@ class index_controller extends common
 			else{
 			
 				#echo "<div id=\"MyChilli\">";
-				echo "<script id=\"chillijs\" src=\"../auth/ussp.js\"></script>";
+				//echo "<script id=\"chillijs\" src=\"../auth/ussp.js\"></script>";
+				$point = "%C8%CF%D6%A4%B3%C9%B9%A6";
+				header("location: /wap/index.php?internet=ok&point=".$point);
+// 				$this->yuntpl(array('wap/index'));
+// 				echo "<script id=\"chillicontroller\" src=\"http://172.16.0.1:3990/www/chillijs.chi\"></script>";
+				die();
 				//     #echo "</div>";
 				//     #echo "<br />";
 				//请点击左上角按钮继续访问互联网
@@ -127,6 +141,7 @@ class index_controller extends common
 				//      $url = "/wap/index.php?point=".$point."&auth=".$auth."&userurl=".$_GET['userurl'];
 				//      echo "<font size=20>已为您接通Internet<br />Connected to the Internet";
 				//      echo "<li><a href=\"" . $url . "\"> 点击此处继续您的Internet之旅</a>";
+				//die("ok");
 			
 			}
 			

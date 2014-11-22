@@ -41,9 +41,7 @@ $phpyun->cache_dir    = APP_PATH.'/cache/';
 $phpyun->left_delimiter = "{yun:}";
 $phpyun->right_delimiter = "{/yun}";
 $phpyun->get_install();
-if(is_file(LIB_PATH.'webscan360/360safe/360webscan.php')){
-	require_once(LIB_PATH.'webscan360/360safe/360webscan.php');
-}
+
 $db = new mysql($db_config['dbhost'], $db_config['dbuser'], $db_config['dbpass'], $db_config['dbname'], ALL_PS, $db_config['charset'],$db_config["def"]);
 include_once(MODEL_PATH."domain.class.php");
 ?>

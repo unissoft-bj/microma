@@ -35,11 +35,13 @@ if($_COOKIE["username"]==""){
 		setcookie("usertype",$userinfo['usertype'],time() + 86400, "/");
 		setcookie("salt",$userinfo['salt'],time() + 86400, "/");
 		setcookie("shell",md5($userinfo['username'].$userinfo['password'].$userinfo['salt']), time() + 86400,"/");
-
+		
 	}
 
 	mysql_close($con);
-	//die($_COOKIE['username']);
+	//sleep(3);
+	//header("location: /wap/index.php");
+	//die();
 }
 
 
