@@ -18,6 +18,8 @@ if (! $cookia_a_flag) {
 		
 							<li<?php if ($show1=="文章") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/news/index.php">文章</a></li>
 							
+							<li<?php if ($show1=="短信") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/sms/index.php">短信</a></li>
+							
 							<li<?php if ($show1=="留言") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/discuss/index.php">留言</a></li>
 							
  							<li<?php if ($show1=="投票") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/vote/index.php">投票</a></li>

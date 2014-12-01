@@ -140,8 +140,10 @@ var xmlhttp;
 var usertype= document.getElementById("usertype").value;
 //var phone= document.getElementById("phone").value;
 var phone=$("#phone").val();
-phone = isjsMobile(phone);	
-if(phone==false){alert('请正确填写手机号码！');return false;}
+var regphone=$("#regphone").val();
+phone = isjsMobile(phone);
+regphone = isjsMobile(regphone);
+if(phone==false && regphone==false){alert('请正确填写手机号码！');return false;}
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
   xmlhttp=new XMLHttpRequest();

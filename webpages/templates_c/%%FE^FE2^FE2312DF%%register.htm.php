@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-11-20 16:19:12
+<?php /* Smarty version 2.6.26, created on 2014-11-29 16:12:13
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 18, false),)), $this); ?>
@@ -152,8 +152,10 @@ var xmlhttp;
 var usertype= document.getElementById("usertype").value;
 //var phone= document.getElementById("phone").value;
 var phone=$("#phone").val();
-phone = isjsMobile(phone);	
-if(phone==false){alert('请正确填写手机号码！');return false;}
+var regphone=$("#regphone").val();
+phone = isjsMobile(phone);
+regphone = isjsMobile(regphone);
+if(phone==false && regphone==false){alert('请正确填写手机号码！');return false;}
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
   xmlhttp=new XMLHttpRequest();

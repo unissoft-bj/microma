@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-11-13 10:04:10
+<?php /* Smarty version 2.6.26, created on 2014-11-29 14:21:01
          compiled from C:%5CUsers%5Cycyn521%5Cgit%5Cmicroma%5Cwebpages//template/wap/footer.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'C:\\Users\\ycyn521\\git\\microma\\webpages//template/wap/footer.htm', 6, false),)), $this); ?>
@@ -27,6 +27,8 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'C
 <a href="javascript:window.history.back();">返回</a>
 -
 <a href="http://www.unissoft.com/" ><small>Powered by unissoft</small></a>
+<br>
+由紫光智能WIFI提供解决方案 联系电话<a href="tel:电话号码">13701272752</a>
 </footer>
 </div>
 </body>

@@ -59,7 +59,7 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 </script>
 <table class="mune_list">
 <tr>
-<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/ma/message_liebiao.php?title=%e7%ba%bf%e4%b8%8a%e6%b6%88%e6%81%af"><p class="mune_a"><i></i><em>线上消息</em></p></a></td>
+<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/ma/message_liebiao.php?title=%e7%ba%bf%e4%b8%8a%e6%b6%88%e6%81%af"><p class="mune_a"><i></i><em>积分商城</em></p></a></td>
 {yun:}if !$cookie.uid{/yun}
 
 
@@ -74,9 +74,9 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 <!-- <td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/vote.php?title=%e6%85%88%e5%96%84%e6%8b%87%e6%8c%87"><p class="mune_b"><i></i><em>慈善拇指</em></p></a></td> -->
 <!-- //yc 判断调查的进度是否存在cookie中 如果存在则跳转到cookie中的进度中 否则打开调查页面 -->
 {yun:}if !$cookie.diaocha_url{/yun}
-<td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/diaocha/view.php?id=10392"><p class="mune_b"><i></i><em>慈善拇指</em></p></a></td>
+<td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/diaocha/view.php?id=10392"><p class="mune_b"><i></i><em>公益拇指</em></p></a></td>
 {yun:}else{/yun}
-<td width="30%"> <a href="../diaocha/{yun:}$cookie.diaocha_url{/yun}"><p class="mune_b"><i></i><em>慈善拇指</em></p></a></td>
+<td width="30%"> <a href="../diaocha/{yun:}$cookie.diaocha_url{/yun}"><p class="mune_b"><i></i><em>公益拇指</em></p></a></td>
 {yun:}/if{/yun}
 <td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/discuss.php?title=%e7%95%99%e8%a8%80%e5%8f%8d%e9%a6%88"><p class="mune_e"><i></i><em>留言反馈</em></p></a></td>
 </tr>
