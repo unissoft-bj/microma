@@ -6,13 +6,19 @@
  			<?php if ($show2=="编辑短信"){?>
  			<li class="current"><a href="#">编辑短信</a><span></span></li><?php }?>
  			
- 			<li<?php if ($show2=="活动用户") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/news/sort_list.php">活动用户</a><span></span></li>
+ 			<li<?php if ($show2=="活动用户") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/sms/useractive_list.php">活动用户</a><span></span></li>
 			<?php if ($show2=="新建分类"){?>
  			<li class="current"><a href="#">新建分类</a><span></span></li><?php }?>
  			<?php if ($show2=="编辑分类"){?>
  			<li class="current"><a href="#">编辑分类</a><span></span></li><?php }?>
  			
- 			<li<?php if ($show2=="收到的短信") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/news/sort_list.php">收到的短信</a><span></span></li>
+ 			<li<?php if ($show2=="短信通道") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/sms/authsms_list.php">短信通道</a><span></span></li>
+			<?php if ($show2=="新建分类"){?>
+ 			<li class="current"><a href="#">新建分类</a><span></span></li><?php }?>
+ 			<?php if ($show2=="编辑分类"){?>
+ 			<li class="current"><a href="#">编辑分类</a><span></span></li><?php }?>
+ 			
+ 			<li<?php if ($show2=="收到的短信") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/sms/smsrcv_list.php">收到的短信</a><span></span></li>
 			<?php if ($show2=="新建分类"){?>
  			<li class="current"><a href="#">新建分类</a><span></span></li><?php }?>
  			<?php if ($show2=="编辑分类"){?>

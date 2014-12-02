@@ -3,29 +3,25 @@ require_once('../../global.php');
 require_once('inc/mysql.class.php');
 require_once('inc/function.inc.php');
 $show1="短信";
-$show2="短信池";
+$show2="收到的短信";
  
-$title=trim($_GET['title']);
+$name=trim($_GET['name']);
  
  
 if (!empty($_GET['botton']))
 {
-	 empty($title)?"":$sqladd=$sqladd." and title like '%".$title."%'";
+	 empty($name)?"":$sqladd=$sqladd." and msg like '%".$name."%'";
  
 }
 
 if ($_GET['action']=='delete')
 {
 	if (!isset($id)) msg("系统错误！");
-	//$sql="select pro_id from product where id=".$id;
-	//if ($db->rc($sql)>0) {
-	//	msg("此商户有商品存在不能删除，请先删除商品再进行删除操作");
-		
-	//}
- 	$sqldelete="delete from smspool where id=".$id;
+	
+ 	$sqldelete="delete from smsrcv where id=".$id;
  	//echo $sqldelete;
 	if($db->q($sqldelete)){
-		msg("删除成功","index.php");
+		msg("删除分类成功","smsrcv_list.php");
 	}
 }
 
@@ -34,14 +30,15 @@ if ($_GET['action']=='delete')
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" id=""><head>
+<html xmlns="http://www.w3.org/1999/xhtml" id="">
+<head>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<title><?php echo $cfg_webname;?> - 管理后台</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 	<link rel="shortcut icon" href="http://localhost/tuan/static/icon/favicon.ico">
 	<link rel="stylesheet" href="../../css/index.css" type="text/css" media="screen" charset="utf-8">
   
-	</head>
+</head>
 <body class="newbie">
 <div id="pagemasker"></div><div id="dialog"></div>
 <div id="doc">
@@ -64,36 +61,37 @@ if ($_GET['action']=='delete')
                     <h2>短信列表</h2>
                     <ul class="filter">
                     	<li>
-	                    	<form action="" method="get">
-	                    	
-	                    	    <a href="<?php echo $cfg['siteurl'];?>admin/sms/add.php">添加短信</a>                    	
-		                    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	                    	<form action="" method="get">	
+	                    	                     	
+		                    	短信内容：<input type="text" name="name" class="h-input" style="width:90px" value="<?php echo $name?>" >
+		                    	 
+		                    	&nbsp;&nbsp;<input type="submit" name="botton" value="筛选" class="formbutton"  style="padding:1px 6px;"/>
 	                    	</form>	                    	
 	                    </li>
                     </ul>
 			  </div>
                 <div class="sect">
 					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
-					<tr><th width="">ID</th>
-					<th width="">前缀</th>
-					<th width="" nowrap>内容</th>
-					<th width="">后缀</th>
-					<th width="">是否生效</th>
-					<th width="">生效开始时间</th>
-					<th width="">生效结束时间</th>
-					<th width="">写入时间</th>
-					<th width="">更新时间</th>
-					<th width="">操作</th></tr>
+					<tr><th width="30">ID</th>
+					<th width="350">短信内容</th>
+					<th width="80" nowrap>手机号</th>
+					<th width="80" nowrap>收取时间</th>
+					<th width="50" nowrap>mlocation</th>
+					<th width="50" nowrap>mfolder</th>
+					
+					<th width="50" nowrap>rectime</th>
+					 
+					<th width="130">操作</th></tr>
 					
 					<?php 
-					$sql="select * from smspool where 1=1 $sqladd order by id desc";
-					$sqlc="select count(id) as c from smspool where 1=1 $sqladd ";
+					$sql="select * from smsrcv where 1=1 $sqladd order by `msgtime` desc";
+					$sqlc="select count(id) as c from smsrcv where 1=1 $sqladd ";
 					  //echo $sql;
 					$counts_r = $db->r($sqlc);
 					$counts = $counts_r[c];
 					$page= isset($_GET['page'])?$_GET['page']:1;//默认页码
 					
-					$getpageinfo = page($page,$counts,"?title=$title&botton=筛选",20,5);
+					$getpageinfo = page($page,$counts,"?name=$name&botton=筛选",20,5);
 					$sql.=$getpageinfo['sqllimit'];
 					// echo $sql;
 					$rsdb=$db->a($sql);
@@ -104,33 +102,18 @@ if ($_GET['action']=='delete')
 					
 					<tr <?php if ($i % 2 ==1 ) echo "class=\"alt\" ";?> id="team-list-id-<?php echo $rs["id"];?>">
 						<td><?php echo $rs["id"];?></td>
-						<td><?php echo $rs["prefix"];?>  </td>
-						<td><?php echo $rs["sms"];?>  </td>
-						<td><?php echo $rs["postfix"];?>  </td>
-						<td><?php if ($rs["stat"]==100)
-						{
-							echo "是";
-						}else{
-							echo "否";
-						}
-							
-							;?>  </td>
-						<td><?php echo $rs["cndfromtime"];?>  </td>
-						<td><?php echo $rs["cndtotime"];?>  </td>
-						<td><?php echo $rs["rectime"];?>  </td>
-						<td><?php echo $rs["updtime"];?>  </td>
-						
-						<td class="op"> 
-						<?php 
-						if ($rs["cid"]==60){?>
-                        <a href="<?php echo $cfg['siteurl'];?>admin/sms/newsedit.php?id=<?php echo $rs['id'];?>">编辑</a>
-                        <?php }else{ ?>              
-						<a href="<?php echo $cfg['siteurl'];?>admin/sms/edit.php?id=<?php echo  $rs["id"];?>">编辑</a><?php }?>｜ 
-						<a href="<?php echo $cfg['siteurl'];?>admin/sms/index.php?action=delete&id=<?php echo  $rs["id"];?>" class="ajaxlink" ask="确定删除该用户吗？">删除</a> </td>
+						<td><?php echo $rs["msg"];?>  </td>
+						<td><?php echo $rs["phone"];?></td>
+						<td><?php echo $rs["msgtime"];?>  </td>
+						<td><?php echo $rs["mlocation"];?></td>
+						<td><?php echo $rs["mfolder"];?>  </td>
+						<td><?php echo $rs["rectime"];?></td>
+						 
+						<td class="op"> <a href="<?php echo $cfg['siteurl'];?>admin/sms/smsrcv_list.php?action=delete&id=<?php echo  $rs["id"];?>" class="ajaxlink" ask="确定删除该用户吗？">删除</a>  </td>
 					</tr>
 					<?php }?>
 					 
-										<tr><td colspan="10"><ul class="paginator"><?php echo $getpageinfo['pagecode'];?></ul></tr>
+										<tr><td colspan="8"><ul class="paginator"><?php echo $getpageinfo['pagecode'];?></ul></tr>
                     </table>
 				</div>
             </div>

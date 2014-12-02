@@ -2,8 +2,8 @@
 require_once('../../global.php');
 require_once('inc/mysql.class.php');
 require_once('inc/function.inc.php');
-$show1="文章";
-$show2="编辑文章";
+$show1="短信";
+$show2="编辑短信";
  
 if($_POST){
 	$p_regdate=dtime();
@@ -11,25 +11,27 @@ if($_POST){
 
 	 
 	//$sql="insert into news (p_login,p_pwd,p_name,p_regdate,p_contact,p_tel) values ('$p_login','$p_pwd','$p_name','$p_regdate','$p_contact','$p_tel')";
-	$sql="update ma_news set ";
-	$sql.="title='".$pro_title."',";
-	$sql.="cid='".$pro_type."',";
-	$sql.="picurl='".$pro_image."',";
-	$sql.="des='".$pro_systemreview."',";
-	$sql.="content='".$pro_summary."' ";
+	$sql="update smspool set ";
+	$sql.="prefix='".$prefix."',";
+	$sql.="sms='".$sms."',";
+	$sql.="postfix='".$postfix."',";
+	$sql.="stat='".$stat."',";
+	$sql.="cndfromtime='".$cndfromtime."',";
+	$sql.="cndtotime='".$cndtotime."', ";
+	$sql.="updtime='".$p_regdate."' ";
 	$sql.="where id=".$id;
 	//echo $sql;
 	//exit;
 	if($db->q($sql))
 	{
 		
-		msg("修改文章成功","index.php");
+		msg("修改短信成功","index.php");
 	}
 	
 } 
  
 if (!isset($id)) msg("系统错误！");
-$sql="select * from ma_news where id=".$id;
+$sql="select * from smspool where id=".$id;
 //echo $sql;
 $rs=$db->r($sql);
 //dump($rs);
@@ -83,16 +85,38 @@ function load()
 
 function check()
 {
-	var i = document.getElementById("team-create-news").value.length;
+	var i = document.getElementById("prefix").value.length;
 	if(i == 0)//内容不为空
 	{
-		alert("文章名称不能为空");
+		alert("短信前缀不能为空");
 		return false;
 	}
-	i = document.getElementById("team-create-systemreview").value.length;
-	if(i == 0)
+	
+	var i = document.getElementById("sms").value.length;
+	if(i == 0)//内容不为空
 	{
-		alert("文章简介不能为空");
+		alert("短信内容不能为空");
+		return false;
+	}
+
+	var i = document.getElementById("postfix").value.length;
+	if(i == 0)//内容不为空
+	{
+		alert("短信后缀不能为空");
+		return false;
+	}
+
+	var i = document.getElementById("cndfromtime").value.length;
+	if(i == 0)//内容不为空
+	{
+		alert("短信生效开始时间不能为空");
+		return false;
+	}
+
+	var i = document.getElementById("cndtotime").value.length;
+	if(i == 0)//内容不为空
+	{
+		alert("生效结束时间不能为空");
 		return false;
 	}
 	
@@ -147,7 +171,7 @@ function check()
             <div class="box-top"></div>
             <div class="box-content">
 <div class="head">
-                    <h2>编辑文章</h2>
+                    <h2>编辑短信</h2>
                     <ul class="filter">
                     	<li>
 	                    	                   	
@@ -161,48 +185,33 @@ function check()
 					<!-- <div class="wholetip clear"><h3>1、基本信息</h3></div> -->
 					
 					<div class="field">
-						<label>文章名称</label>
-						<input type="text" size="30" name="pro_title" id="team-create-news" class="f-input" value="<?php echo $rs[title]?>" datatype="require" require="true" />
+						<label>短信前缀</label>
+						<input type="text" id="title" size="30" name="prefix" id="team-create-news" class="f-input" value="<?php echo $rs[prefix];?>" datatype="require" require="true" />
 					</div>
-				
-						<div class="field">
-						<label>文章分类</label>
-						<select name="pro_type"  id="partner_select" datatype="require" require="true" class="f-input" style="width:200px;">
-						<?php 
-						$sql="select id,name from ma_newssort order by id desc";
-						$p_rs=$db->a($sql);
-						foreach ($p_rs as $k=>$v){
-                        ?>
-						
-						<option  <?php if($v["id"]==$rs["cid"]){ ?>selected="selected"<?php
-                              }?>
-                               value='<?php echo $v["id"];?>' ><?php echo $v["name"];?></option>
-						<?php 
-						
-						}
-						?>
-						 
-						</select>  
-					</div>
-					
-					 
-					
-					 <div class="field">
-						<label>文章图片</label>
-						<input type="text" name="pro_image" id="pro_image" value="<?php echo $rs[picurl]?>" size="80" /> <input type="button" id="image1" value="选择图片" />
-						
-					 </div>
-					 
-					 
-					 <div class="field">
-						<label>文章简介</label>
-						<div style="float:left;"><textarea cols="45" rows="5" name="pro_systemreview" id="team-create-systemreview" class="f-textarea editor" style="width:710px;height:50px;"><?php echo $rs[des]?></textarea></div>
-					</div>
-					
-					
 					<div class="field">
-						<label>文章内容</label>
-						<div style="float:left;"><textarea cols="45" rows="10" name="pro_summary" id="pro_summary" class="f-textarea" datatype="require" require="true"><?php echo $rs[content]?></textarea></div>
+						<label>短信内容</label>
+						<input type="text" id="title" size="30" name="sms" id="team-create-news" class="f-input" value="<?php echo $rs[sms];?>" datatype="require" require="true" />
+					</div>
+					<div class="field">
+						<label>短信后缀</label>
+						<input type="text" id="title" size="30" name="postfix" id="team-create-news" class="f-input" value="<?php echo $rs[postfix];?>" datatype="require" require="true" />
+					</div>
+					<div class="field">
+						<label>是否生效</label>
+						<select name="stat"  id="partner_select" datatype="require" require="true" class="f-input" style="width:200px;">
+											
+						<option value=100 <?php if ($rs[stat]==100) echo "selected"; ?>>生效</option>		
+						<option value=-100 <?php if ($rs[stat]==-100) echo "selected"; ?>>不生效</option>				 
+						</select> 
+						
+					</div>
+					<div class="field">
+						<label>生效开始时间</label>
+						<input type="text" id="title" size="30" name="cndfromtime" id="team-create-news" class="f-input" value="<?php echo $rs[cndfromtime];?>" datatype="require" require="true" onClick="WdatePicker()"/>
+					</div>
+					<div class="field">
+						<label>生效结束时间</label>
+						<input onClick="WdatePicker()" type="text" id="title" size="30" name="cndtotime" id="team-create-news" class="f-input" value="<?php echo $rs[cndtotime];?>" datatype="require" require="true" />
 					</div>
  		 
 					

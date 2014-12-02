@@ -6,16 +6,17 @@ $show1="短信";
 $show2="新建短信";
  
 if($_POST){
-	$pro_creattime=dtime();
-	//echo $p_regdate;
+	
+	$rectime=dtime();
+	
 	 
 	 
-	$sql="insert into ma_news (title,cid,picurl,content,des,creattime) 
-	values ('$pro_title','$pro_type','$pro_image','$pro_summary','$pro_systemreview','$pro_creattime')";
+	$sql="insert into smspool (prefix,sms,postfix,stat,cndfromtime,cndtotime,rectime) 
+	values ('$prefix','$sms','$postfix','$stat','$cndfromtime','$cndtotime','$rectime')";
 	//echo $sql;
 	if($db->q($sql))
 	{
-		msg("添加短信成功","index.php",3);
+		msg("添加短信成功","index.php",1);
 	}
 	
 } 
@@ -57,27 +58,50 @@ if($_POST){
         	
         	
 
-    		var i = document.getElementById("title").value.length;
+    		var i = document.getElementById("prefix").value.length;
     		if(i == 0)//内容不为空
     		{
-    			alert("文章名称不能为空");
-    			return false;
-    		}
-    		i = document.getElementById("team-create-systemreview").value.length;
-    		if(i == 0)
-    		{
-    			alert("文章简介不能为空");
+    			alert("短信前缀不能为空");
     			return false;
     		}
     		
+    		var i = document.getElementById("sms").value.length;
+    		if(i == 0)//内容不为空
+    		{
+    			alert("短信内容不能为空");
+    			return false;
+    		}
 
+    		var i = document.getElementById("postfix").value.length;
+    		if(i == 0)//内容不为空
+    		{
+    			alert("短信后缀不能为空");
+    			return false;
+    		}
+
+    		var i = document.getElementById("cndfromtime").value.length;
+    		if(i == 0)//内容不为空
+    		{
+    			alert("短信生效开始时间不能为空");
+    			return false;
+    		}
+
+    		var i = document.getElementById("cndtotime").value.length;
+    		if(i == 0)//内容不为空
+    		{
+    			alert("生效结束时间不能为空");
+    			return false;
+    		}
+
+    		
+    		/*
     		var index=document.getElementById("partner_select").selectedIndex; //序号，取当前选中选项的序号
     		if(index == 0)
     		{
     			alert("请选择文章分类");
     			return false;
     		}
-    		/*
+    		
     		i = document.getElementById("pro_summary").value;
     		alert(i);
     		if(i == 0)
@@ -106,7 +130,7 @@ if($_POST){
     	}
         
 </script>
-
+<script language="javascript" type="text/javascript" src="/My97DatePicker/WdatePicker.js"></script>
 	</head>
 <body class="newbie">
 <div id="pagemasker"></div><div id="dialog"></div>
@@ -142,27 +166,32 @@ if($_POST){
 					
 					<div class="field">
 						<label>短信前缀</label>
-						<input type="text" id="title" size="30" name="pro_title" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
+						<input type="text" id="title" size="30" name="prefix" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
 					</div>
 					<div class="field">
 						<label>短信内容</label>
-						<input type="text" id="title" size="30" name="pro_title" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
+						<input type="text" id="title" size="30" name="sms" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
 					</div>
 					<div class="field">
 						<label>短信后缀</label>
-						<input type="text" id="title" size="30" name="pro_title" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
+						<input type="text" id="title" size="30" name="postfix" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
 					</div>
 					<div class="field">
 						<label>是否生效</label>
-						<input type="text" id="title" size="30" name="pro_title" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
+						<select name="stat"  id="partner_select" datatype="require" require="true" class="f-input" style="width:200px;">
+						<option  value=0 selected>------ 请选择是否生效------</option>					
+						<option value=100 >生效</option>		
+						<option value=-100 >不生效</option>				 
+						</select> 
+						
 					</div>
 					<div class="field">
 						<label>生效开始时间</label>
-						<input type="text" id="title" size="30" name="pro_title" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
+						<input type="text" id="title" size="30" name="cndfromtime" id="team-create-news" class="f-input" value="" datatype="require" require="true" onClick="WdatePicker()"/>
 					</div>
 					<div class="field">
 						<label>生效结束时间</label>
-						<input type="text" id="title" size="30" name="pro_title" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
+						<input onClick="WdatePicker()" type="text" id="title" size="30" name="cndtotime" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
 					</div>
 
 					
