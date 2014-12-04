@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-11-29 16:12:13
+<?php /* Smarty version 2.6.26, created on 2014-12-04 21:47:23
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 18, false),)), $this); ?>
@@ -69,31 +69,14 @@ xmlhttp.onreadystatechange=function()
 	
 	if(names==0){
 		//alert("===");
-		document.getElementById("regInfo").innerHTML="代表号错误，<br>预注册用户重新输入预注册手机号，<br>否则请在下方输入手机号";
-		document.getElementById("yuzhuce1").style.display="none";
+		//document.getElementById("regInfo").innerHTML="代表号错误，<br>预注册用户重新输入预注册手机号，<br>否则请在下方输入手机号";
+		document.getElementById("yuzhuce2").style.display="block";
 		document.getElementById("usertype").value=1;
 	}else{
 		document.getElementById("regInfo").innerHTML="";
 		document.getElementById("usertype").value=2;
 		document.getElementById("yuzhuce2").style.display="none";
-		var array = names.split("|");
-	   
-	    document.getElementById("username").value=array[0];
-	    document.getElementById("phone").value=array[1];
-	    document.getElementById("danwei").value=array[2];
-	    document.getElementById("zhiwu").value=array[3];
-	    if(array[4]=="100"){
-	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=100  checked=checked>代表<input type=radio name=shenfen value=200 >专家<input type=radio name=shenfen value=400 >会务<input type=radio name=shenfen value=300 >媒体";
-	    }
-	    if(array[4]=="200"){
-	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=100 >代表<input type=radio name=shenfen value=200  checked=checked>专家<input type=radio name=shenfen value=400 >会务<input type=radio name=shenfen value=300 >媒体";
-	    }
-	    if(array[4]=="400"){
-	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=100 >代表<input type=radio name=shenfen value=200 >专家<input type=radio name=shenfen value=400  checked=checked>会务<input type=radio name=shenfen value=300 >媒体";
-	    }
-	    if(array[4]=="300"){
-	    	document.getElementById("shenfen").innerHTML="<input type=radio name=shenfen value=100 >代表<input type=radio name=shenfen value=200 >专家<input type=radio name=shenfen value=400  >会务<input type=radio name=shenfen value=300  checked=checked>媒体";
-	    }
+		
 	    
 	}
     
@@ -107,55 +90,20 @@ xmlhttp.send();
 
 
 
-//根据注册手机 判断是否已注册用户
-function getInfoByPhone(str)
-{
-var xmlhttp;
-if (str=="")
-  {
-  //document.getElementById("txtHint").innerHTML="";
-  return;
-  }
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-	//得到返回的多个username ，以|进行分割
-    var names=xmlhttp.responseText;
-    var array = names.split("|");
-    var inner ="";
-    for (var i=0 ; i< array.length-1 ; i++){
-    	 inner = inner+"<input type=radio name=username2 value="+array[i]+" onclick=setName(this.value)>"+array[i]+"</input>";
-    }
-    document.getElementById("username2").innerHTML=inner;
-    }
-  }
 
-var usertype= document.getElementById("usertype").value;
-
-xmlhttp.open("GET","ajax.php?phone="+str+"&usertype="+usertype,true);
-xmlhttp.send();
-}
 
 //发送验证码 校验手机号号
 function sendMsg()
 {
+	
 var xmlhttp;
 var usertype= document.getElementById("usertype").value;
 //var phone= document.getElementById("phone").value;
-var phone=$("#phone").val();
+
 var regphone=$("#regphone").val();
-phone = isjsMobile(phone);
+
 regphone = isjsMobile(regphone);
-if(phone==false && regphone==false){alert('请正确填写手机号码！');return false;}
+if(regphone==false){alert('请正确填写手机号码！');return false;}
 if (window.XMLHttpRequest)
   {// code for IE7+, Firefox, Chrome, Opera, Safari
   xmlhttp=new XMLHttpRequest();
@@ -176,30 +124,21 @@ xmlhttp.onreadystatechange=function()
   }
 
 
-xmlhttp.open("GET","ajax.php?sendmsg="+phone+"&usertype="+usertype,true);
+xmlhttp.open("GET","ajax.php?sendmsg="+regphone+"&usertype="+usertype,true);
 xmlhttp.send();
 }
 
 //校验表单信息……
 function checkfrom(){
 	
-	//校验用户名
-	var username=$("#username").val();
-	if(username==""){
-		alert("用户名不能为空！");
-		return false;
-	}else if(username.length<2||username.length>16){
-		alert("用户名长度应在2-16位！");
-		return false;
-	}
 	
 	//校验手机号
-	var phone=$("#phone").val();
+	var phone=$("#regphone").val();
 	phone = isjsMobile(phone);	
 	if(phone==false){alert('请正确填写手机号码！');return false;}
 	
 	//校验短信验证码
-	/*
+	
 	var regmsg=$("#regmsg").val();
 	if(regmsg==""){
 		alert("校验码不能为空！");
@@ -208,7 +147,7 @@ function checkfrom(){
 		alert("校验码长度应是6位！");
 		return false;
 	}
-	*/
+	
 	
 }
 
@@ -235,6 +174,7 @@ function setName(str){
 	
   <form action="" method="post" onSubmit="return checkfrom();">
     <input name="usertype" id ="usertype" type="hidden" value="1"/>
+    <input name="password" id ="password" type="hidden" value="111111"/>
     
      
     <p>
@@ -242,59 +182,19 @@ function setName(str){
       <input name="regphone" id="regphone" type="text" class="input-common placeholder" placeholder="请输入预注册手机号" onblur="return getInfoByRegPhone(this.value);"/>
       <div id="regInfo"></div>
     
-    <div id="yuzhuce1" style="display: block;">
-    或
-    </div>
+
+    <div id="yuzhuce2" style="display: none;">
     <p>
-      <input name="phone" id="phone" type="text" class="input-common placeholder" placeholder="请输入手机号" onblur="return getInfoByPhone(this.value);"/>
-    </p>
-    <div id="yuzhuce2" style="display: block;">
-    <p>
-      <input name="sendmsg" id="sendmsg" type="button"  value="发送验证码" size="30" onclick="return sendMsg(this.value);"/> 
+      <input name="sendmsg" id="sendmsg" type="button"  value="接收验证码" size="30" onclick="return sendMsg(this.value);"/> 
       <font id="msgInfo"></font>
     </p>
-    <p>
-      <input name="regmsg" id="regmsg" type="text" class="input-common placeholder" placeholder="短信验证码" />
-      <font id="checkMsg"></font>
-    </p>
     </div>
     <p>
-      <div id="username2"></div>
-      <input name="username" id="username" type="text" class="input-common placeholder" placeholder="姓名" />
-      
+      <input name="regmsg" id="regmsg" type="text" class="input-common placeholder" placeholder="验证码" />
+      <font id="checkMsg"></font>
     </p>
     
-    <p>
-      
-      <input name="danwei" id="danwei" type="text" class="input-common placeholder" placeholder="工作单位" />
-      
-    </p>
-    <p>
-      	
-      <input name="zhiwu" id="zhiwu" type="text" class="input-common placeholder" placeholder="职务" />
-      
-    </p>
-    <p class="input-common placeholder" id="shenfen">
-      <input type="radio" name="shenfen" value="100" checked=checked>代表	
-      <input type="radio" name="shenfen" value="200" >专家
-      <input type="radio" name="shenfen" value="400" >会务
-      <input type="radio" name="shenfen" value="300" >媒体
-      
-      
-    </p>
-    
-    <!-- p class="input-common placeholder">
-      <input name="baomi0" id="baomi0" type="checkbox" checked/>为他人签到
-    </p>
-    <p class="input-common placeholder">
-      <input name="baomi1" id="baomi1" type="checkbox"  checked/>对现场招聘者公开我的信息
-    </p>
-     <p class="input-common placeholder">
-      <input name="baomi2" id="baomi2" type="checkbox" class="selecter placeholder" />对现场其他求职者保密
-    </p>
-     <p class="input-common placeholder">
-      <input name="baomi3" id="baomi3" type="checkbox" class=""  checked/>用短信增强安全性
-    </p-->
+  
     <p>
       <input name="email" id="email" type="hidden"class="input-common placeholder" placeholder="邮箱"/>
     </p>
@@ -308,16 +208,7 @@ function setName(str){
   </form>
   
   
-  
-  <!-- section class="wap_login_no">已有账号？
-  <?php if ($_GET['usertype'] == 2): ?>
-<a href="<?php echo smarty_function_wapurl(array('m' => 'login','url' => "usertype:2"), $this);?>
-">立即登录</a>
-<?php else: ?>
-<a href="<?php echo smarty_function_wapurl(array('m' => 'login'), $this);?>
-">立即登录</a>
-<?php endif; ?>
-  </section-->
+ 
 </section>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => ($this->_tpl_vars['wapstyle'])."/footer.htm", 'smarty_include_vars' => array()));

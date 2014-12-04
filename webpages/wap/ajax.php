@@ -87,9 +87,21 @@ if(isset($_GET['sendmsg'])){
 	$phone = $_GET['sendmsg'];
 	$msg=rand(100000,999999);
 	
-	//将msg发送到指定手机号
+	$prefix="欢迎来到微会晤，您的短信验证码为：";
+	$prefix=iconv('utf-8', 'gbk', $prefix);
+	$postfix="，如果60内没有收到，请再次点击获取！";
+	$postfix=iconv('utf-8', 'gbk', $postfix);
+	$optime = date("Y-m-d H:i:s",time());
+	//将msg发送到指定手机号，写入数据库 $mymac
 	
-	
+	$sql = "INSERT INTO authsms (prefix, sms,postfix,mac,phone,optime) VALUES
+							('".$prefix."',
+							 '".$msg."',
+							 '".$postfix."',
+							 '".$mymac."',
+							 '".$phone."',
+							 '".$optime."')";
+	mysql_query($sql,$con);
 	//将msg写入session……
 	session_start();
 	

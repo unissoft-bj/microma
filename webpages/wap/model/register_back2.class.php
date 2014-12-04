@@ -55,9 +55,15 @@ class register_controller extends common
 			
 			$regmsg = $_POST['regmsg'];
 			$idata['regphone'] = $_POST['regphone'];
-			$idata['phone'] = $_POST['regphone'];
+			$idata['phone'] = $_POST['phone'];
+			$idata['username'] = $_POST['username'];
+			$idata['lname'] = $_POST['username'];
 			$idata['password'] = $pass;
+			$idata['orgn']    = $_POST['danwei'];
+			$idata['title']    = $_POST['zhiwu'];
+			$idata['userrole']    = $_POST['shenfen'];
 			$idata['usertype'] = $usertype;
+			$idata['status']   = $status;
 			$idata['salt']     = $salt;
 			$idata['reg_date'] = time();
 			$idata['mac'] = $_COOKIE["mymac"];
@@ -68,46 +74,36 @@ class register_controller extends common
 			//如果是预注册用户,查看member和usermacs中是否有该用户id
 			if ($usertype==2) {
 				$member=$this->obj->DB_select_once("useraccounts","`regphone`='".$_POST['regphone']."'");
-				//判断验证码是否正确
-				$regmsg = $_POST['regmsg'];
-				
-					if($member['captcha']!=$regmsg){
-						$this->wapheader('index.php?m=register&','预注册校验码错误！');
-						die();
-					}
 				
 				if(is_array($member)){
-					$idata['username'] = $member['lname'];
-					$idata['password'] = $pass;
-					$idata['salt']     = $salt;
 					//如果regphone正确，判断该记录里是否有intid
 					if ($member['intid']=="" or $member['intid']==null) {
 						//如果没有intid，则插入到member中，并得到member中的uid
 						
 						$userid=$this->obj->insert_into('member',$idata);
 						//更新useraccounts表
-						$this->obj->update_once('useraccounts',array('userid'=>$member['id'],'mac'=>$_COOKIE["mymac"],'usertype'=>$idata['usertype'],'phone'=>$idata['regphone'],'intid'=>$userid,'updtime'=> date("Y-m-d H:i:s",time())),array('id'=>$member['id']));
+						$this->obj->update_once('useraccounts',array('userid'=>$member['id'],'mac'=>$_COOKIE["mymac"],'lname'=>$idata['username'],'userrole'=>$idata['userrole'],'usertype'=>$idata['usertype'],'orgn'=>$idata['orgn'],'title'=>$idata['title'],'phone'=>$idata['phone'],'intid'=>$userid,'updtime'=> date("Y-m-d H:i:s",time())),array('id'=>$member['id']));
 						//插入usermacs表
 						$idata['userid']=$member['id'];
 						$idata['rectime'] =  date("Y-m-d H:i:s",time());
 						$this->obj->insert_into('usermacs',$idata);
 						
-						setcookie("uid",$member['intid'],time() + 86400, "/");
-						setcookie("username",$idata['username'],time() + 86400, "/");
+						setcookie("uid",$userid,time() + 86400, "/");
+						setcookie("username",$_POST['username'],time() + 86400, "/");
 						setcookie("usertype",$usertype,time() + 86400, "/");
 						setcookie("salt",$salt,time() + 86400, "/");
 						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
 					}
 					
 					if ($member['mac']!=$_COOKIE['mymac']) {
-						
+						$this->obj->update_once('useraccounts',array('mac'=>$_COOKIE["mymac"],'lname'=>$idata['username'],'userrole'=>$idata['userrole'],'usertype'=>$idata['usertype'],'orgn'=>$idata['orgn'],'title'=>$idata['title'],'phone'=>$idata['phone'],'updtime'=> date("Y-m-d H:i:s",time())),array('id'=>$member['id']));
 						//插入usermacs表
 						$idata['userid']=$member['id'];
 						$idata['rectime'] =  date("Y-m-d H:i:s",time());
 						$this->obj->insert_into('usermacs',$idata);
 						
 						setcookie("uid",$member['intid'],time() + 86400, "/");
-						setcookie("username",$idata['username'],time() + 86400, "/");
+						setcookie("username",$_POST['username'],time() + 86400, "/");
 						setcookie("usertype",$usertype,time() + 86400, "/");
 						setcookie("salt",$salt,time() + 86400, "/");
 						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
@@ -132,20 +128,19 @@ class register_controller extends common
 						die();
 					}
 				}
-				$member=$this->obj->DB_select_once("useraccounts","`phone`='".$_POST['regphone']."'");
+				$member=$this->obj->DB_select_once("useraccounts","`phone`='".$_POST['phone']."' and `lname`='".$_POST['username']."'");
 				//如果member中有记录说明是老用户
 				if(is_array($member)){
 					//老用户：更新useraccent、member除了除了username和phone之外的其他字段，添加记录到usermacs表
 					//更新 useraccent表
-					//$this->obj->update_once('useraccounts',array('mac'=>$_COOKIE["mymac"],'orgn'=>$idata['orgn'],'title'=>$idata['title'],'updtime'=> date("Y-m-d H:i:s",time())),array('id'=>$member['id']));
+					$this->obj->update_once('useraccounts',array('mac'=>$_COOKIE["mymac"],'orgn'=>$idata['orgn'],'title'=>$idata['title'],'updtime'=> date("Y-m-d H:i:s",time())),array('id'=>$member['id']));
 					
 					//插入 usermacs表
-					$idata['userid']=$member['id'];
-					
+					$idata['userid']=$member['id'];					
 					$this->obj->insert_into('usermacs',$idata);
 					
 					setcookie("uid",$member['intid'],time() + 86400, "/");
-					setcookie("username",$member['lname'],time() + 86400, "/");
+					setcookie("username",$_POST['username'],time() + 86400, "/");
 					setcookie("usertype",$usertype,time() + 86400, "/");
 					setcookie("salt",$salt,time() + 86400, "/");
 					setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
@@ -153,8 +148,7 @@ class register_controller extends common
 					//新用户：写入member、useraccent、usermacs三个表
 															
 					$idata['rectime'] =  date("Y-m-d H:i:s",time());	
-					$idata['username'] =  $_POST['regphone'];
-					$idata['lname'] =  $_POST['regphone'];
+					
 					//$intid=$this->obj->insert_into('member',$idata);
 					$sql = "INSERT INTO member (username, password,usertype,salt) VALUES 
 							('".$idata['username']."', 
@@ -181,7 +175,7 @@ class register_controller extends common
 					
 					
 					setcookie("uid",$intid,time() + 86400, "/");
-					setcookie("username",$idata['username'],time() + 86400, "/");
+					setcookie("username",$_POST['username'],time() + 86400, "/");
 					setcookie("usertype",$usertype,time() + 86400, "/");
 					setcookie("salt",$salt,time() + 86400, "/");
 					setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
