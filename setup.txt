@@ -5,6 +5,9 @@ git clone https://github.com/unissoft-bj/microma.git
 mysql -uroot -prootatussp wlsp < /media/data/microma/db/ihost-ma.sql 
 # put to working directory
 unlink /var/www
+# - or - if /var/www is not a soft link
+rm -rf /var/www
+ 
 mkdir /var/www
 cp -r /media/data/microma/webpages/* /var/www/
 chmod -R 777 /var/www
