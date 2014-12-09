@@ -52,7 +52,11 @@ while($row = mysql_fetch_array($result))
   if ($row['userrole']=="400") {
   	$userrole = "»áÎñ";
   }
-  echo "<a href=userlogin.php?userid=".$row['intid'].">".$row['lname']."[".$userrole."]</a>";
+  if($userrole==""){
+  	echo "<a href=userlogin.php?userid=".$row['intid'].">".$row['lname']."</a>";
+  }else{
+  	echo "<a href=userlogin.php?userid=".$row['intid'].">".$row['lname']."[".$userrole."]</a>";
+  }
   echo "&nbsp;\t";
 
   }
