@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-12-04 21:47:23
+<?php /* Smarty version 2.6.26, created on 2014-12-09 22:04:36
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 18, false),)), $this); ?>
@@ -144,8 +144,8 @@ function checkfrom(){
 		alert("校验码不能为空！");
 		return false;
 	}else if(regmsg.length!=6){
-		alert("校验码长度应是6位！");
-		return false;
+		//alert("校验码长度应是6位！");
+		//return false;
 	}
 	
 	

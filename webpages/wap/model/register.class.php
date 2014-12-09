@@ -197,9 +197,9 @@ class register_controller extends common
 		}
 		if($_GET['usertype']=="2")
 		{
-			$this->yunset("title","用户认证");
+			$this->yunset("title","用户签到");
 		}else{
-			$this->yunset("title","用户认证");
+			$this->yunset("title","用户签到");
 		}
 		$this->yuntpl(array('wap/register'));
 	}
