@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-11-29 16:30:44
+<?php /* Smarty version 2.6.26, created on 2014-12-10 21:35:45
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -67,7 +67,8 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 <table class="mune_list">
 <tr>
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/ma/message_liebiao.php?title=%e7%ba%bf%e4%b8%8a%e6%b6%88%e6%81%af"><p class="mune_a"><i></i><em>积分商城</em></p></a></td>
+/ma/message_liebiao.php?title=%e7%ba%bf%e4%b8%8a%e6%b6%88%e6%81%af"><p class="mune_a"><i></i><em>积分商城：<font color=red><?php echo $_SESSION['jifen']; ?>
+</font></em></p></a></td>
 <?php if (! $this->_tpl_vars['cookie']['uid']): ?>
 
 

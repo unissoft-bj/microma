@@ -3,8 +3,11 @@
 
 include(dirname(dirname(__FILE__))."/global.php");
 
+session_start();
 
-//根据mac自动签到
+// store session data
+
+
 
 
 $con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
@@ -52,9 +55,15 @@ if($_COOKIE["username"]==""){
 	//维护online状态
 	//1.判断当前用户是否登录，如果是登录用户则
 if($_COOKIE["username"]!=""){
+	$con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
+	mysql_query("SET NAMES 'GBK'");
+	if (!$con)
+	{
+		die('Could not connect: ' . mysql_error());
+	}
 	mysql_select_db($db_config['dbname'], $con);
 	
-	$sql = "select id from useractive where mac='".$_COOKIE['mymac']."' order by id desc limit 1;";
+	$sql = "select id from useractive where mac='".$_COOKIE['mymac']."' order by id desc limit 1";
 	//echo $sql;
 	$result = mysql_query($sql);
 	if(mysql_num_rows($result)==0){
@@ -96,7 +105,28 @@ if($_COOKIE["username"]!=""){
 	
 	mysql_close($con);
 }
-
+$con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
+mysql_query("SET NAMES 'GBK'");
+if (!$con)
+{
+	die('Could not connect: ' . mysql_error());
+}
+//处理积分，如果未登录，显示userpoints中的积分，否则显示useraccounts中的积分
+if($_COOKIE["username"]==""){
+	//mysql_select_db($db_config['dbname'], $con);
+	$sql = "select points from userpoints where mac='".$_COOKIE['mymac']."'";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$_SESSION['jifen']=$row['points'];
+	mysql_close($con);	
+}else{
+	//mysql_select_db($db_config['dbname'], $con);
+	$sql = "select integral from useraccounts where intid=".$_COOKIE['uid'].";";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$_SESSION['jifen']=$row['integral'];
+	mysql_close($con);	
+}
 
 //当前类
 $model = $_GET['m'];
