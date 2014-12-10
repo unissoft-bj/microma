@@ -97,6 +97,10 @@ class register_controller extends common
 						setcookie("usertype",$usertype,time() + 86400, "/");
 						setcookie("salt",$salt,time() + 86400, "/");
 						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
+						
+						setcookie("userid",$member['userid'],time() + 86400, "/");
+						setcookie("phone",$member['phone'],time() + 86400, "/");
+						setcookie("userrole",$member['userrole'],time() + 86400, "/");
 					}
 					
 					if ($member['mac']!=$_COOKIE['mymac']) {
@@ -111,6 +115,10 @@ class register_controller extends common
 						setcookie("usertype",$usertype,time() + 86400, "/");
 						setcookie("salt",$salt,time() + 86400, "/");
 						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
+						
+						setcookie("userid",$member['userid'],time() + 86400, "/");
+						setcookie("phone",$member['phone'],time() + 86400, "/");
+						setcookie("userrole",$member['userrole'],time() + 86400, "/");
 					}
 				}else{
 					$this->wapheader('index.php?m=register&','预注册手机号错误！');
@@ -149,6 +157,10 @@ class register_controller extends common
 					setcookie("usertype",$usertype,time() + 86400, "/");
 					setcookie("salt",$salt,time() + 86400, "/");
 					setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
+					
+					setcookie("userid",$member['userid'],time() + 86400, "/");
+					setcookie("phone",$member['phone'],time() + 86400, "/");
+					setcookie("userrole",$member['userrole'],time() + 86400, "/");
 				}else{
 					//新用户：写入member、useraccent、usermacs三个表
 															
@@ -185,6 +197,10 @@ class register_controller extends common
 					setcookie("usertype",$usertype,time() + 86400, "/");
 					setcookie("salt",$salt,time() + 86400, "/");
 					setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
+					
+					setcookie("userid",$userid,time() + 86400, "/");
+					setcookie("phone",$_POST['regphone'],time() + 86400, "/");
+					setcookie("userrole","",time() + 86400, "/");
 				}
 				
 				$this->wapheader('index.php?internet=ok&','现场用户认证成功');

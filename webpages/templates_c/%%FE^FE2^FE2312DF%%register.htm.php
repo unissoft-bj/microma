@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-12-09 22:04:36
+<?php /* Smarty version 2.6.26, created on 2014-12-09 23:53:08
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 18, false),)), $this); ?>
@@ -179,7 +179,7 @@ function setName(str){
      
     <p>
     
-      <input name="regphone" id="regphone" type="text" class="input-common placeholder" placeholder="请输入预注册手机号" onblur="return getInfoByRegPhone(this.value);"/>
+      <input name="regphone" id="regphone" type="text" class="input-common placeholder" placeholder="请输入手机号" onblur="return getInfoByRegPhone(this.value);"/>
       <div id="regInfo"></div>
     
 
