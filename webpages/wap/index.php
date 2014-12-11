@@ -152,7 +152,8 @@ if($_GET['m'] && !ereg("^[0-9a-zA-Z\_]*$",$_GET['m'])){
 }
 if($model=="")	$model="index";
 if($action=="")	$action = "index";
-
+//隐藏登录页面，当调用登录功能时，跳转到“认证页”
+if($model=="login")	$model="register";
 //如果类文件不存在 则调用index类的index方法
 if(!is_file(MODEL_PATH.$model.'.class.php'))
 {

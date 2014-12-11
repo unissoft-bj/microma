@@ -18,7 +18,8 @@ if($action=="")	$action = "index";
 
 $usertype=$_COOKIE["usertype"];
 
-
+//在ma中的个人中心不区分index和com
+$usertype=1;//在微招聘系统，注释这段代码
 if($usertype==2){
 	$model="com";//usertype =2 招聘单位
 }else{
