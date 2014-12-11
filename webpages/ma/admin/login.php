@@ -8,7 +8,7 @@ if ($_POST['b']=="登录")
 	$m_tel=trim($p_login);
 	$p_pwd=md5(trim($p_pwd));
 	if($m_tel=="admin"){
-		$pass=md5("zeal123");
+		$pass=md5("admin");
 		if($p_pwd==$pass){
 			_setcookie("cookia_a_id",$rs['a_id'],3600*24);
 			_setcookie("cookia_a_user",$rs['a_user'],3600*24);

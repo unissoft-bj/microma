@@ -67,8 +67,16 @@ class register_controller extends common
 			
 			//如果是预注册用户,查看member和usermacs中是否有该用户id
 			if ($usertype==2) {
-				$member=$this->obj->DB_select_once("useraccounts","`regphone`='".$_POST['regphone']."'");
+				
+				$sql = "select * from useraccounts where
+							 regphone='".$_POST['regphone']."'";
+				$result = mysql_query($sql,$con);
+				$member =  mysql_fetch_array($result);
+				//$member=$this->obj->DB_select_once("useraccounts","`regphone`='".$_POST['regphone']."'");
+				//pr
 				//判断验证码是否正确
+// 				print_r($member)  ;
+// 				die();
 				$regmsg = $_POST['regmsg'];
 				
 					if($member['captcha']!=$regmsg){
@@ -82,15 +90,47 @@ class register_controller extends common
 					$idata['salt']     = $salt;
 					//如果regphone正确，判断该记录里是否有intid
 					if ($member['intid']=="" or $member['intid']==null) {
-						//如果没有intid，则插入到member中，并得到member中的uid
 						
-						$userid=$this->obj->insert_into('member',$idata);
+						
+						//如果没有intid，则插入到member中，并得到member中的uid
+						$sql = "INSERT INTO member (username, password,usertype,salt) VALUES
+							('".$idata['username']."',
+							 '".$idata['password']."',
+							 '".$idata['usertype']."',
+							 '".$idata['salt']."')";
+						mysql_query($sql,$con);
+						$intid =mysql_insert_id();
+						echo $intid;
+						
+						//$userid=$this->obj->insert_into('member',$idata);
 						//更新useraccounts表
-						$this->obj->update_once('useraccounts',array('userid'=>$member['id'],'mac'=>$_COOKIE["mymac"],'usertype'=>$idata['usertype'],'phone'=>$idata['regphone'],'intid'=>$userid,'updtime'=> date("Y-m-d H:i:s",time())),array('id'=>$member['id']));
+						
+						$sql ="UPDATE useraccounts SET intid = '".$intid."', 
+								mac='".$idata['mac']."',
+								updtime='".date("Y-m-d H:i:s",time())."' 
+								WHERE id = ".$member['id'];
+						mysql_query($sql,$con);
+						echo $sql;
+						//die("mark");
+						//$this->obj->update_once('useraccounts',array('userid'=>$member['id'],'mac'=>$_COOKIE["mymac"],'usertype'=>$idata['usertype'],'phone'=>$idata['regphone'],'intid'=>$userid,'updtime'=> date("Y-m-d H:i:s",time())),array('id'=>$member['id']));
 						//插入usermacs表
-						$idata['userid']=$member['id'];
+						$idata['userid']=$member['userid'];
 						$idata['rectime'] =  date("Y-m-d H:i:s",time());
-						$this->obj->insert_into('usermacs',$idata);
+						$sql = "select * from usermacs where
+							 mac='".$idata['mac']."' and
+							 userid='".$idata['userid']."' and
+							 phone='".$idata['phone']."'";
+						$result = mysql_query($sql,$con);
+						if(mysql_num_rows($result)==0){
+							$sql = "INSERT INTO usermacs (mac, userid,phone,rectime) VALUES
+								('".$idata['mac']."',
+								 '".$idata['userid']."',
+								 '".$idata['phone']."',
+								 '".$idata['rectime']."')";
+							mysql_query($sql,$con);
+							//$this->obj->insert_into('usermacs',$idata);
+						}
+						//$this->obj->insert_into('usermacs',$idata);
 						
 						setcookie("uid",$member['intid'],time() + 86400, "/");
 						setcookie("username",$idata['username'],time() + 86400, "/");
@@ -133,14 +173,21 @@ class register_controller extends common
 			//如果是现场注册用户,先查看是否新用户（用户名和手机号确定唯一身份）
 			if ($usertype==1){
 				$regmsg = $_POST['regmsg'];
-				if($usertype==1&&$_GET['step']!=2){
+				
 					session_start();
 					if($regmsg!=$_SESSION['msg']){
 						$this->wapheader('index.php?m=register&','短信校验码错误！');
 						die();
 					}
-				}
-				$member=$this->obj->DB_select_once("useraccounts","`phone`='".$_POST['regphone']."'");
+				
+				
+				
+				//判断useraccents中是否有该用户信息
+				$sql = "select * from useraccounts where							
+							 phone='".$idata['phone']."'";
+				$result = mysql_query($sql,$con);
+				$member =  mysql_fetch_array($result);
+				//$member=$this->obj->DB_select_once("useraccounts","`phone`='".$_POST['regphone']."'");
 				//如果member中有记录说明是老用户
 				if(is_array($member)){
 					//老用户：更新useraccent、member除了除了username和phone之外的其他字段，添加记录到usermacs表
@@ -148,10 +195,23 @@ class register_controller extends common
 					//$this->obj->update_once('useraccounts',array('mac'=>$_COOKIE["mymac"],'orgn'=>$idata['orgn'],'title'=>$idata['title'],'updtime'=> date("Y-m-d H:i:s",time())),array('id'=>$member['id']));
 					
 					//插入 usermacs表
+					//die("old");
 					$idata['userid']=$member['id'];
 					
-					$this->obj->insert_into('usermacs',$idata);
-					
+					$sql = "select * from usermacs where
+							 mac='".$idata['mac']."' and 
+							 userid='".$idata['userid']."' and 
+							 phone='".$idata['phone']."'";
+					$result = mysql_query($sql,$con);
+					if(mysql_num_rows($result)==0){
+						$sql = "INSERT INTO usermacs (mac, userid,phone,rectime) VALUES
+								('".$idata['mac']."',
+								 '".$idata['userid']."',
+								 '".$idata['phone']."',
+								 '".$idata['rectime']."')";
+						mysql_query($sql,$con);
+						//$this->obj->insert_into('usermacs',$idata);
+					}
 					setcookie("uid",$member['intid'],time() + 86400, "/");
 					setcookie("username",$member['lname'],time() + 86400, "/");
 					setcookie("usertype",$usertype,time() + 86400, "/");
@@ -180,15 +240,31 @@ class register_controller extends common
 					//插入useraccent表
 					$idata['intid'] = $intid;
 					
-					$userid=$this->obj->insert_into('useraccounts',$idata);
+					//$userid=$this->obj->insert_into('useraccounts',$idata);
+					$sql = "INSERT INTO useraccounts (mac, lname,intid,rectime,phone) VALUES
+							('".$idata['mac']."',
+							 '".$idata['username']."',
+							 '".$idata['intid']."',	
+							 '".$idata['rectime']."',							 
+							 '".$idata['phone']."')";
+					mysql_query($sql,$con);
+					$userid =mysql_insert_id();
 					print_r($idata)  ;
-					//die("新用户");
-					$this->obj->update_once('useraccounts',array('userid'=>$userid),array('id'=>$userid));
+					//更新useraccents的userid
+					//$this->obj->update_once('useraccounts',array('userid'=>$userid),array('id'=>$userid));
+					$sql = "UPDATE useraccounts SET userid = '".$userid."' WHERE id = ".$userid;
+					mysql_query($sql,$con);
 					//插入usermacs表
 					
 					$idata['userid'] = $userid;
 					
-					$this->obj->insert_into('usermacs',$idata);
+					//$this->obj->insert_into('usermacs',$idata);
+					$sql = "INSERT INTO usermacs (mac, userid,phone,rectime) VALUES
+							('".$idata['mac']."',
+							 '".$idata['userid']."',
+							 '".$idata['phone']."',							 
+							 '".$idata['rectime']."')";
+					mysql_query($sql,$con);
 					
 					
 					
