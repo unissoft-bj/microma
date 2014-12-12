@@ -11,8 +11,8 @@ if($_POST){
 	
 	 
 	 
-	$sql="insert into smspool (prefix,sms,postfix,stat,cndfromtime,cndtotime,rectime) 
-	values ('$prefix','$sms','$postfix','$stat','$cndfromtime','$cndtotime','$rectime')";
+	$sql="insert into smspool (msgid,prefix,sms,postfix,stat,cndfromtime,cndtotime,rectime) 
+	values ('$msgid','$prefix','$sms','$postfix','$stat','$cndfromtime','$cndtotime','$rectime')";
 	//echo $sql;
 	if($db->q($sql))
 	{
@@ -163,7 +163,10 @@ if($_POST){
 					<input type="hidden" name="id" value="0" />
 					<input type="hidden" name="strkey" id="strkey" value="" />
 					<!-- <div class="wholetip clear"><h3>1、基本信息</h3></div> -->
-					
+					<div class="field">
+						<label>短信id</label>
+						<input type="text" id="title" size="30" name="msgid" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
+					</div>
 					<div class="field">
 						<label>短信前缀</label>
 						<input type="text" id="title" size="30" name="prefix" id="team-create-news" class="f-input" value="" datatype="require" require="true" />

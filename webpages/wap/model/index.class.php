@@ -129,7 +129,7 @@ class index_controller extends common
 			
 				#echo "<div id=\"MyChilli\">";
 				//echo "<script id=\"chillijs\" src=\"../auth/ussp.js\"></script>";
-				$point = "%C8%CF%D6%A4%B3%C9%B9%A6";
+				$point = "%c7%a9%b5%bd%b3%c9%b9%a6";
 				header("location: /wap/index.php?internet=ok&point=".$point);
 // 				$this->yuntpl(array('wap/index'));
 // 				echo "<script id=\"chillicontroller\" src=\"http://172.16.0.1:3990/www/chillijs.chi\"></script>";

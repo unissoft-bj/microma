@@ -3,7 +3,7 @@ require_once('../../global.php');
 require_once('inc/mysql.class.php');
 require_once('inc/function.inc.php');
 $show1="短信";
-$show2="编辑短信";
+$show2="发送短信";
  
 if($_POST){
 	$p_regdate=dtime();
@@ -11,30 +11,22 @@ if($_POST){
 
 	 
 	//$sql="insert into news (p_login,p_pwd,p_name,p_regdate,p_contact,p_tel) values ('$p_login','$p_pwd','$p_name','$p_regdate','$p_contact','$p_tel')";
-	$sql="update smspool set ";
-	$sql.="msgid='".$msgid."',";
-	$sql.="prefix='".$prefix."',";
-	$sql.="sms='".$sms."',";
-	$sql.="postfix='".$postfix."',";
-	$sql.="stat='".$stat."',";
-	$sql.="cndfromtime='".$cndfromtime."',";
-	$sql.="cndtotime='".$cndtotime."', ";
-	$sql.="updtime='".$p_regdate."' ";
-	$sql.="where id=".$id;
+	
+	$sql="insert into authsms (prefix,sms,postfix,phone) values ('$prefix','$sms','$postfix','$phone')";
 	//echo $sql;
 	//exit;
 	if($db->q($sql))
 	{
 		
-		msg("修改短信成功","index.php");
+		msg("添加短信成功","authsms_list.php");
 	}
 	
 } 
  
-if (!isset($id)) msg("系统错误！");
-$sql="select * from smspool where id=".$id;
+//if (!isset($id)) msg("系统错误！");
+//$sql="select * from smspool where id=".$id;
 //echo $sql;
-$rs=$db->r($sql);
+//$rs=$db->r($sql);
 //dump($rs);
 ?>
 
@@ -107,19 +99,7 @@ function check()
 		return false;
 	}
 
-	var i = document.getElementById("cndfromtime").value.length;
-	if(i == 0)//内容不为空
-	{
-		alert("短信生效开始时间不能为空");
-		return false;
-	}
-
-	var i = document.getElementById("cndtotime").value.length;
-	if(i == 0)//内容不为空
-	{
-		alert("生效结束时间不能为空");
-		return false;
-	}
+	
 	
 	/*
 	i = document.getElementById("pro_summary").value;
@@ -172,7 +152,7 @@ function check()
             <div class="box-top"></div>
             <div class="box-content">
 <div class="head">
-                    <h2>编辑短信</h2>
+                    <h2>发送短信</h2>
                     <ul class="filter">
                     	<li>
 	                    	                   	
@@ -181,42 +161,26 @@ function check()
 			  </div>
                 <div class="sect">
 					 <form id="Login-user-form" method="post" action=""   class="validator">
-					<input type="hidden" name="id" value="<?php echo $id?>" />
+					<input type="hidden" name="id" value="" />
 					<input type="hidden" name="strkey" id="strkey" value="" />
 					<!-- <div class="wholetip clear"><h3>1、基本信息</h3></div> -->
 					<div class="field">
-						<label>短信id</label>
-						<input type="text" id="title" size="30" name="msgid" id="team-create-news" class="f-input" value="<?php echo $rs[msgid];?>" datatype="require" require="true" />
+						<label>手机号</label>
+						<input type="text" id="title" size="30" name="prefix" id="team-create-news" class="f-input" value="<?php echo $phone?>" datatype="require" require="true" />
 					</div>
 					<div class="field">
 						<label>短信前缀</label>
-						<input type="text" id="title" size="30" name="prefix" id="team-create-news" class="f-input" value="<?php echo $rs[prefix];?>" datatype="require" require="true" />
+						<input type="text" id="title" size="30" name="prefix" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
 					</div>
 					<div class="field">
 						<label>短信内容</label>
-						<input type="text" id="title" size="30" name="sms" id="team-create-news" class="f-input" value="<?php echo $rs[sms];?>" datatype="require" require="true" />
+						<input type="text" id="title" size="30" name="sms" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
 					</div>
 					<div class="field">
 						<label>短信后缀</label>
-						<input type="text" id="title" size="30" name="postfix" id="team-create-news" class="f-input" value="<?php echo $rs[postfix];?>" datatype="require" require="true" />
+						<input type="text" id="title" size="30" name="postfix" id="team-create-news" class="f-input" value="" datatype="require" require="true" />
 					</div>
-					<div class="field">
-						<label>是否生效</label>
-						<select name="stat"  id="partner_select" datatype="require" require="true" class="f-input" style="width:200px;">
-											
-						<option value=100 <?php if ($rs[stat]==100) echo "selected"; ?>>生效</option>		
-						<option value=-100 <?php if ($rs[stat]==-100) echo "selected"; ?>>不生效</option>				 
-						</select> 
-						
-					</div>
-					<div class="field">
-						<label>生效开始时间</label>
-						<input type="text" id="title" size="30" name="cndfromtime" id="team-create-news" class="f-input" value="<?php echo $rs[cndfromtime];?>" datatype="require" require="true" onClick="WdatePicker()"/>
-					</div>
-					<div class="field">
-						<label>生效结束时间</label>
-						<input onClick="WdatePicker()" type="text" id="title" size="30" name="cndtotime" id="team-create-news" class="f-input" value="<?php echo $rs[cndtotime];?>" datatype="require" require="true" />
-					</div>
+					
  		 
 					
 					 

@@ -75,6 +75,7 @@ if ($_GET['action']=='delete')
                 <div class="sect">
 					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
 					<tr><th width="">ID</th>
+					<th width="">短信id</th>
 					<th width="">前缀</th>
 					<th width="" nowrap>内容</th>
 					<th width="">后缀</th>
@@ -104,6 +105,7 @@ if ($_GET['action']=='delete')
 					
 					<tr <?php if ($i % 2 ==1 ) echo "class=\"alt\" ";?> id="team-list-id-<?php echo $rs["id"];?>">
 						<td><?php echo $rs["id"];?></td>
+						<td><?php echo $rs["msgid"];?></td>
 						<td><?php echo $rs["prefix"];?>  </td>
 						<td><?php echo $rs["sms"];?>  </td>
 						<td><?php echo $rs["postfix"];?>  </td>
@@ -130,7 +132,7 @@ if ($_GET['action']=='delete')
 					</tr>
 					<?php }?>
 					 
-										<tr><td colspan="10"><ul class="paginator"><?php echo $getpageinfo['pagecode'];?></ul></tr>
+										<tr><td colspan="11"><ul class="paginator"><?php echo $getpageinfo['pagecode'];?></ul></tr>
                     </table>
 				</div>
             </div>

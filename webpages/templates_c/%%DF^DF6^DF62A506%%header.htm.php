@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-12-10 21:35:45
+<?php /* Smarty version 2.6.26, created on 2014-12-12 18:31:28
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -66,9 +66,13 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 </script>
 <table class="mune_list">
 <tr>
-<td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/ma/message_liebiao.php?title=%e7%ba%bf%e4%b8%8a%e6%b6%88%e6%81%af"><p class="mune_a"><i></i><em>积分商城：<font color=red><?php echo $_SESSION['jifen']; ?>
-</font></em></p></a></td>
+<?php if (! $this->_tpl_vars['cookie']['diaocha_url']): ?>
+<td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
+/diaocha/view.php?id=10392"><p class="mune_b"><i></i><em>公益拇指</em></p></a></td>
+<?php else: ?>
+<td width="30%"> <a href="../diaocha/<?php echo $this->_tpl_vars['cookie']['diaocha_url']; ?>
+"><p class="mune_b"><i></i><em>公益拇指</em></p></a></td>
+<?php endif; ?>
 <?php if (! $this->_tpl_vars['cookie']['uid']): ?>
 
 
@@ -87,13 +91,10 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 <!-- <td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /ma/vote.php?title=%e6%85%88%e5%96%84%e6%8b%87%e6%8c%87"><p class="mune_b"><i></i><em>慈善拇指</em></p></a></td> -->
 <!-- //yc 判断调查的进度是否存在cookie中 如果存在则跳转到cookie中的进度中 否则打开调查页面 -->
-<?php if (! $this->_tpl_vars['cookie']['diaocha_url']): ?>
-<td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/diaocha/view.php?id=10392"><p class="mune_b"><i></i><em>公益拇指</em></p></a></td>
-<?php else: ?>
-<td width="30%"> <a href="../diaocha/<?php echo $this->_tpl_vars['cookie']['diaocha_url']; ?>
-"><p class="mune_b"><i></i><em>公益拇指</em></p></a></td>
-<?php endif; ?>
+
+<td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
+/wap/member/"><p class="mune_a"><i></i><em>积分账户：<font color=red><?php echo $_SESSION['jifen']; ?>
+</font></em></p></a></td>
 <td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /ma/discuss.php?title=%e7%95%99%e8%a8%80%e5%8f%8d%e9%a6%88"><p class="mune_e"><i></i><em>留言反馈</em></p></a></td>
 </tr>

@@ -81,13 +81,7 @@ if ($_GET['action']=='delete')
 					<th width="" nowrap>onsite</th>
 					<th width="" nowrap>online</th>
 					<th width="" nowrap>macfirst</th>
-					<th width="" nowrap>macmark</th>
 					<th width="" nowrap>maclast</th>
-					<th width="" nowrap>pagefirst</th>
-					<th width="" nowrap>pagemark</th>
-					<th width="" nowrap>pagelast</th>
-					<th width="" nowrap>updby</th>
-					<th width="" nowrap>insby</th>
 					<th width="" nowrap>rectime</th>					 
 					<th width="">操作</th></tr>
 					
@@ -117,18 +111,12 @@ if ($_GET['action']=='delete')
 						<td><?php echo $rs["onsite"];?>  </td>
 						<td><?php echo $rs["online"];?></td>
 						<td><?php echo $rs["macfirst"];?></td>
-						<td><?php echo $rs["macmark"];?>  </td>
 						<td><?php echo $rs["maclast"];?></td>
-						<td><?php echo $rs["pagefirst"];?>  </td>
-						<td><?php echo $rs["pagemark"];?></td>
-						<td><?php echo $rs["pagelast"];?>  </td>
-						<td><?php echo $rs["updby"];?></td>
-						<td><?php echo $rs["insby"];?>  </td>
 						<td><?php echo $rs["rectime"];?></td>
 						 
 						<td class="op">
 						
-						 <a href="<?php echo $cfg['siteurl'];?>admin/sms/useractive_send.php?action=send&id=<?php echo  $rs["id"];?>" class="ajaxlink" ask="确定删除该用户吗？">发送短信</a>  </td>
+						 <a href="<?php echo $cfg['siteurl'];?>admin/sms/useractive_send.php?phone=<?php echo  $rs["phone"];?>" class="ajaxlink" ask="确定删除该用户吗？">发送短信</a>  </td>
 					</tr>
 					<?php }?>
 					 
