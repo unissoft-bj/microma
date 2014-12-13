@@ -6,21 +6,39 @@ $show1="短信";
 $show2="发送短信";
  
 if($_POST){
-	$p_regdate=dtime();
-	//echo $p_regdate;
-
-	 
-	//$sql="insert into news (p_login,p_pwd,p_name,p_regdate,p_contact,p_tel) values ('$p_login','$p_pwd','$p_name','$p_regdate','$p_contact','$p_tel')";
-	
-	$sql="insert into authsms (prefix,sms,postfix,phone) values ('$prefix','$sms','$postfix','$phone')";
-	//echo $sql;
-	//exit;
-	if($db->q($sql))
-	{
+	//从useractive_list.php而来
+	if($send=="more"){
 		
-		msg("添加短信成功","authsms_list.php");
 	}
-	
+	//发送多个phone
+	if($send=="more2"){
+		$p_regdate=dtime();
+		$phoness = explode("|",$phones);
+		//echo $phoness[2];
+		for ($i=0;$i<sizeof($phoness)-1;$i++){
+			//echo $phoness[$i];
+			$sql="insert into authsms (prefix,sms,postfix,phone) values ('$prefix','$sms','$postfix','".$phoness[$i]."')";
+			$db->q($sql);
+		}
+		msg("添加短信成功","authsms_list.php");
+		
+	}
+	//发送单个phone
+	if($send=="one"){
+		$p_regdate=dtime();
+		//echo $p_regdate;	 
+		//$sql="insert into news (p_login,p_pwd,p_name,p_regdate,p_contact,p_tel) values ('$p_login','$p_pwd','$p_name','$p_regdate','$p_contact','$p_tel')";
+		//echo $_POST['phone'];
+		//die();
+		$sql="insert into authsms (prefix,sms,postfix,phone) values ('$prefix','$sms','$postfix','".$_POST['phone']."')";
+		//echo $sql;
+		//exit;
+		if($db->q($sql))
+		{
+			
+			msg("添加短信成功","authsms_list.php");
+		}
+	}
 } 
  
 //if (!isset($id)) msg("系统错误！");
@@ -166,7 +184,22 @@ function check()
 					<!-- <div class="wholetip clear"><h3>1、基本信息</h3></div> -->
 					<div class="field">
 						<label>手机号</label>
-						<input type="text" id="title" size="30" name="prefix" id="team-create-news" class="f-input" value="<?php echo $phone?>" datatype="require" require="true" />
+						<?php 
+							if($send=="more"){
+								$result = "";
+								//echo $_POST['phones'];
+								foreach( $_POST['phones'] as $i)
+								{
+									//echo '<br>';
+									$result .= $i."|";
+								}
+								
+						?>
+						
+						<input type="text" id="title" size="30" name="phones" id="team-create-news" class="f-input" value="<?php echo  $result?>" datatype="require" require="true" />
+						<?php }else{?>
+							<input type="text" id="title" size="30" name="phone" id="team-create-news" class="f-input" value="<?php echo $_GET['phone']?>" datatype="require" require="true" />
+						<?php }?>
 					</div>
 					<div class="field">
 						<label>短信前缀</label>
@@ -185,6 +218,14 @@ function check()
 					
 					 
 					</div>
+					<?php 
+					if ($send=="more") {
+						echo "<input type='hidden' name='send' value='more2'/>";
+					}else{
+						echo "<input type='hidden' name='send' value='one'/>";
+					}
+					?>
+					
 					<input type="submit" onclick="return check();" value="好了，提交" name="commit" id="leader-submit" class="formbutton" style="margin:10px 0 0 120px;"/>
 				</form>
 				</div>

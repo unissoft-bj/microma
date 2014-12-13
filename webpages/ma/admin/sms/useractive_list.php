@@ -38,7 +38,13 @@ if ($_GET['action']=='delete')
 	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
 	<link rel="shortcut icon" href="http://localhost/tuan/static/icon/favicon.ico">
 	<link rel="stylesheet" href="../../css/index.css" type="text/css" media="screen" charset="utf-8">
-  
+  <script type="text/javascript"> 
+function check_all(obj,cName) 
+{ 
+    var checkboxs = document.getElementsByName(cName); 
+    for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;} 
+} 
+</script>
 </head>
 <body class="newbie">
 <div id="pagemasker"></div><div id="dialog"></div>
@@ -72,8 +78,11 @@ if ($_GET['action']=='delete')
                     </ul>
 			  </div>
                 <div class="sect">
+                	<form method="post" action="useractive_send.php" >
 					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
-					<tr><th width="">ID</th>
+					<tr>
+					<th width="45">选择</th>
+					<th width="">ID</th>
 					<th width="">mac</th>
 					<th width="" nowrap>phone</th>
 					<th width="" nowrap>userrole</th>
@@ -103,6 +112,7 @@ if ($_GET['action']=='delete')
 					?>
 					
 					<tr <?php if ($i % 2 ==1 ) echo "class=\"alt\" ";?> id="team-list-id-<?php echo $rs["id"];?>">
+						<td><input type="checkbox" name="phones[]" value="<?php echo $rs["phone"];?>" id="phones"></td>
 						<td><?php echo $rs["id"];?></td>
 						<td><?php echo $rs["mac"];?>  </td>
 						<td><?php echo $rs["phone"];?></td>
@@ -119,9 +129,13 @@ if ($_GET['action']=='delete')
 						 <a href="<?php echo $cfg['siteurl'];?>admin/sms/useractive_send.php?phone=<?php echo  $rs["phone"];?>" class="ajaxlink" ask="确定删除该用户吗？">发送短信</a>  </td>
 					</tr>
 					<?php }?>
+					 <tr><td><input type="checkbox" name="all" onclick="check_all(this,'phones[]')" />全选</td>
+					 <input type="hidden" name="send" value="more"/>
+					 <td colspan="11"><input type="submit" value="发送" class="formbutton" /></tr>
 					 
-										<tr><td colspan="17"><ul class="paginator"><?php echo $getpageinfo['pagecode'];?></ul></tr>
+										<tr><td colspan="12"><ul class="paginator"><?php echo $getpageinfo['pagecode'];?></ul></tr>
                     </table>
+                    </form>
 				</div>
             </div>
             <div class="box-bottom"></div>
