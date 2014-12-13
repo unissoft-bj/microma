@@ -78,3 +78,9 @@ function CountDown() {
 <div class="header_user"><a href="../wap/member/"></a></div>
 </div>
 </header>
+<?php
+if (isset($_GET['point'])) {
+	
+ ?>
+<div class="msg-err" style="opacity: 1;-webkit-animation:shake 0.5s linear 0s;"><?php echo $_GET['point']?></div>
+<?php }?>
