@@ -2721,28 +2721,7 @@ CREATE TABLE `userid_msg` (
 
 /*Data for the table `userid_msg` */
 
-/*Table structure for table `userlog` */
 
-DROP TABLE IF EXISTS `userlog`;
-
-CREATE TABLE `userlog` (
-  `id` int(30) NOT NULL auto_increment,
-  `userid` varchar(30) default NULL,
-  `token` int(10) default NULL,
-  `srcnode` varchar(10) default NULL,
-  `usercode` varchar(30) default NULL,
-  `mac` varchar(36) default NULL,
-  `integral` int(10) default NULL,
-  `nintegral` int(10) default NULL,
-  `action` varchar(128) default NULL,
-  `srcip` varchar(64) default NULL,
-  `srcname` varchar(64) default NULL,
-  `rectime` datetime default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `usercode` (`usercode`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-/*Data for the table `userlog` */
 
 
 /*Table structure for table `webscan360` */
