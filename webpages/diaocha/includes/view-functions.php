@@ -4971,7 +4971,7 @@ EOT;
 			<li class="total_payment" {$other_page_total_data_tag}>
 				<span>
 					<h3></h3>
-					<h5>你已经筹得：总计{$currency_symbol}<var>0</var></h5>
+					<h5>你已经筹得积分：总计<var id="jifen">0</var></h5>
 				</span>
 			</li>
 EOT;

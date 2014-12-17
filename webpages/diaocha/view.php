@@ -1,3 +1,4 @@
+
 <?php
 /********************************************************************************
  MachForm
@@ -184,3 +185,6 @@
 	echo $markup;
 	
 ?>
+<script type="text/javascript" >
+//alert(document.getElementById("jifen").innerHTML);
+</script>
