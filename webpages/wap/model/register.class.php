@@ -132,6 +132,35 @@ class register_controller extends common
 						}
 						//$this->obj->insert_into('usermacs',$idata);
 						
+						setcookie("uid",$intid,time() + 86400, "/");
+						setcookie("username",$idata['username'],time() + 86400, "/");
+						setcookie("usertype",$usertype,time() + 86400, "/");
+						setcookie("salt",$salt,time() + 86400, "/");
+						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
+						
+						setcookie("userid",$member['userid'],time() + 86400, "/");
+						setcookie("phone",$member['phone'],time() + 86400, "/");
+						setcookie("userrole",$member['userrole'],time() + 86400, "/");
+					}else{
+						
+						$idata['userid']=$member['userid'];
+						$idata['rectime'] =  date("Y-m-d H:i:s",time());
+						$sql = "select * from usermacs where
+							 mac='".$idata['mac']."' and
+							 userid='".$idata['userid']."' and
+							 phone='".$idata['phone']."'";
+						$result = mysql_query($sql,$con);
+						if(mysql_num_rows($result)==0){
+							$sql = "INSERT INTO usermacs (mac, userid,phone,rectime) VALUES
+								('".$idata['mac']."',
+								 '".$idata['userid']."',
+								 '".$idata['phone']."',
+								 '".$idata['rectime']."')";
+							mysql_query($sql,$con);
+							//$this->obj->insert_into('usermacs',$idata);
+						}
+						//$this->obj->insert_into('usermacs',$idata);
+						
 						setcookie("uid",$member['intid'],time() + 86400, "/");
 						setcookie("username",$idata['username'],time() + 86400, "/");
 						setcookie("usertype",$usertype,time() + 86400, "/");
