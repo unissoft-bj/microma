@@ -127,7 +127,9 @@ if($_COOKIE["username"]==""){
 	$_SESSION['jifen']=$row['integral'];
 	mysql_close($con);	
 }
-
+if ($_SESSION['jifen']=="" ||$_SESSION['jifen']==null) {
+	$_SESSION['jifen']=0;
+}
 //当前类
 $model = $_GET['m'];
 //当前行为，即类的方法
