@@ -105,7 +105,7 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
 	document.getElementById("sendmsg").value="验证码发送成功";
-    document.getElementById("msgInfo").innerHTML=xmlhttp.responseText;
+    //document.getElementById("msgInfo").innerHTML=xmlhttp.responseText;
     document.getElementById("regmsg").value=xmlhttp.responseText;
     
     }

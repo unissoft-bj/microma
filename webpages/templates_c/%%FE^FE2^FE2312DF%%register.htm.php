@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-12-09 23:53:08
+<?php /* Smarty version 2.6.26, created on 2014-12-19 00:07:15
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 18, false),)), $this); ?>
@@ -117,7 +117,7 @@ xmlhttp.onreadystatechange=function()
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
 	document.getElementById("sendmsg").value="验证码发送成功";
-    document.getElementById("msgInfo").innerHTML=xmlhttp.responseText;
+    //document.getElementById("msgInfo").innerHTML=xmlhttp.responseText;
     document.getElementById("regmsg").value=xmlhttp.responseText;
     
     }

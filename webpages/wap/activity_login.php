@@ -41,7 +41,7 @@ if($_COOKIE["userid"]!=""){
 				pagelast=now(),
 				updby='".$_SERVER['PHP_SELF'].$_SERVER["QUERY_STRING"]."',
 				updtime=now() where id=".$row['id'];
-  		echo $sql_update;
+  		//echo $sql_update;
   		//die();
   		mysql_query($sql_update);
   	}

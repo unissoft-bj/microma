@@ -42,7 +42,7 @@ while($userinfo = mysql_fetch_array($result))
 ?>
 <script language=JavaScript>
    //parent.location.reload();
-   //parent.location=("/ma/index.php");
+   parent.location=("/wap/index.php");
 </script>
 </body>
 </html>

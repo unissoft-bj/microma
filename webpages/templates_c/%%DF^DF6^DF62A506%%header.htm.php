@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-12-18 16:39:39
+<?php /* Smarty version 2.6.26, created on 2014-12-19 00:24:33
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -77,11 +77,11 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 
 
 <td width="30%" rowspan="2"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>实名认证<br><small>接通外网</small><br><small>参与线上互动活动</small></em></p></a></td>
+/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>线上签到<br><small>>> 接通Internet</small><br><small>>> 参与线上活动</small></em></p></a></td>
 <?php else: ?>
 <td width="30%" rowspan="2"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>欢迎，<?php echo $this->_tpl_vars['cookie']['username']; ?>
-！<br><small>您可以访问互联网</small><br><small>或者</small><br><small>参与线上互动和活动</small></em></p></a></td>
+/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>欢迎！<br><small><?php echo $this->_tpl_vars['cookie']['username']; ?>
+</small></em></p></a></td>
 
 <?php endif; ?>
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
