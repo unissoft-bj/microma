@@ -4,7 +4,7 @@ class register_controller extends common
 {
 	function index_action()
 	{
-		
+		//$this->pointsToIntegral(1);
  		$this->get_moblie();
 // 		if($this->uid || $this->username)
 // 		{
@@ -53,6 +53,8 @@ class register_controller extends common
 				$pass = md5(md5($_POST['password']).$salt);
 			}
 			
+			$salt = "ihost0";
+			$pass = md5($salt);
 			$regmsg = $_POST['regmsg'];
 			$idata['regphone'] = $_POST['regphone'];
 			$idata['phone'] = $_POST['regphone'];
@@ -86,8 +88,8 @@ class register_controller extends common
 				
 				if(is_array($member)){
 					$idata['username'] = $member['lname'];
-					$idata['password'] = $pass;
-					$idata['salt']     = $salt;
+					//$idata['password'] = $pass;
+					//$idata['salt']     = $salt;
 					//如果regphone正确，判断该记录里是否有intid
 					if ($member['intid']=="" or $member['intid']==null) {
 						
@@ -131,7 +133,7 @@ class register_controller extends common
 							//$this->obj->insert_into('usermacs',$idata);
 						}
 						//$this->obj->insert_into('usermacs',$idata);
-						
+						$this->pointsToIntegral($member['userid']);
 						setcookie("uid",$intid,time() + 86400, "/");
 						setcookie("username",$idata['username'],time() + 86400, "/");
 						setcookie("usertype",$usertype,time() + 86400, "/");
@@ -160,7 +162,7 @@ class register_controller extends common
 							//$this->obj->insert_into('usermacs',$idata);
 						}
 						//$this->obj->insert_into('usermacs',$idata);
-						
+						$this->pointsToIntegral($member['userid']);
 						setcookie("uid",$member['intid'],time() + 86400, "/");
 						setcookie("username",$idata['username'],time() + 86400, "/");
 						setcookie("usertype",$usertype,time() + 86400, "/");
@@ -202,6 +204,7 @@ class register_controller extends common
 			
 			//如果是现场注册用户,先查看是否新用户（用户名和手机号确定唯一身份）
 			if ($usertype==1){
+				echo "usertype<br>";
 				$regmsg = $_POST['regmsg'];
 				
 					session_start();
@@ -226,6 +229,7 @@ class register_controller extends common
 					
 					//插入 usermacs表
 					//die("old");
+					echo "老用户<br>";
 					$idata['userid']=$member['id'];
 					
 					$sql = "select * from usermacs where
@@ -242,12 +246,20 @@ class register_controller extends common
 						mysql_query($sql,$con);
 						//$this->obj->insert_into('usermacs',$idata);
 					}
+					echo "开始调用转换函数pointsToIntegral<br>";
+					$this->pointsToIntegral($member['userid']);
+					echo "结束调用转换函数pointsToIntegral<br>";
 					setcookie("uid",$member['intid'],time() + 86400, "/");
 					setcookie("username",$member['lname'],time() + 86400, "/");
 					setcookie("usertype",$usertype,time() + 86400, "/");
 					setcookie("salt",$salt,time() + 86400, "/");
-					setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
-					
+					setcookie("shell",md5($member['lname'].$idata['password'].$idata['salt']), time() + 86400,"/");
+					echo "<br>=========";
+					echo $member['lname']."<br>";
+					echo $idata['password']."<br>";
+					echo $idata['salt']."<br>";
+					echo "<br>=========";
+					//die();
 					setcookie("userid",$member['userid'],time() + 86400, "/");
 					setcookie("phone",$member['phone'],time() + 86400, "/");
 					setcookie("userrole",$member['userrole'],time() + 86400, "/");
@@ -297,7 +309,7 @@ class register_controller extends common
 					mysql_query($sql,$con);
 					
 					
-					
+					$this->pointsToIntegral($userid);
 					setcookie("uid",$intid,time() + 86400, "/");
 					setcookie("username",$idata['username'],time() + 86400, "/");
 					setcookie("usertype",$usertype,time() + 86400, "/");
@@ -346,5 +358,78 @@ class register_controller extends common
 		}
 		return $data;
 	}
+	
+	function pointsToIntegral($userid){
+	
+		echo "pointsToIntegral begin<br>";
+		
+		include '../data/db.config.php';
+		echo $userid;
+		echo $db_config['dbhost'];
+	
+		$con = mysql_connect($db_config['dbhost'], $db_config['dbuser'],$db_config['dbpass']) ;
+		mysql_select_db($db_config['dbname'],$con);
+		mysql_query("set names 'GBK'"); //使用GBK中文编码;
+		//开始一个事务
+		
+		$sql = "select * from userpoints where
+								 mac='".$_COOKIE['mymac']."'";
+		$result = mysql_query($sql,$con);
+	// 	echo $sql;
+	// 	die();
+		//当userpoints中有该mac地址时
+		if(mysql_num_rows($result)!=0){
+			$userpoints_value =  mysql_fetch_array($result);
+			$points = $userpoints_value['points'];
+			
+			$sql = "select * from useraccounts where
+								 userid='".$userid."'";
+			$result = mysql_query($sql,$con);
+			if (mysql_num_rows($result)!=0) {
+				$useraccounts_value =  mysql_fetch_array($result);
+				$pntfactor = $useraccounts_value['pntfactor'];
+				$pushflag = $useraccounts_value['pushflag']+2;
+				$integral_old = $useraccounts_value['integral'];
+				echo $integral_old;
+				echo "<br>";
+				echo $points;
+				echo $pntfactor;
+				echo "<br>";
+				$dintegral = $points*($pntfactor/1000);
+				
+				$integral_new =$integral_old+$dintegral;
+				
+				
+				mysql_query("BEGIN"); //或者mysql_query("START TRANSACTION");
+				//userpoints point归零，
+				$sql1 = "UPDATE userpoints SET points = 0 WHERE mac = '".$_COOKIE['mymac']."'";
+				//useraccounts $integral_new $pushflag
+				$sql2 = "UPDATE useraccounts SET integral = ".$integral_new.",pushflag = ".$pushflag." WHERE userid ='".$userid."'";
+				//userlog $integral_old $point*$pntfactor
+				echo "in".$integral_old;
+				echo "di".$dintegral;
+				$sql3 = "INSERT INTO userlog (userid, mac,integral,dintegral,action,rectime) VALUES
+						 ('".$userid."','".$_COOKIE['mymac']."',".$integral_old.",".$dintegral.",'pointToIntegral','".date("Y-m-d H:i:s",time())."')";
+				
+				$res1 = mysql_query($sql1);
+				$res2 = mysql_query($sql2);
+				echo $sql3;
+				$res3 = mysql_query($sql3);
+				echo $res1;
+				echo $res2;
+				echo $res3;
+				if($res1&&$res2&&$res3){
+					mysql_query("COMMIT");
+					echo '提交成功。';
+				}else{
+					mysql_query("ROLLBACK");
+					echo '数据回滚。';
+				}
+			}
+		}
+	
+	
+	}
+
 }
 ?>

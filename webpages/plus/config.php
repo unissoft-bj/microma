@@ -1,4 +1,4 @@
 <?php 
-$config=array("autodate"=>"20141213")
+$config=array("autodate"=>"20141218")
 ; 
 ?>
