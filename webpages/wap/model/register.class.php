@@ -143,6 +143,7 @@ class register_controller extends common
 						setcookie("userid",$member['userid'],time() + 86400, "/");
 						setcookie("phone",$member['phone'],time() + 86400, "/");
 						setcookie("userrole",$member['userrole'],time() + 86400, "/");
+						$this->active_login($member['userid']);
 					}else{
 						
 						$idata['userid']=$member['userid'];
@@ -172,6 +173,7 @@ class register_controller extends common
 						setcookie("userid",$member['userid'],time() + 86400, "/");
 						setcookie("phone",$member['phone'],time() + 86400, "/");
 						setcookie("userrole",$member['userrole'],time() + 86400, "/");
+						$this->active_login($member['userid']);
 					}
 					
 // 					if ($member['mac']!=$_COOKIE['mymac']) {
@@ -197,7 +199,7 @@ class register_controller extends common
 				}
 				
 				
-					
+				
 				$this->wapheader('index.php?internet=ok&','预注册用户签到成功');
 				
 			}
@@ -247,6 +249,7 @@ class register_controller extends common
 						//$this->obj->insert_into('usermacs',$idata);
 					}
 					echo "开始调用转换函数pointsToIntegral<br>";
+					$userid = $member['userid'];
 					$this->pointsToIntegral($member['userid']);
 					echo "结束调用转换函数pointsToIntegral<br>";
 					setcookie("uid",$member['intid'],time() + 86400, "/");
@@ -321,6 +324,7 @@ class register_controller extends common
 					setcookie("userrole","",time() + 86400, "/");
 				}
 				
+				$this->active_login($userid);
 				$this->wapheader('index.php?internet=ok&','现场用户签到成功');
 			}
 			
@@ -431,5 +435,57 @@ class register_controller extends common
 	
 	}
 
+	//登录时更新useractive
+	function active_login($userid){
+		
+		echo "begin";
+		include '../data/db.config.php';
+		echo $userid;
+		echo $db_config['dbhost'];
+		
+		$con = mysql_connect($db_config['dbhost'], $db_config['dbuser'],$db_config['dbpass']) ;
+		mysql_select_db($db_config['dbname'],$con);
+		mysql_query("set names 'GBK'"); //使用GBK中文编码;
+		
+		$sql = "select id from useractive where userid='".$userid."' order by id desc limit 1";
+		echo $sql;
+		$result = mysql_query($sql);
+		if(mysql_num_rows($result)==0){
+			//插入数据
+			$sql_useraccounts = "select phone,userrole from useraccounts where userid='".$userid."'";
+			$result_useraccounts = mysql_query($sql_useraccounts);
+			$info_useraccounts = mysql_fetch_array($result_useraccounts);
+			$sql_insert ="insert into useractive set
+						mac ='".$_COOKIE['mymac']."' ,
+						userid = '".$userid."',
+						userrole = '".$info_useraccounts['userrole']."',
+						phone = '".$info_useraccounts['phone']."',
+						onsite='1',
+						online='1',
+						pagefirst=now(),
+						pagelast=now(),
+						insby='".$_SERVER['PHP_SELF'].$_SERVER["QUERY_STRING"]."',
+						rectime = now(),
+						pushflag = '32'";
+			echo $sql_insert;
+			mysql_query($sql_insert);
+			//die();
+		}else{
+			//更新数据
+			$row = mysql_fetch_array($result);
+			$sql_update="update useractive set
+				pushflag=pushflag+32,
+				userid='".$userid."',
+				onsite='1',
+				online='1',
+				pagefirst=if(pagefirst='1970-01-01 00:00:00',now(),pagefirst),
+				pagelast=now(),
+				updby='".$_SERVER['PHP_SELF'].$_SERVER["QUERY_STRING"]."',
+				updtime=now() where id=".$row['id'];
+			echo $sql_update;
+			//die();
+			mysql_query($sql_update);
+		}
+	}
 }
 ?>

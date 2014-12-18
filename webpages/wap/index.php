@@ -52,66 +52,17 @@ if($_COOKIE["username"]==""){
 }
 
 
-	//维护online状态
-	//1.判断当前用户是否登录，如果是登录用户则
-if($_COOKIE["username"]!=""){
-	$con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
-	mysql_query("SET NAMES 'GBK'");
-	if (!$con)
-	{
-		die('Could not connect: ' . mysql_error());
-	}
-	mysql_select_db($db_config['dbname'], $con);
-	
-	$sql = "select id from useractive where mac='".$_COOKIE['mymac']."' order by id desc limit 1";
-	//echo $sql;
-	$result = mysql_query($sql);
-	if(mysql_num_rows($result)==0){
-		//插入数据
-		$sql_insert ="insert into useractive set 
-						mac ='".$_COOKIE['mymac']."' ,
-						userid = '".$_COOKIE['userid']."',
-						userrole = '".$_COOKIE['userrole']."',
-						phone = '".$_COOKIE['phone']."',
-						onsite='1',
-						online='1',
-						pagefirst=now(),
-						pagelast=now(),
-						insby='".$_SERVER['PHP_SELF'].$_SERVER["QUERY_STRING"]."',
-						rectime = now(), 
-						pushflag = '1'"; 
-		//echo $sql_insert;
-		mysql_query($sql_insert);
-		//die();
-	}else{
-		//更新数据
-		$row = mysql_fetch_array($result);
-		$sql_update="update useractive set 
-				pushflag=if(online='1',pushflag,'8'), 
-				userid='".$_COOKIE['userid']."',
-				onsite='1', 
-				online='1',
-				pagefirst=if(pagefirst='1970-01-01 00:00:00',now(),pagefirst),
-				pagelast=now(),
-				updby='".$_SERVER['PHP_SELF'].$_SERVER["QUERY_STRING"]."',
-				updtime=now() where id=".$row['id'];
-// 		echo $sql_update;
-// 		die();
-		mysql_query($sql_update);
-	}
-	
-	
-	
-	
-	mysql_close($con);
-}
+//维护online状态
+include 'activity_online.php';
+
+//处理积分，如果未登录，显示userpoints中的积分，否则显示useraccounts中的积分
 $con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
 mysql_query("SET NAMES 'GBK'");
 if (!$con)
 {
 	die('Could not connect: ' . mysql_error());
 }
-//处理积分，如果未登录，显示userpoints中的积分，否则显示useraccounts中的积分
+
 if($_COOKIE["username"]==""){
 	//mysql_select_db($db_config['dbname'], $con);
 	$sql = "select points from userpoints where mac='".$_COOKIE['mymac']."'";
@@ -130,6 +81,8 @@ if($_COOKIE["username"]==""){
 if ($_SESSION['jifen']=="" ||$_SESSION['jifen']==null) {
 	$_SESSION['jifen']=0;
 }
+
+
 //当前类
 $model = $_GET['m'];
 //当前行为，即类的方法
