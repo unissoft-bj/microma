@@ -1,3 +1,7 @@
+# get updates
+# /usr/src/ihostupd
+git pull
+
 # get php codes
 cd /media/data
 git clone https://github.com/unissoft-bj/microma.git
@@ -16,6 +20,10 @@ chmod -R 777 /var/www
 sed -i 's|/auth/ihost.php|/wap/index.php|g' /etc/chilli/defaults 
 # check
 cat /etc/chilli/defaults | grep /wap/index.php
+
+# sample questions with title updated
+mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/survysample.sql
+
 # reboot
 reboot
 
