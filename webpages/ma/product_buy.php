@@ -26,7 +26,7 @@ if ($integral_new>=0) {
 	$sql1="update useraccounts set integral=".$integral_new ." where intid=".$_COOKIE['uid'];
 	$rs=$db->q($sql1);
 	$sql2="INSERT INTO userlog (userid,integral,dintegral,action,rectime) 
-			VALUES (".$_COOKIE['userid'].",".
+			VALUES ('".$_COOKIE['userid']."',".
 					$integral_old.",-$product_jifen,'兑换商品-$product_name','".dtime()."')";
 	
 	$rs=$db->q($sql2);

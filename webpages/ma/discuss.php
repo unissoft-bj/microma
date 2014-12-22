@@ -6,6 +6,10 @@ require_once 'inc/mysql.Class.php';
  
 $sql="select a.lname,b.creattime,b.content from useraccounts a,ma_guestbook b where a.intid=b.uid $sqladd order by b.creattime desc";
 $sqlc="select count(uid) as c from ma_guestbook where 1=1 $sqladd ";
+// echo $sql;
+// echo "<br>";
+// echo $sqlc;
+// die();
 ?>
 <!DOCTYPE HTML>
 <html>

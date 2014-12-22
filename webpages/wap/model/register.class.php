@@ -232,7 +232,7 @@ class register_controller extends common
 					//插入 usermacs表
 					//die("old");
 					echo "老用户<br>";
-					$idata['userid']=$member['id'];
+					$idata['userid']=$member['userid'];
 					
 					$sql = "select * from usermacs where
 							 mac='".$idata['mac']."' and 
@@ -286,19 +286,22 @@ class register_controller extends common
 					$idata['intid'] = $intid;
 					
 					//$userid=$this->obj->insert_into('useraccounts',$idata);
-					$sql = "INSERT INTO useraccounts (mac, lname,intid,rectime,phone) VALUES
+					
+					$userid = $this->uuid();
+					$integral = 60;//integral 默认值60 手机认证送60积分
+					$sql = "INSERT INTO useraccounts (mac, userid,integral, lname,intid,rectime,phone) VALUES
 							('".$idata['mac']."',
+							 '".$userid."',
+							 '".$integral."',
 							 '".$idata['username']."',
 							 '".$idata['intid']."',	
 							 '".$idata['rectime']."',							 
 							 '".$idata['phone']."')";
+					
 					mysql_query($sql,$con);
-					$userid =mysql_insert_id();
-					print_r($idata)  ;
-					//更新useraccents的userid
-					//$this->obj->update_once('useraccounts',array('userid'=>$userid),array('id'=>$userid));
-					$sql = "UPDATE useraccounts SET userid = '".$userid."' WHERE id = ".$userid;
-					mysql_query($sql,$con);
+// 					echo $sql;
+// 					die();
+					
 					//插入usermacs表
 					
 					$idata['userid'] = $userid;
@@ -311,6 +314,15 @@ class register_controller extends common
 							 '".$idata['rectime']."')";
 					mysql_query($sql,$con);
 					
+					//插入userlog，手机号码认证送60积分
+					$sql_userlog = "INSERT INTO userlog (userid, mac,integral,dintegral,action,rectime) VALUES
+						 	('".$userid."',
+						 	 '".$_COOKIE['mymac']."',
+						 	 "."0".",
+						 	 ".$integral.",
+						 	 '手机号码认证',
+						 	 '".date("Y-m-d H:i:s",time())."')";
+					mysql_query($sql_userlog,$con);
 					
 					$this->pointsToIntegral($userid);
 					setcookie("uid",$intid,time() + 86400, "/");
@@ -363,6 +375,18 @@ class register_controller extends common
 		return $data;
 	}
 	
+	//uuid
+	function uuid($prefix = '')
+	{
+		$chars = md5(uniqid(mt_rand(), true));
+		$uuid  = substr($chars,0,8) . '-';
+		$uuid .= substr($chars,8,4) . '-';
+		$uuid .= substr($chars,12,4) . '-';
+		$uuid .= substr($chars,16,4) . '-';
+		$uuid .= substr($chars,20,12);
+		return $prefix . $uuid;
+	}
+	//注册时 point转化为Integral
 	function pointsToIntegral($userid){
 	
 		echo "pointsToIntegral begin<br>";

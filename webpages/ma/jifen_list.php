@@ -32,10 +32,11 @@ require 'inc/function.inc.php';
     <div id="meeting_list">
     
     	<ul id="info2">
-    	<?php $sql="select * from userlog where userid=".$_COOKIE['userid']." order by rectime desc ";
-    	     $sqlc="select count(id) as c from userlog where userid=".$_COOKIE['uid'];
-    	     //echo $sql;
-    	     //die();
+    	<?php $sql="select * from userlog where userid='".$_COOKIE['userid']."' order by rectime desc ";
+    	     $sqlc="select count(id) as c from userlog where userid='".$_COOKIE['uid']."'";
+//     	     echo $sql;
+//     	     echo $sqlc;
+//     	     die();
     	     $counts_r = $db->r($sqlc);
     	      $counts = $counts_r[c];
     	     $page= isset($_GET['page'])?$_GET['page']:1;
