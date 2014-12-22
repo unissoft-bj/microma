@@ -1,6 +1,6 @@
 <?php 
 require_once('../global.php');
-require_once('inc/mysql.class.php');
+require_once('inc/mysql.Class.php');
 require_once('inc/function.inc.php');
 $title="用户登录" ;
 if ($_POST['b']=="登录")

@@ -1,6 +1,6 @@
 <?php 
 require_once('../../global.php');
-require_once('inc/mysql.class.php');
+require_once('inc/mysql.Class.php');
 require_once('inc/function.inc.php');
 $show1="短信";
 $show2="短信池";
