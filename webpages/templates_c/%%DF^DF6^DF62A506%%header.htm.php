@@ -1,12 +1,11 @@
-<?php /* Smarty version 2.6.26, created on 2014-12-19 00:24:33
+<?php /* Smarty version 2.6.26, created on 2014-12-23 16:14:52
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
 <meta http-equiv="Cache-Control" content="no-cache"/>
-<title><?php echo $this->_tpl_vars['config']['sy_webname']; ?>
-</title>
+<title>微会务</title>
 <meta http-equiv="keywords" content="人才招聘,网络招聘,wap" />
 <meta http-equiv="description" content="人才招聘网wap网站" />
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['wapstyle']; ?>

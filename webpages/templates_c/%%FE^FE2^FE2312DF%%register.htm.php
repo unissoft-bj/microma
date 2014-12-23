@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-12-19 00:07:15
+<?php /* Smarty version 2.6.26, created on 2014-12-23 16:10:18
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 18, false),)), $this); ?>
@@ -41,6 +41,33 @@ unset($_smarty_tpl_vars);
 <script src="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /js/jquery-1.8.0.min.js"></script>
 <script>
+
+function countDown(obj,second){ 
+    // 如果秒数还是大于0，则表示倒计时还没结束 
+    if(second>=0){ 
+    	
+          // 获取默认按钮上的文字 
+          if(typeof buttonDefaultValue === 'undefined' ){ 
+            buttonDefaultValue =  obj.defaultValue; 
+        } 
+        // 按钮置为不可点击状态 
+        obj.disabled = true;             
+        // 按钮里的内容呈现倒计时状态 
+        obj.value = buttonDefaultValue+'('+second+')'; 
+        // 时间减一 
+        second--; 
+
+        // 一秒后重复执行 
+        setTimeout(function(){countDown(obj,second);},1000); 
+        
+    // 否则，按钮重置为初始状态 
+    }else{ 
+        // 按钮置未可点击状态 
+        obj.disabled = false;    
+        // 按钮里的内容恢复初始状态 
+        obj.value = buttonDefaultValue; 
+    }    
+}
 //getInfoByRegPhone
 //根据预注册手机 判断是否已注册用户
 function getInfoByRegPhone(str)
@@ -116,7 +143,8 @@ xmlhttp.onreadystatechange=function()
   {
   if (xmlhttp.readyState==4 && xmlhttp.status==200)
     {
-	document.getElementById("sendmsg").value="验证码发送成功";
+	document.getElementById("sendmsg").value="重新发送";
+	countDown(document.getElementById("sendmsg"),60);
     //document.getElementById("msgInfo").innerHTML=xmlhttp.responseText;
     document.getElementById("regmsg").value=xmlhttp.responseText;
     
@@ -185,7 +213,7 @@ function setName(str){
 
     <div id="yuzhuce2" style="display: none;">
     <p>
-      <input name="sendmsg" id="sendmsg" type="button"  value="接收验证码" size="30" onclick="return sendMsg(this.value);"/> 
+      <input name="sendmsg" id="sendmsg" type="button"  value="接收验证码" size="30" onclick="return sendMsg(this.value);"  style=" width:100px; height:40px; "/> 
       <font id="msgInfo"></font>
     </p>
     </div>
