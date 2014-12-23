@@ -24,6 +24,18 @@ cat /etc/chilli/defaults | grep /wap/index.php
 # sample questions with title updated
 mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/survysample.sql
 
+# corrections for ma admin pages
+cp  -r /var/www/ma/inc  /var/www/ma/admin/
+mv  /var/www/ma/admin/inc/mysql.Class.php  /var/www/ma/admin/inc/mysql.class.php
+sed -i 's|;include_path = ".:/usr/share/php"|;include_path = ".:/usr/share/php:/var/www/ma/admin"|g' /etc/php5/apache2/php.ini
+
+# sample product
+mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/ma_product.sql
+
+# sample article
+mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/ma_news.sql
+mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/ma_newssort.sql
+
 # reboot
 reboot
 
