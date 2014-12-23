@@ -32,6 +32,15 @@ require 'inc/function.inc.php';
     <div id="meeting_list">
     
     	<ul id="info2">
+		
+		<a href="caipiao.php">
+    	<li>
+        	<ul>
+            	<li class="clearfix"><span class="left">2元彩票【热荐】</span><span class="right">置顶</span></li>
+                <li>市场价：<font color="#ff7600">2</font> &nbsp;积分价：1000</font></li>
+            </ul>
+        </li>
+        </a>
     	<?php $sql="select * from ma_product order by creattime desc";
     	     $sqlc="select count(id) as c from ma_news";
     	     $counts_r = $db->r($sqlc);

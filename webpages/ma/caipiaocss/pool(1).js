@@ -1,0 +1,1 @@
+!function(e,o,i,n){"use strict";e.extend(o,{quickInit:function(){this.pool=n.Page.COMS.PT.Pool.create({gameCore:i.ssq.core,betPageUrl:o.config.betPageUrl})}})}(window.Zepto,window.Core,window.Game,window.Class);
