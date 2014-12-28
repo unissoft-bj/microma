@@ -177,8 +177,8 @@ function getInfo(){
 		for(i=0;i<str.length;i++){
 			ssq_str = ssq_str+str[i].innerHTML;
 		}
-		var url = "caipiao.php?ssq_str="+ssq_str;
-		alert(url);
+		var url = "caipiao_submit.php?ssq_str="+ssq_str;
+		//alert(url);
 		window.location.replace(url);
 		//alert(ssq_str);
 	}
