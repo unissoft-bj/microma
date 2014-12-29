@@ -19,7 +19,8 @@ if($_POST){
 			//如果输入手机号和useraccounts中的手机号不一样，则将新手机号更新到backphone字段中
 			$sql = "UPDATE useraccounts SET backphone = '".$_POST['phone']."' WHERE userid = '".$_COOKIE['userid']."' ";
 			$db->q($sql);
-		}		
+		}
+				
 		//useraccounts中的积分处理、userlog中的积分记录处理
 		$sql="select integral from useraccounts where userid='".$_COOKIE['userid']."'";
 		$rs=$db->r($sql);
@@ -35,26 +36,37 @@ if($_POST){
 			3.��ת����Ʒ����ҳ
 			*/
 			//echo "ok";
-				
+			mysql_query("BEGIN"); //或者mysql_query("START TRANSACTION");
+			
 			$sql1="update useraccounts set integral=".$integral_new ." where userid='".$_COOKIE['userid']."'";
-			$rs=$db->q($sql1);
+			$rs1=$db->q($sql1);
 			$sql2="INSERT INTO userlog (userid,integral,dintegral,action,rectime)
 			VALUES ('".$_COOKIE['userid']."',".
 					$integral_old.",-1000,'兑换彩票：".$_GET['ssq_str']."','".dtime()."')";
 				
-			$rs=$db->q($sql2);
-			$_SESSION['jifen']=$integral_new;
+			$rs2=$db->q($sql2);		
 			
 			//将订单数据存入订单表
 			$pro_creattime=dtime();
-			$sql="insert into `prodorder`
+			$sql3="insert into `prodorder`
 				(`userid`, `username`, `prodcode`, `prodname`, `prodtype`, `prodspec`, `proddesp`, `recipaddr`, `recipname`, `recipphone1`, `recipphone2`, `rectime`, `recipemail`)
 		  values('".$_COOKIE['userid']."','".$_COOKIE['username']."','caip','caip','caip','".$_POST['ssq_str']."','123132123123',NULL,NULL,NULL,NULL,'".$pro_creattime."',NULL);
 		";
-			$db->q($sql);
+			$rs3 = $db->q($sql3);
 			
+			if($rs1&&$rs2&&$rs3){
+				mysql_query("COMMIT");
+				$_SESSION['jifen']=$integral_new;
+				header("location: caipiao.php?point=兑换成功，消耗积分1000");
+				die();
+				echo '提交成功。';
+			}else{
+				mysql_query("ROLLBACK");
+				header("location: caipiao.php?point=兑换失败，数据异常");
+				die();
+				echo '数据回滚。';
+			}
 			
-			header("location: caipiao.php?point=兑换成功，消耗积分1000");
 				
 		}else {
 			//��ת����Ʒ����ҳ
