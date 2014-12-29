@@ -58,7 +58,7 @@ if ($integral_new>=0) {
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta content="telephone=no" name="format-detection">
 
-<title>【双色球投注】-微会务</title>
+<title>中国福利彩票-双色球</title>
 <script type="text/javascript"> window.__loadindStartTime = new Date();</script>
 
 <link rel="stylesheet" href="./caipiaocss/base.css?260203">
@@ -161,7 +161,7 @@ if (isset($_GET['point'])) {
   </section>
   <section class="betResult hasNums">
     
-     <em class="bottomBtn confirm" id="" onClick="getInfo()">立即投注 消耗1000积分</em> 
+     <em class="bottomBtn confirm" id="" onClick="getInfo()">立即投注 消耗100积分</em> 
     <div id="randomTip" class="randomNumTip hide"> <i><i></i></i> <a href="javascript:;" data-count="1"><em class="tips">1</em>1注</a> <a href="javascript:;" data-count="5"><em class="tips">5</em>5注</a> <a href="javascript:;" data-count="10"><em class="tips">10</em>10注</a> </div>
   </section>
 </article>

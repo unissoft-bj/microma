@@ -10,7 +10,7 @@ if($_POST){
 	$rs=$db->r($sql);
 	$integral_old =  $rs['integral'];
 	$intid = $rs['intid'];
-	$integral_new = $integral_old-1000;
+	$integral_new = $integral_old-100;
 	//echo $integral_new;
 	//������㹻��һ�������һ�ʧ��
 	if ($integral_new>=0) {
@@ -29,7 +29,7 @@ if($_POST){
 		$rs1=$db->q($sql1);
 		$sql2="INSERT INTO userlog (userid,integral,dintegral,action,rectime)
 			VALUES ('".$_COOKIE['userid']."',".
-				$integral_old.",-1000,'兑换彩票：".$_GET['ssq_str']."','".dtime()."')";
+				$integral_old.",-100,'兑换彩票：".$_GET['ssq_str']."','".dtime()."')";
 	
 		$rs2=$db->q($sql2);
 		
@@ -56,7 +56,7 @@ if($_POST){
 		$pro_creattime=dtime();
 		$sql3="insert into `prodorder`
 				(`userid`, `username`, `prodcode`, `prodname`, `prodtype`, `prodspec`, `proddesp`, `recipaddr`, `recipname`, `recipphone1`, `recipphone2`, `rectime`, `recipemail`)
-		  values('".$_COOKIE['userid']."','".$_COOKIE['username']."','caip','caip','caip','".$_POST['ssq_str']."','123132123123',NULL,NULL,NULL,NULL,'".$pro_creattime."',NULL);
+		  values('".$_COOKIE['userid']."','".$_COOKIE['username']."','caip','caip','caip','".$_POST['ssq_str']."','商品描述',NULL,NULL,'".$_POST['phone']."',NULL,'".$pro_creattime."',NULL);
 		";
 		$rs3 = $db->q($sql3);
 			
@@ -75,7 +75,7 @@ if($_POST){
 		if($rs1&&$rs2&&$rs3){
 			mysql_query("COMMIT");
 			$_SESSION['jifen']=$integral_new;
-			header("location: caipiao.php?point=兑换成功，消耗积分1000");
+			header("location: caipiao.php?point=兑换成功，消耗积分100");
 			die();
 			echo '提交成功。';
 		}else{
