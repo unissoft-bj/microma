@@ -36,8 +36,8 @@ require 'inc/function.inc.php';
 		<a href="caipiao.php">
     	<li>
         	<ul>
-            	<li class="clearfix"><span class="left">2元彩票【热荐】</span><span class="right">置顶</span></li>
-                <li>市场价：<font color="#ff7600">2</font> &nbsp;积分价：1000</font></li>
+            	<li class="clearfix"><span class="left">中国福利彩票-双色球</span><span class="right">置顶</span></li>
+                <li>市场价：<font color="#ff7600">2</font> &nbsp;积分价：100</font></li>
             </ul>
         </li>
         </a>
