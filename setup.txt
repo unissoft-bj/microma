@@ -30,7 +30,7 @@ mv  /var/www/ma/admin/inc/mysql.Class.php  /var/www/ma/admin/inc/mysql.class.php
 sed -i 's|;include_path = ".:/usr/share/php"|;include_path = ".:/usr/share/php:/var/www/ma/admin"|g' /etc/php5/apache2/php.ini
 
 # sample product
-mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/ma_product.sql
+#mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/ma_product.sql
 
 # sample article
 mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/ma_news.sql
