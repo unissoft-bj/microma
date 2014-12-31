@@ -106,6 +106,26 @@ if($_POST){
 <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
 <title>彩票兑换-订单确认</title>
 <link rel="stylesheet" type="text/css" href="css/css.css">
+<script type="text/javascript">
+function check(){
+	bq=document.getElementById("xieyi").checked;
+	if(!bq){
+		alert("您没有选择委托投注协议");
+		return false;
+		}
+
+	bq=document.getElementById("juanzeng").checked;
+	if(!bq){
+		alert("您没有选择捐赠");
+		return false;
+		}
+	bq=document.getElementById("phone").value;
+	if(bq.length==0){
+		alert("手机号不能为空！");
+		return false;
+	}
+}
+</script>
 </head>
 
 <body>
@@ -142,6 +162,16 @@ if($_POST){
       <input value="<?php echo $_COOKIE['phone'];?>" name="phone" id="phone" type="text" class="input-common placeholder" placeholder="请输入手机号" onblur="return getInfoByRegPhone(this.value);"/>
     </p>
     
+    
+
+    <p align="left" > 
+       
+      <input    value="1" name="juanzeng" id="xieyi" type="checkbox" style="width:20px;height:20px;" checked/><a href="/ma/caipiao_xieyi.php">我已经阅读 委托投注协议</a>
+   
+    </p>
+    <p align="left">    
+      <input value="1" name="xieyi" id="juanzeng" type="checkbox" style="width:20px;height:20px;" checked/>如中万元以上大奖35%捐赠给本公益平台
+    </p>
     <?php 
     	//检索userinfochk表，判断是否需要输入用户名等信息
    //$sql="select integral from useraccounts where userid='".$_COOKIE['userid']."'";
@@ -179,7 +209,7 @@ if($_POST){
     	
     }
     ?>
-    <input type="submit" name="submit" value="提交" class="btn-large" />
+    <input type="submit" name="submit" value="提交" class="btn-large" onclick="return check();"/>
   </form>
   
   

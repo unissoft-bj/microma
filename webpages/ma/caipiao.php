@@ -82,7 +82,7 @@ if ($integral_new>=0) {
 </noscript>
 <article class="docBody clearfix newBetPage">
   <header id="header">
-    <h1>双色球</h1>
+    <h1>中国福利彩票-双色球</h1>
     <a href="javascript:;" cpurl="/wap/member/" class="rightBox" rel="nofollow">个人中心</a> <a class="goBack "  href="/wap/member/" target="_self" rel="nofollow">返回</a> </header>
   <section id="wraper" style="height: 381px;">
     <div>
