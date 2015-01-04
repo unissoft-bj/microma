@@ -3,6 +3,11 @@ require 'global.php';
 require 'inc/mysql.Class.php';
 require 'inc/function.inc.php';
 
+$sql="select * from useraccounts where userid='".$_COOKIE['userid']."'";
+$rs=$db->r($sql);
+$cid_old=$rs['cid'];//useraccounts表中存储的当前用户的身份证号
+
+
 if($_POST){
 	
 	//useraccounts中的积分处理、userlog中的积分记录处理
@@ -25,7 +30,7 @@ if($_POST){
 			
 			
 			
-		$sql1="update useraccounts set integral=".$integral_new ." where userid='".$_COOKIE['userid']."'";
+		$sql1="update useraccounts set integral=".$integral_new .",cid='".$_POST['cid']."' where userid='".$_COOKIE['userid']."'";
 		$rs1=$db->q($sql1);
 		$sql2="INSERT INTO userlog (userid,integral,dintegral,action,rectime)
 			VALUES ('".$_COOKIE['userid']."',".
@@ -157,20 +162,23 @@ function check(){
       
     <p>
     
-    <p>发送彩票标识码短信到：    </p>
+    <p><font color=red>接受彩票唯一标识码和中奖短信的手机号：</font>    </p>
     <p>    
       <input value="<?php echo $_COOKIE['phone'];?>" name="phone" id="phone" type="text" class="input-common placeholder" placeholder="请输入手机号" onblur="return getInfoByRegPhone(this.value);"/>
     </p>
     
-    
+    <p><font color=red>凭一下身份证号兑奖以防假冒：</font>    </p>
+    <p>    
+      <input value="<?php echo $cid_old;?>" name="cid" id="cid" type="text" class="input-common placeholder" placeholder="请输入身份证号" onblur="return getInfoByRegPhone(this.value);"/>
+    </p>
 
     <p align="left" > 
        
-      <input    value="1" name="juanzeng" id="xieyi" type="checkbox" style="width:20px;height:20px;" checked/><a href="/ma/caipiao_xieyi.php">我已经阅读 委托投注协议</a>
+      <input    value="1" name="juanzeng" id="xieyi" type="checkbox" style="width:20px;height:20px;" checked/><a href="/ma/caipiao_xieyi.php">我已经阅读并同意《 委托投注协议》</a>
    
     </p>
     <p align="left">    
-      <input value="1" name="xieyi" id="juanzeng" type="checkbox" style="width:20px;height:20px;" checked/>如中万元以上大奖35%捐赠给本公益平台
+      <input value="1" name="xieyi" id="juanzeng" type="checkbox" style="width:20px;height:20px;" checked/>如中万元以上大奖35%奖金捐赠给本公益平台
     </p>
     <?php 
     	//检索userinfochk表，判断是否需要输入用户名等信息
