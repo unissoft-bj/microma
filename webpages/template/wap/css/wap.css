@@ -112,6 +112,8 @@ background:-webkit-linear-gradient(top, #0371d3, #0768be);border:1px solid #1369
 .input-common {width:100%;margin: 6px auto;height: 46px;font-size: 16px;border-radius: 3px;background: #fff;border:1px solid #C9C9C9;display:block;padding:0px;}
 .btn-large {width:100%;font-size: 20px;height: 46px;display: block;line-height: 44px;text-align: center;color: #FFF;
 background:-webkit-linear-gradient(top, #F8881D, #F8881D);border:1px solid #D5881B;border-radius: 3px;margin:0 auto 10px}
+.btn-middle {width:48%;font-size: 20px;height: 46px;line-height: 44px;text-align: center;color: #FFF;
+background:-webkit-linear-gradient(top, #F8881D, #F8881D);border:1px solid #D5881B;border-radius: 30px;margin:0 auto 20px}
 .wap_login_no{ padding:5px; text-align:center}
 .wap_login_no a{color:#F60; text-decoration:underline}
 /*Î¢¼òÀú*/
