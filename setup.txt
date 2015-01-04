@@ -3,7 +3,7 @@
 git pull
 
 # get php codes
-cd /media/data
+cd /media/data/microma/
 git clone https://github.com/unissoft-bj/microma.git
 # update database wlsp
 mysql -uroot -prootatussp wlsp < /media/data/microma/db/ihost-ma.sql 
