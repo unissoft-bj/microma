@@ -17,7 +17,10 @@ if($_POST){
 		//echo $phoness[2];
 		for ($i=0;$i<sizeof($phoness)-1;$i++){
 			//echo $phoness[$i];
-			$sql="insert into authsms (prefix,sms,postfix,phone) values ('$prefix','$sms','$postfix','".$phoness[$i]."')";
+			$sql="insert into authsms (prefix,sms,postfix,phone,rectime) values ('$prefix','$sms','$postfix','".$phoness[$i]."','".$p_regdate."')";
+// 			echo $sql;
+// 			die();
+			
 			$db->q($sql);
 		}
 		msg("添加短信成功","authsms_list.php");
@@ -30,7 +33,7 @@ if($_POST){
 		//$sql="insert into news (p_login,p_pwd,p_name,p_regdate,p_contact,p_tel) values ('$p_login','$p_pwd','$p_name','$p_regdate','$p_contact','$p_tel')";
 		//echo $_POST['phone'];
 		//die();
-		$sql="insert into authsms (prefix,sms,postfix,phone) values ('$prefix','$sms','$postfix','".$_POST['phone']."')";
+		$sql="insert into authsms (prefix,sms,postfix,phone,rectime) values ('$prefix','$sms','$postfix','".$_POST['phone']."','".$p_regdate."')";
 		//echo $sql;
 		//exit;
 		if($db->q($sql))

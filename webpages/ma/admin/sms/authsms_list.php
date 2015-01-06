@@ -75,14 +75,14 @@ if ($_GET['action']=='delete')
 					<table id="orders-list" cellspacing="0" cellpadding="0" border="0" class="coupons-table">
 					<tr><th width="">ID</th>
 					<th width="">srcid</th>
-					<th width="" nowrap>msgid</th>
+					
 					<th width="" nowrap>prefix</th>
 					<th width="" nowrap>sms</th>
 					<th width="" nowrap>postfix</th>
 					<th width="" nowrap>phone</th>
 					<th width="" nowrap>stat</th>
 					<th width="" nowrap>sender</th>
-					<th width="" nowrap>optime</th>
+					<th width="" nowrap>rectime</th>
 					<th width="" nowrap>sendtime</th>
 										 
 					<th width="">操作</th></tr>
@@ -107,14 +107,14 @@ if ($_GET['action']=='delete')
 					<tr <?php if ($i % 2 ==1 ) echo "class=\"alt\" ";?> id="team-list-id-<?php echo $rs["id"];?>">
 						<td><?php echo $rs["id"];?></td>
 						<td><?php echo $rs["srcid"];?>  </td>
-						<td><?php echo $rs["msgid"];?></td>
+						
 						<td><?php echo $rs["prefix"];?>  </td>
 						<td><?php echo $rs["sms"];?></td>
 						<td><?php echo $rs["postfix"];?>  </td>
 						<td><?php echo $rs["phone"];?></td>
 						<td><?php echo $rs["stat"];?></td>
 						<td><?php echo $rs["sender"];?>  </td>
-						<td><?php echo $rs["optime"];?></td>
+						<td><?php echo $rs["rectime"];?></td>
 						<td><?php echo $rs["sendtime"];?>  </td>
 						
 						 
