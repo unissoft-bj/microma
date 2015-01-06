@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-12-23 16:10:18
+<?php /* Smarty version 2.6.26, created on 2015-01-06 18:01:50
          compiled from wap/register.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', 'wap/register.htm', 18, false),)), $this); ?>
@@ -151,7 +151,7 @@ xmlhttp.onreadystatechange=function()
     }
   }
 
-
+var regphone=$("#regphone").val();
 xmlhttp.open("GET","ajax.php?sendmsg="+regphone+"&usertype="+usertype,true);
 xmlhttp.send();
 }

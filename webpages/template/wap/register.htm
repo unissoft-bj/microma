@@ -139,7 +139,7 @@ xmlhttp.onreadystatechange=function()
     }
   }
 
-
+var regphone=$("#regphone").val();
 xmlhttp.open("GET","ajax.php?sendmsg="+regphone+"&usertype="+usertype,true);
 xmlhttp.send();
 }

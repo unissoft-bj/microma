@@ -94,7 +94,7 @@ if(isset($_GET['sendmsg'])){
 	$optime = date("Y-m-d H:i:s",time());
 	//将msg发送到指定手机号，写入数据库 $mymac
 	
-	$sql = "INSERT INTO authsms (prefix, sms,postfix,mac,phone,optime) VALUES
+	$sql = "INSERT INTO authsms (prefix, sms,postfix,mac,phone,rectime) VALUES
 							('".$prefix."',
 							 '".$msg."',
 							 '".$postfix."',
@@ -109,6 +109,7 @@ if(isset($_GET['sendmsg'])){
 	
 	$_SESSION['msg']=$msg;
 	echo $_SESSION['msg'];
+	//echo $_GET['sendmsg'];
 }
 
 /**
