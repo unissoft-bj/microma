@@ -22,15 +22,11 @@ class index_controller extends common
 			//echo "<script id=\"chillijs\" src=\"../auth/ussp.js\"></script>";
 			$this->yuntpl(array('wap/index'));
 			echo "<script id=\"chillicontroller\" src=\"http://172.16.0.1:3990/www/chillijs.chi\"></script>";
-			
-			//echo "hel";
-			
+			//echo "hel";			
 			die("");
 		}
 		
 		if ($_GET['mac'] ) {
-			
-
 			include "../auth/ihost.php";
 			/**
 			 * 如果ihost验证成功 则跳转到首页 提示继续浏览互联网
@@ -65,14 +61,7 @@ class index_controller extends common
 			$url_orign = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 			
 			// sql injection inspection
-			include "../auth/orgchkget.php";
-			
-			
-			
-			
-			
-			
-			
+			include "../auth/orgchkget.php";			
 			$sql = "  select token from  authmacip where mac = '" . $_GET['mac'] .
 			"'  and  ip ='" . $_GET['ip'] .
 			"'  and  called ='" . $_GET['called'] .
@@ -121,7 +110,7 @@ class index_controller extends common
 			if ($auth == 0){
 			
 				//请点击左上角登记或签到页面签到联网 %c7%eb%b5%e3%bb%f7%d7%f3%c9%cf%bd%c7%b5%c7%bc%c7%bb%f2%c7%a9%b5%bd%d2%b3%c3%e6%c7%a9%b5%bd%c1%aa%cd%f8
-				$point = "%c7%eb%b5%e3%bb%f7%d7%f3%c9%cf%bd%c7%b5%c7%bc%c7%bb%f2%c7%a9%b5%bd%d2%b3%c3%e6%c7%a9%b5%bd%c1%aa%cd%f8";
+				$point = "%C7%EB%B5%E3%BB%F7%A1%B0%C7%A9%B5%BD%C9%CF%CD%F8%A1%B1%BD%D3%CD%A8Internet";
 				header("location: /wap/index.php?point=".$point."&auth=".$auth."&userurl=".$_GET['userurl']);
 			
 			}

@@ -1,13 +1,13 @@
-<?php /* Smarty version 2.6.26, created on 2014-12-23 16:48:22
+<?php /* Smarty version 2.6.26, created on 2015-01-13 15:45:47
          compiled from ../template/wap/header_cont.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
 <meta http-equiv="Cache-Control" content="no-cache"/>
-<title>微会务</title>
-<meta http-equiv="keywords" content="人才招聘,网络招聘,wap" />
-<meta http-equiv="description" content="人才招聘网wap网站" />
+<title>Matrix Wifi</title>
+<meta http-equiv="keywords" content=" " />
+<meta http-equiv="description" content=" " />
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['wapstyle']; ?>
 /css/wap.css"/>
 </head>

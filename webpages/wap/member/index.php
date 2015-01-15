@@ -11,6 +11,34 @@
 
 include(dirname(dirname(dirname(__FILE__)))."/global.php");
 
+//处理积分，如果未登录，显示userpoints中的积分，否则显示useraccounts中的积分
+$con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
+mysql_query("SET NAMES 'GBK'");
+if (!$con)
+{
+	die('Could not connect: ' . mysql_error());
+}
+
+if($_COOKIE["username"]==""){
+	//mysql_select_db($db_config['dbname'], $con);
+	$sql = "select points from userpoints where mac='".$_COOKIE['mymac']."'";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$_SESSION['jifen']=$row['points'];
+	mysql_close($con);
+}else{
+	//mysql_select_db($db_config['dbname'], $con);
+	$sql = "select integral from useraccounts where userid='".$_COOKIE['userid']."';";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$_SESSION['jifen']=$row['integral'];
+	mysql_close($con);
+}
+if ($_SESSION['jifen']=="" ||$_SESSION['jifen']==null) {
+	$_SESSION['jifen']=0;
+}
+
+
 $model = $_GET['m'];
 $action = $_GET['c'];
 if($model=="")	$model="index";

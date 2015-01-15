@@ -199,8 +199,13 @@ class register_controller extends common
 				}
 				
 				
+				$sql = "select integral from useraccounts where
+								 userid='".$userid."'";
+				$result = mysql_query($sql,$con);
+				$integral_value =  mysql_fetch_array($result);
+				$integral_now = $integral_value['integral'];
+				$this->wapheader('index.php?internet=ok&','签到成功。请点击“积分礼包”查看'.$integral_now.'积分');
 				
-				$this->wapheader('index.php?internet=ok&','预注册用户签到成功');
 				
 			}
 			
@@ -337,7 +342,14 @@ class register_controller extends common
 				}
 				
 				$this->active_login($userid);
-				$this->wapheader('index.php?internet=ok&','现场用户签到成功');
+				
+				//得到当前用户的积分
+				$sql = "select integral from useraccounts where
+								 userid='".$userid."'";
+				$result = mysql_query($sql,$con);				
+				$integral_value =  mysql_fetch_array($result);
+				$integral_now = $integral_value['integral'];
+				$this->wapheader('index.php?internet=ok&','签到成功。请点击“积分礼包”查看'.$integral_now.'积分-请点击“签到上网”接通Internet');
 			}
 			
 			
@@ -347,9 +359,9 @@ class register_controller extends common
 		}
 		if($_GET['usertype']=="2")
 		{
-			$this->yunset("title","用户签到");
+			$this->yunset("title","签到上网");
 		}else{
-			$this->yunset("title","用户签到");
+			$this->yunset("title","签到上网");
 		}
 		$this->yuntpl(array('wap/register'));
 	}
@@ -423,35 +435,37 @@ class register_controller extends common
 				echo $points;
 				echo $pntfactor;
 				echo "<br>";
-				$dintegral = $points*($pntfactor/1000);
-				
-				$integral_new =$integral_old+$dintegral;
-				
-				
-				mysql_query("BEGIN"); //或者mysql_query("START TRANSACTION");
-				//userpoints point归零，
-				$sql1 = "UPDATE userpoints SET points = 0 WHERE mac = '".$_COOKIE['mymac']."'";
-				//useraccounts $integral_new $pushflag
-				$sql2 = "UPDATE useraccounts SET integral = ".$integral_new.",pushflag = ".$pushflag." WHERE userid ='".$userid."'";
-				//userlog $integral_old $point*$pntfactor
-				echo "in".$integral_old;
-				echo "di".$dintegral;
-				$sql3 = "INSERT INTO userlog (userid, mac,integral,dintegral,action,rectime) VALUES
-						 ('".$userid."','".$_COOKIE['mymac']."',".$integral_old.",".$dintegral.",'pointToIntegral','".date("Y-m-d H:i:s",time())."')";
-				
-				$res1 = mysql_query($sql1);
-				$res2 = mysql_query($sql2);
-				echo $sql3;
-				$res3 = mysql_query($sql3);
-				echo $res1;
-				echo $res2;
-				echo $res3;
-				if($res1&&$res2&&$res3){
-					mysql_query("COMMIT");
-					echo '提交成功。';
-				}else{
-					mysql_query("ROLLBACK");
-					echo '数据回滚。';
+				if($points*($pntfactor/1000)>=1){
+					$dintegral = $points*($pntfactor/1000);
+					
+					$integral_new =$integral_old+$dintegral;
+					
+					
+					mysql_query("BEGIN"); //或者mysql_query("START TRANSACTION");
+					//userpoints point归零，
+					$sql1 = "UPDATE userpoints SET points = 0 WHERE mac = '".$_COOKIE['mymac']."'";
+					//useraccounts $integral_new $pushflag
+					$sql2 = "UPDATE useraccounts SET integral = ".$integral_new.",pushflag = ".$pushflag." WHERE userid ='".$userid."'";
+					//userlog $integral_old $point*$pntfactor
+					echo "in".$integral_old;
+					echo "di".$dintegral;
+					$sql3 = "INSERT INTO userlog (userid, mac,integral,dintegral,action,rectime) VALUES
+							 ('".$userid."','".$_COOKIE['mymac']."',".$integral_old.",".$dintegral.",'pointToIntegral','".date("Y-m-d H:i:s",time())."')";
+					
+					$res1 = mysql_query($sql1);
+					$res2 = mysql_query($sql2);
+					echo $sql3;
+					$res3 = mysql_query($sql3);
+					echo $res1;
+					echo $res2;
+					echo $res3;
+					if($res1&&$res2&&$res3){
+						mysql_query("COMMIT");
+						echo '提交成功。';
+					}else{
+						mysql_query("ROLLBACK");
+						echo '数据回滚。';
+					}
 				}
 			}
 		}

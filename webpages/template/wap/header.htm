@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
 <meta http-equiv="Cache-Control" content="no-cache"/>
-<title>微会务</title>
+<title>Matrix Wifi</title>
 <meta http-equiv="keywords" content="人才招聘,网络招聘,wap" />
 <meta http-equiv="description" content="人才招聘网wap网站" />
 <link rel="stylesheet" type="text/css" href="{yun:}$wapstyle{/yun}/css/wap.css"/>
@@ -67,12 +67,12 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 {yun:}if !$cookie.uid{/yun}
 
 
-<td width="30%" rowspan="2"><a href="{yun:}$config.sy_weburl{/yun}/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>线上签到<br><small>>> 接通Internet</small><br><small>>> 参与线上活动</small></em></p></a></td>
+<td width="30%" rowspan="2"><a href="{yun:}$config.sy_weburl{/yun}/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>签到上网<br><small>>> 接通Internet</small><br><small>>> 参与线上活动</small></em></p></a></td>
 {yun:}else{/yun}
 <td width="30%" rowspan="2"><a href="{yun:}$config.sy_weburl{/yun}/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>欢迎！<br><small>{yun:}$cookie.username{/yun}</small></em></p></a></td>
 
 {yun:}/if{/yun}
-<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/ma/meeting_list.php?title=%e8%b5%84%e6%96%99%e4%b8%8b%e8%bd%bd"><p class="mune_d"><i></i><em>资料下载</em></p></a></td>
+<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/ma/shouqibucuo.php"><p class="mune_d"><i></i><em>手气不错</em></p></a></td>
 </tr>
 <tr>
 <!-- <td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/vote.php?title=%e6%85%88%e5%96%84%e6%8b%87%e6%8c%87"><p class="mune_b"><i></i><em>慈善拇指</em></p></a></td> -->
@@ -83,10 +83,10 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 {yun:}if !$cookie.uid{/yun}
 <td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/wap/member/"><p class="mune_a"><i></i><em>积分券<font color=red>[{yun:}$smarty.session.jifen{/yun}]</font></em></p></a></td>
 {yun:}/if{/yun}
-<td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/discuss.php?title=%e7%95%99%e8%a8%80%e5%8f%8d%e9%a6%88"><p class="mune_e"><i></i><em>留言反馈</em></p></a></td>
+<td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/shipin.php"><p class="mune_e"><i></i><em>精彩视频</em></p></a></td>
 </tr>
 <tr>
-<td colspan="3"> <a  href="{yun:}$config.sy_weburl{/yun}/ma/meeting_list.php?title=%e4%bc%9a%e8%ae%ae%e6%97%a5%e7%a8%8b"><p class="mune_f">会议日程</p></a></td>
+<td colspan="3"> <a  href="{yun:}$config.sy_weburl{/yun}/ma/about.php"><p class="mune_f">Matrix Wif介绍</p></a></td>
 </tr>
 </table>
 

@@ -1,11 +1,11 @@
-<?php /* Smarty version 2.6.26, created on 2014-12-23 16:14:52
+<?php /* Smarty version 2.6.26, created on 2015-01-13 15:47:26
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
 <meta http-equiv="Cache-Control" content="no-cache"/>
-<title>微会务</title>
+<title>Matrix Wifi</title>
 <meta http-equiv="keywords" content="人才招聘,网络招聘,wap" />
 <meta http-equiv="description" content="人才招聘网wap网站" />
 <link rel="stylesheet" type="text/css" href="<?php echo $this->_tpl_vars['wapstyle']; ?>
@@ -76,7 +76,7 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 
 
 <td width="30%" rowspan="2"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>线上签到<br><small>>> 接通Internet</small><br><small>>> 参与线上活动</small></em></p></a></td>
+/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>签到上网<br><small>>> 接通Internet</small><br><small>>> 参与线上活动</small></em></p></a></td>
 <?php else: ?>
 <td width="30%" rowspan="2"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>欢迎！<br><small><?php echo $this->_tpl_vars['cookie']['username']; ?>
@@ -84,7 +84,7 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 
 <?php endif; ?>
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/ma/meeting_list.php?title=%e8%b5%84%e6%96%99%e4%b8%8b%e8%bd%bd"><p class="mune_d"><i></i><em>资料下载</em></p></a></td>
+/ma/shouqibucuo.php"><p class="mune_d"><i></i><em>手气不错</em></p></a></td>
 </tr>
 <tr>
 <!-- <td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
@@ -101,11 +101,11 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 ]</font></em></p></a></td>
 <?php endif; ?>
 <td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/ma/discuss.php?title=%e7%95%99%e8%a8%80%e5%8f%8d%e9%a6%88"><p class="mune_e"><i></i><em>留言反馈</em></p></a></td>
+/ma/shipin.php"><p class="mune_e"><i></i><em>精彩视频</em></p></a></td>
 </tr>
 <tr>
 <td colspan="3"> <a  href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/ma/meeting_list.php?title=%e4%bc%9a%e8%ae%ae%e6%97%a5%e7%a8%8b"><p class="mune_f">会议日程</p></a></td>
+/ma/about.php"><p class="mune_f">Matrix Wif介绍</p></a></td>
 </tr>
 </table>
 

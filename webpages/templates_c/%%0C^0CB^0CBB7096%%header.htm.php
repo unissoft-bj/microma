@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-12-11 17:11:10
+<?php /* Smarty version 2.6.26, created on 2015-01-13 16:20:35
          compiled from C:%5CUsers%5Cycyn521%5Cgit%5Cmicroma%5Cwebpages//template/wap/member/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -17,7 +17,7 @@
 <header class="header">
 <div class="header_cont">
  <div class="left-box"> <a class="hd-lbtn" href="javascript:history.back()"><span>返回</span></a></div>
-<div class="header_name">会员中心</div>
+<div class="header_name">个人中心</div>
 </div>
 </header>
 <?php if ($_GET['point']): ?>
