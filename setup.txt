@@ -2,12 +2,18 @@
 # /usr/src/ihostupd
 git pull
 
-# get php codes
-cd /media/data/microma/
+# get php codes (new installation)
+cd /media/data/
 git clone https://github.com/unissoft-bj/microma.git
-# update database wlsp
+
+# --or-- (update)
+cd /media/data/microma
+git pull
+
+# update database wlsp(new installation only)
 mysql -uroot -prootatussp wlsp < /media/data/microma/db/ihost-ma.sql 
 #mysql -uroot -prootatussp wlsp < /media/data/microma/db/ma_product.sql
+
 # put to working directory
 unlink /var/www
 # - or - if /var/www is not a soft link
