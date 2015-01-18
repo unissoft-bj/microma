@@ -56,11 +56,27 @@ function deNum(){
                 	<li class="clearfix"><span class="left2" >爱心捐助</span></li>
                 	
                     <li><p>
-	<span style="font-family:Verdana, Arial, Helvetica, sans-serif;line-height:20.15999984741211px;background-color:#FDFDFD;"><img class="pimg" src="http://i2.hexunimg.cn/2011-09-20/133546283.jpg" width="100%" height="" alt=""><br>
+<span style="font-family:Verdana, Arial, Helvetica, sans-serif;line-height:20.15999984741211px;background-color:#FDFDFD;">
+	<style type="text/css">
+	img {
+display: inline;
+}
+	</style>
+	<img class="pimg" src="/ma/images/aixin1.png" width="60%" height="" alt="">
+	<img class="pimg" src="/ma/images/aixin2.jpg" width="35%" height="" alt="">
+	<br>
 </span> 
 </p>
 <p>
-	<span style="font-family:Verdana, Arial, Helvetica, sans-serif;line-height:20.15999984741211px;background-color:#FDFDFD;">爱心捐助是一个捐助信息服务平台，以为残疾人提供实物捐赠信息的聚合查询和求赠需求发布窗口为核心服务。凡拥有第二代《中华人民共和国残疾人证》，且通过中国残疾人服务网认证的实名制注册的残疾人，即可进行网上申领和发布求赠信息。</span> 
+	<span style="font-family:Verdana, Arial, Helvetica, sans-serif;line-height:20.15999984741211px;background-color:#FDFDFD;">
+&nbsp;&nbsp;&nbsp;&nbsp;中国汽车技术研究中心
+提供本期捐助的资金支持
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;每收到您捐助的100积分，
+中汽中心将代表您向希望工程捐款￥2元
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;捐款结果将发送至您的注册手机号：<?php echo $_COOKIE['phone']?>
+	</span> 
 </p></li>
                     <br>
                     

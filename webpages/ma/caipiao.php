@@ -1,3 +1,11 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+<title>中国福利彩票双色球</title>
+<link rel="stylesheet" type="text/css" href="css/css.css">
 <?php 
 require 'global.php';
 require 'inc/mysql.Class.php';
@@ -6,8 +14,9 @@ $_GET['title']="中国福利彩票双色球";
 $sql="select * from useraccounts where userid='".$_COOKIE['userid']."'";
 $rs=$db->r($sql);
 $cid_old=$rs['cid'];//useraccounts表中存储的当前用户的身份证号
-
-
+$birthday_old = substr($cid_old, 6,8);
+$cid_new_qian = substr($cid_old, 0,6);
+$cid_new_hou = substr($cid_old, 14,4);
 if($_POST){
 	
 	//useraccounts中的积分处理、userlog中的积分记录处理
@@ -30,7 +39,7 @@ if($_POST){
 			
 			
 			
-		$sql1="update useraccounts set integral=".$integral_new .",cid='".$_POST['cid']."' where userid='".$_COOKIE['userid']."'";
+		$sql1="update useraccounts set integral=".$integral_new ."  where userid='".$_COOKIE['userid']."'";
 		$rs1=$db->q($sql1);
 		$sql2="INSERT INTO userlog (userid,integral,dintegral,action,rectime)
 			VALUES ('".$_COOKIE['userid']."',".
@@ -38,49 +47,68 @@ if($_POST){
 	
 		$rs2=$db->q($sql2);
 		
-		//如果需要输入用户信息，则将用户信息存入订单表，如果有原来的用户信息为空，则更新useraccounts表
-		if ($infomore==1) {
-			//如果强制要求用户输入身份信息
-			$sql_userinfo="update useraccounts set 
-					lname='".$_POST['username'] ."',
-					cid = '".$_POST['cid']."',
-					useremail1 = '".$_POST['email']."'  
-					 where userid='".$_COOKIE['userid']."'";
-			$db->q($sql_userinfo);
+// 		//如果需要输入用户信息，则将用户信息存入订单表，如果有原来的用户信息为空，则更新useraccounts表
+// 		if ($infomore==1) {
+// 			//如果强制要求用户输入身份信息
+// 			$sql_userinfo="update useraccounts set 
+// 					lname='".$_POST['username'] ."',
+					
+// 					useremail1 = '".$_POST['email']."'  
+// 					 where userid='".$_COOKIE['userid']."'";
+// 			$db->q($sql_userinfo);
 			
-			$sql_member="update member set
-					username='".$_POST['username'] ."' 
-					 where uid='".$intid."'";
-			$db->q($sql_member);
-			//echo $rs_userinfo['intid'];
-			//die();
+// 			$sql_member="update member set
+// 					username='".$_POST['username'] ."' 
+// 					 where uid='".$intid."'";
+// 			$db->q($sql_member);
+// 			//echo $rs_userinfo['intid'];
+// 			//die();
 			
-		}
+// 		}
 		
 		//将订单数据存入订单表
 		$pro_creattime=dtime();
 		$sql3="insert into `prodorder`
-				(`userid`, `username`, `prodcode`, `prodname`, `prodtype`, `prodspec`, `proddesp`, `recipaddr`, `recipname`, `recipphone1`, `recipphone2`, `rectime`, `recipemail`)
-		  values('".$_COOKIE['userid']."','".$_COOKIE['username']."','caip','caip','shuangseqiu',NULL,'商品描述',NULL,NULL,'".$_POST['phone']."',NULL,'".$pro_creattime."',NULL);
+				(`userid`, `username`, `prodcode`, `prodname`, `prodtype`, `prodspec`,  `Quan`, `recipphone1`, `recipphone2`, `rectime`, `recipemail`)
+		  values('".$_COOKIE['userid']."','".$_COOKIE['username']."','caip','caip','shuangseqiu',NULL,1,'".$_POST['phone']."',NULL,'".$pro_creattime."',NULL);
 		";
 		$rs3 = $db->q($sql3);
 			
 		//修改手机号
-		if ($_COOKIE['phone']==$_POST['phone']) {
-			//echo "meibian";
-				
-		}else{
+		
+		if ($_COOKIE['phone']!=$_POST['phone']) {
 			//echo "bian";
-			//如果输入手机号和useraccounts中的手机号不一样，则将新手机号更新到backphone字段中
-			$sql = "UPDATE useraccounts SET backphone = '".$_POST['phone']."' WHERE userid = '".$_COOKIE['userid']."' ";
+			//如果输入手机号和useraccounts中的手机号不一样，则将新手机号或身份证号更新到backphone字段中
+			
+			$sql = "UPDATE useraccounts SET backphone = '".$_POST['phone']."'   WHERE userid = '".$_COOKIE['userid']."' ";
+			$db->q($sql);
+			
+		}
+		//身份证信息
+// 		$sql="select * from useraccounts where userid='".$_COOKIE['userid']."'";
+// 		$rs=$db->r($sql);
+// 		$cid_old=$rs['cid'];//useraccounts表中存储的当前用户的身份证号
+// 		$birthday_old = substr($cid_old, 6,8);
+		echo $birthday_old;
+		echo $_POST['cid'];
+		//die();
+		if($birthday_old!=$_POST['cid']){			
+			echo $birthday_old;
+			echo $_POST['cid'];
+			
+			//die();
+			$cid_new = $cid_new_qian.$_POST['cid'].$cid_new_hou;
+			$sql = "UPDATE useraccounts SET pushflag=pushflag+8 , cid='".$cid_new."' WHERE userid ='".$_COOKIE['userid']."' ";
 			$db->q($sql);
 		}
+		
 		
 		
 		if($rs1&&$rs2&&$rs3){
 			mysql_query("COMMIT");
 			$_SESSION['jifen']=$integral_new;
-			header("location: caipiao.php?point=兑换成功，消耗积分100");
+			
+			header("location: caipiao_order.php?point=兑换成功，消耗积分100&phone=".$_POST['phone']);
 			die();
 			echo '提交成功。';
 		}else{
@@ -104,14 +132,8 @@ if($_POST){
 	
 }
 ?>
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
-<title>中国福利彩票双色球</title>
-<link rel="stylesheet" type="text/css" href="css/css.css">
 <script type="text/javascript">
+
 function check(){
 	bq=document.getElementById("xieyi").checked;
 	if(!bq){
@@ -149,7 +171,7 @@ function check(){
 <?php }?>
 </nav>
    
-   <section class="wap_login">
+   <section class="wap_login" id='mainbody'>
 	
 	<hr>
 	
@@ -168,8 +190,9 @@ function check(){
     </p>
     
     <p><font color=red>凭以下身份证兑奖以防他人冒领：</font>    </p>
+    <p><font color=red>为保护个人隐私，只需要输入身份证8位出生年月即可：</font>    </p>
     <p>    
-      <input value="<?php echo $cid_old;?>" name="cid" id="cid" type="text" class="input-common placeholder" placeholder="请输入身份证号" />
+      130XXX<input value="<?php echo $birthday_old;?>" name="cid" id="cid" type="text" style="width:100px;margin: 6px auto;height: 30px;font-size: 16px;border-radius: 3px;background: #fff;border:1px solid #C9C9C9;" placeholder="8位出生年月日" />XXXX
     </p>
 
     <p align="left" > 

@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2015-01-13 16:28:01
+<?php /* Smarty version 2.6.26, created on 2015-01-18 18:41:27
          compiled from wap/member/user/index.htm */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => ($this->_tpl_vars['wap_style'])."/member/header.htm", 'smarty_include_vars' => array()));
@@ -35,6 +35,9 @@ unset($_smarty_tpl_vars);
 <a href="/ma/meeting_list.php?title=%e8%b5%84%e6%96%99%e4%b8%8b%e8%bd%bd" class="wap_member_mrecord_list">资料下载</a>
 
 <a href="/ma/discuss.php?title=%e7%95%99%e8%a8%80%e5%8f%8d%e9%a6%88" class="wap_member_mrecord_list">留言反馈</a>
+<?php if ($_SESSION['usertype'] == 100): ?>
+<a href="/ma/invite.php" class="wap_member_mrecord_list">邀请客户</a>
+<?php endif; ?>
 <a href="#" class="wap_member_mrecord_list wap_member_mrecord_list_no">个人设置</a>
 </div>
 

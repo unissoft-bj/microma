@@ -119,23 +119,35 @@ if(isset($_GET['checkmsg'])){
 	echo "sendmsg";
 }
 
-// $result = mysql_query("SELECT useraccounts.intid,useraccounts.lname,useraccounts.usertype FROM usermacs,useraccounts where usermacs.userid=useraccounts.userid and usermacs.mac='".$mymac."'");
-// if(mysql_num_rows($result)==0){
-// 	echo "���豸��û�а��κ��˺�";
-// }
-// while($row = mysql_fetch_array($result))
-//   {
-  	
-//   if($row['usertype']==1){
-  	
-// 	$usertype="��ְ��";
-//   }else{
-//   	$usertype = "��Ƹ��";
-//   }
-//   echo "<a href=userlogin.php?userid=".$row['intid'].">[". $usertype."]".$row['lname']."</a>";
-//   echo "<br />";
+/**
+ * 生成并输入邀请码
+ */
+if(isset($_GET['getInviteCode'])){
+	$invite_code =rand(100000,999999);
+	$sql="INSERT INTO shouqibucuo (salesperson_userid,invite_code,rectime)
+			VALUES ('".$_COOKIE['userid']."','".
+				$invite_code."',now())";
+	mysql_query($sql,$con);	
+	echo $invite_code;
+}
 
-//   }
+/**
+ * 刷新邀请状态
+ */
+if(isset($_GET['getInviteState'])){
+	$invite_code = str_replace("%20%20","",$_GET['invite_code']);
+	$invite_code = str_replace(" ","",$invite_code);
+	$invite_code = str_replace(" ","",$invite_code);
+	$invite_code = str_replace(" ","",$invite_code);
+	$sql="select * from shouqibucuo where invite_code = '".$invite_code."' and is_success=1 and TO_DAYS(rectime) = TO_DAYS(NOW())";
+	//echo $sql;
+	$result = mysql_query($sql);
+	//echo  mysql_num_rows($result);
+	if(mysql_num_rows($result)>0){
+		echo "ok";
+	}
+	
+}
 
 mysql_close($con);
 ?>
