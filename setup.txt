@@ -42,6 +42,8 @@ sed -i 's|;include_path = ".:/usr/share/php"|;include_path = ".:/usr/share/php:/
 mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/ma_news.sql
 mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/ma_newssort.sql
 
+mysql -uroot -prootatussp wlsp < /media/data/microma/db/shouqibucuo.sql
+
 # reboot
 reboot
 
