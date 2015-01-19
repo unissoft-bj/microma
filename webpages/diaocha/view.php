@@ -51,7 +51,26 @@
 		$submit_result = mf_process_form($dbh,$input_array);
 		
 		if(!isset($input_array['password'])){ //if normal form submitted
+			//写入积分开始 yc
 			
+			include '../data/db.config.php';
+			$con_jifen = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
+			mysql_query("SET NAMES 'GBK'"); 
+			if (!$con_jifen)
+			  {
+			  die('Could not connect: ' . mysql_error());
+			  }			
+			mysql_select_db($db_config['dbname'], $con_jifen);
+			$sql_jifen = "update useraccounts set integral=integral+10 where userid='".$_COOKIE['userid']."'";
+			mysql_query($sql_jifen,$con_jifen);
+			$sql_log="INSERT INTO userlog (userid,integral,dintegral,action,rectime)
+					VALUES ('".$_COOKIE['userid']."',0,10,'gongyimzhi','now()')";
+			
+			mysql_query($sql_log,$con_jifen);
+			mysql_close($con_jifen);
+			//die("====");
+			
+			//积分写入结束
 			if($submit_result['status'] === true){
 				if(!empty($submit_result['form_resume_url'])){ //the user saving a form, display success page with the resume URL
 					$_SESSION['mf_form_resume_url'][$input_array['form_id']] = $submit_result['form_resume_url'];
