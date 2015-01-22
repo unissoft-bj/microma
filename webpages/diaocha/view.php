@@ -21,7 +21,7 @@
 	//yc 每次单个题目提交之后，将下一个题目的url写入cookie
 	$url='http://'.$_SERVER['SERVER_NAME'].$_SERVER["REQUEST_URI"];
 	$url = basename($url);
-	setcookie("diaocha_url", $url, time()+360000,"/");
+	setcookie("diaocha_url", $url, time()+3600,"/");
 
 	require('includes/init.php');
 

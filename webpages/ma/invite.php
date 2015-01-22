@@ -160,7 +160,7 @@ xmlhttp.send();
     </p>
     <div id="client_info" style="display: none;font-size: 20px;" align=center>
     <p style="font-size: 20px;">选择客户类型： </p>
-    	<input type="radio" name="client_code" value=100>普通
+    	<input type="radio" name="client_code" value=100 checked>普通
     	<input type="radio" name="client_code" value=200>意向
     	<input type="radio" name="client_code" value=300>成交
     

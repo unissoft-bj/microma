@@ -318,7 +318,7 @@ class register_controller extends common
 				$myphone = $_POST['phone'];
 				//½«macĞ´Èëcookie
 				
-					setcookie("myphone", $myphone, time()+360000);
+					setcookie("myphone", $myphone, time()+3600);
 				
 				
 				$this->wapheader('index.php?m=register&usertype=1&step=2');

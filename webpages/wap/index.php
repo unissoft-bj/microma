@@ -8,7 +8,10 @@ session_start();
 // store session data
 
 
-
+if (!isset($_COOKIE['mymac']) && !isset($_GET['mac'])) {
+	header("location: http://www.baidu.com");
+	die();
+}
 
 $con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
 mysql_query("SET NAMES 'GBK'");
@@ -95,7 +98,7 @@ $mymac = $_GET['mac'];
 //将mac写入cookie
 if($mymac==""){
 }else{
-	setcookie("mymac", $mymac, time()+360000,"/");
+	setcookie("mymac", $mymac, time()+3600,"/");
 }
 
 

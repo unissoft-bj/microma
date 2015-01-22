@@ -129,6 +129,20 @@ function check(){
 		alert("手机号不能为空！");
 		return false;
 	}
+
+	bq=document.getElementById("phone").value;
+	if(isjsMobile(bq)){
+		alert("手机号不能为空！");
+		return false;
+	}
+	
+}
+
+function isjsMobile(obj){
+	if(obj.length!=11) return false;
+	else if(obj.substring(0,2)!="13" && obj.substring(0,2)!="15" && obj.substring(0,2)!="18") return false;
+	else if(isNaN(obj)) return false;
+	else  return true;
 }
 </script>
 </head>

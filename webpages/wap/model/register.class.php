@@ -134,15 +134,15 @@ class register_controller extends common
 						}
 						//$this->obj->insert_into('usermacs',$idata);
 						$this->pointsToIntegral($member['userid']);
-						setcookie("uid",$intid,time() + 86400, "/");
-						setcookie("username",$idata['username'],time() + 86400, "/");
-						setcookie("usertype",$usertype,time() + 86400, "/");
-						setcookie("salt",$salt,time() + 86400, "/");
-						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
+						setcookie("uid",$intid,time() + 3600, "/");
+						setcookie("username",$idata['username'],time() + 3600, "/");
+						setcookie("usertype",$usertype,time() + 3600, "/");
+						setcookie("salt",$salt,time() + 3600, "/");
+						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 3600,"/");
 						
-						setcookie("userid",$member['userid'],time() + 86400, "/");
-						setcookie("phone",$member['phone'],time() + 86400, "/");
-						setcookie("userrole",$member['userrole'],time() + 86400, "/");
+						setcookie("userid",$member['userid'],time() + 3600, "/");
+						setcookie("phone",$member['phone'],time() + 3600, "/");
+						setcookie("userrole",$member['userrole'],time() + 3600, "/");
 						$this->active_login($member['userid']);
 					}else{
 						
@@ -164,15 +164,15 @@ class register_controller extends common
 						}
 						//$this->obj->insert_into('usermacs',$idata);
 						$this->pointsToIntegral($member['userid']);
-						setcookie("uid",$member['intid'],time() + 86400, "/");
-						setcookie("username",$idata['username'],time() + 86400, "/");
-						setcookie("usertype",$usertype,time() + 86400, "/");
-						setcookie("salt",$salt,time() + 86400, "/");
-						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
+						setcookie("uid",$member['intid'],time() + 3600, "/");
+						setcookie("username",$idata['username'],time() + 3600, "/");
+						setcookie("usertype",$usertype,time() + 3600, "/");
+						setcookie("salt",$salt,time() + 3600, "/");
+						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 3600,"/");
 						
-						setcookie("userid",$member['userid'],time() + 86400, "/");
-						setcookie("phone",$member['phone'],time() + 86400, "/");
-						setcookie("userrole",$member['userrole'],time() + 86400, "/");
+						setcookie("userid",$member['userid'],time() + 3600, "/");
+						setcookie("phone",$member['phone'],time() + 3600, "/");
+						setcookie("userrole",$member['userrole'],time() + 3600, "/");
 						$this->active_login($member['userid']);
 					}
 					
@@ -184,15 +184,15 @@ class register_controller extends common
 						
 // 						//$this->obj->insert_into('usermacs',$idata);
 						
-// 						setcookie("uid",$member['intid'],time() + 86400, "/");
-// 						setcookie("username",$idata['username'],time() + 86400, "/");
-// 						setcookie("usertype",$usertype,time() + 86400, "/");
-// 						setcookie("salt",$salt,time() + 86400, "/");
-// 						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
+// 						setcookie("uid",$member['intid'],time() + 3600, "/");
+// 						setcookie("username",$idata['username'],time() + 3600, "/");
+// 						setcookie("usertype",$usertype,time() + 3600, "/");
+// 						setcookie("salt",$salt,time() + 3600, "/");
+// 						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 3600,"/");
 						
-// 						setcookie("userid",$member['userid'],time() + 86400, "/");
-// 						setcookie("phone",$member['phone'],time() + 86400, "/");
-// 						setcookie("userrole",$member['userrole'],time() + 86400, "/");
+// 						setcookie("userid",$member['userid'],time() + 3600, "/");
+// 						setcookie("phone",$member['phone'],time() + 3600, "/");
+// 						setcookie("userrole",$member['userrole'],time() + 3600, "/");
 // 					}
 				}else{
 					$this->wapheader('index.php?m=register&','预注册手机号错误！');
@@ -257,20 +257,20 @@ class register_controller extends common
 					$userid = $member['userid'];
 					$this->pointsToIntegral($member['userid']);
 					echo "结束调用转换函数pointsToIntegral<br>";
-					setcookie("uid",$member['intid'],time() + 86400, "/");
-					setcookie("username",$member['lname'],time() + 86400, "/");
-					setcookie("usertype",$usertype,time() + 86400, "/");
-					setcookie("salt",$salt,time() + 86400, "/");
-					setcookie("shell",md5($member['lname'].$idata['password'].$idata['salt']), time() + 86400,"/");
+					setcookie("uid",$member['intid'],time() + 3600, "/");
+					setcookie("username",$member['lname'],time() + 3600, "/");
+					setcookie("usertype",$usertype,time() + 3600, "/");
+					setcookie("salt",$salt,time() + 3600, "/");
+					setcookie("shell",md5($member['lname'].$idata['password'].$idata['salt']), time() + 3600,"/");
 					echo "<br>=========";
 					echo $member['lname']."<br>";
 					echo $idata['password']."<br>";
 					echo $idata['salt']."<br>";
 					echo "<br>=========";
 					//die();
-					setcookie("userid",$member['userid'],time() + 86400, "/");
-					setcookie("phone",$member['phone'],time() + 86400, "/");
-					setcookie("userrole",$member['userrole'],time() + 86400, "/");
+					setcookie("userid",$member['userid'],time() + 3600, "/");
+					setcookie("phone",$member['phone'],time() + 3600, "/");
+					setcookie("userrole",$member['userrole'],time() + 3600, "/");
 				}else{
 					//新用户：写入member、useraccent、usermacs三个表
 															
@@ -330,15 +330,15 @@ class register_controller extends common
 					mysql_query($sql_userlog,$con);
 					
 					$this->pointsToIntegral($userid);
-					setcookie("uid",$intid,time() + 86400, "/");
-					setcookie("username",$idata['username'],time() + 86400, "/");
-					setcookie("usertype",$usertype,time() + 86400, "/");
-					setcookie("salt",$salt,time() + 86400, "/");
-					setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 86400,"/");
+					setcookie("uid",$intid,time() + 3600, "/");
+					setcookie("username",$idata['username'],time() + 3600, "/");
+					setcookie("usertype",$usertype,time() + 3600, "/");
+					setcookie("salt",$salt,time() + 3600, "/");
+					setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 3600,"/");
 					
-					setcookie("userid",$userid,time() + 86400, "/");
-					setcookie("phone",$_POST['regphone'],time() + 86400, "/");
-					setcookie("userrole","",time() + 86400, "/");
+					setcookie("userid",$userid,time() + 3600, "/");
+					setcookie("phone",$_POST['regphone'],time() + 3600, "/");
+					setcookie("userrole","",time() + 3600, "/");
 				}
 				
 				$this->active_login($userid);
@@ -381,7 +381,7 @@ class register_controller extends common
 			$data['editjob_num']=$row['editjob_num'];
 			$data['breakjob_num']=$row['breakjob_num'];
 		}else{
-			$time=time()+86400*$row['service_time'];
+			$time=time()+3600*$row['service_time'];
 			$data['vip_etime']=$time;
 		}
 		return $data;

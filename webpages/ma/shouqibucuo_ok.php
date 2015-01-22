@@ -30,13 +30,11 @@ $_GET['title']="手气不错";
    
 <section class="wap_login" id='mainbody' >
 <br><br><br><br><br>
-<div style="font-size:20px;">	
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;恭喜您成功获得200积分（积分券）。您可以进入个人中心查看最新积分，或者先注册用户
+<div style="font-size:20px;">
 
 <br><br>
-<p align=center><a href="/ma/caipiao.php">点“此处”后进入“彩票兑换”页面</a></p>
-<p align=center><a href="/wap/member/">点“此处” 进入“个人中心”页面 查看最新积分</a></p>
-<p align=center><a href="/wap/member/">点“此处” 进入“签到”页面进行用户注册</a></p>
+<p align=center><a href="/ma/caipiao.php">点击此处后进入“彩票兑换”页面</a></p>
+
   
 </div>  
 <br><br><br><br><br><br><br><br><br>

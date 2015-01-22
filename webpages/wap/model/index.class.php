@@ -48,11 +48,11 @@ class index_controller extends common
 			$mymac = $_GET['mac'];
 			//将mac写入cookie
 			
-			setcookie("mymac", $mymac, time()+360000,"/");
+			setcookie("mymac", $mymac, time()+3600,"/");
 			if ($_GET['internet']) {
 				
 			}else{
-				setcookie("userurl", $_GET['userurl'], time()+360000,"/");
+				setcookie("userurl", $_GET['userurl'], time()+3600,"/");
 			}
 			
 			//setcookie("mymac", $mymac, time()+3600);		

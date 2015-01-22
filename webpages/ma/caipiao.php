@@ -151,7 +151,58 @@ function check(){
 		alert("手机号不能为空！");
 		return false;
 	}
+
+	bq=document.getElementById("phone").value;
+	//alert(isjsMobile(bq));
+	//return false;
+	if(!isjsMobile(bq)){
+		alert("请填写正确的手机号！");
+		return false;
+	}
+
+	bq=document.getElementById("cid").value;
+	if(bq.length!=8){
+		alert("出生年月应该是8位！");
+		return false;
+	}
+
+	year=bq.substr(0,4);
+	month=bq.substr(4,2);
+	day=bq.substr(6,2);
+	if(!isdate(year,month,day)){
+		alert("请输入合理的出生日期");
+		return false;
+	}
+
 }
+
+function isjsMobile(obj){
+	if(obj.length!=11) return false;
+	else if(obj.substring(0,2)!="13" && obj.substring(0,2)!="15" && obj.substring(0,2)!="18") return false;
+	else if(isNaN(obj)) return false;
+	else  return true;
+}
+
+function isdate(intYear,intMonth,intDay){   
+	  
+	  if(isNaN(intYear)||isNaN(intMonth)||isNaN(intDay)) return false;       
+	  if(intYear>2014||intYear<1915) return false;
+	  if(intMonth>12||intMonth<1) return false;    
+	  
+	  if ( intDay<1||intDay>31)return false;    
+	  
+	  if((intMonth==4||intMonth==6||intMonth==9||intMonth==11)&&(intDay>30)) return false;    
+	  
+	  if(intMonth==2){    
+	  
+	     if(intDay>29) return false;      
+	  
+	     if((((intYear%100==0)&&(intYear%400!=0))||(intYear%4!=0))&&(intDay>28))return false;    
+	  
+	    }  
+	    
+	  return true;    
+	} 
 </script>
 </head>
 
@@ -192,7 +243,7 @@ function check(){
     <p><font color=red>凭以下身份证兑奖以防他人冒领：</font>    </p>
     <p><font color=red>为保护个人隐私，只需要输入身份证8位出生年月即可：</font>    </p>
     <p>    
-      130XXX<input value="<?php echo $birthday_old;?>" name="cid" id="cid" type="text" style="width:100px;margin: 6px auto;height: 30px;font-size: 16px;border-radius: 3px;background: #fff;border:1px solid #C9C9C9;" placeholder="8位出生年月日" />XXXX
+      XXXXXX<input value="<?php echo $birthday_old;?>" name="cid" id="cid" type="text" style="width:100px;margin: 6px auto;height: 30px;font-size: 16px;border-radius: 3px;background: #fff;border:1px solid #C9C9C9;" placeholder="8位出生年月日"   maxlength="8" />XXXX
     </p>
 
     <p align="left" > 

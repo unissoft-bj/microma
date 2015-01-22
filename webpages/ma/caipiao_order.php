@@ -31,10 +31,10 @@ $_GET['title']="中国福利彩票双色球";
 <section class="wap_login" id='mainbody' >
 <br><br><br><br><br>
 <div style="font-size:20px;">	
- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已收到您的订单。下单后系统将发送彩票号码和彩票标志码短信到<?php echo $_GET['phone'];?>，请注意查收
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已收到您的订单。下单后系统将发送彩票号码和彩票标志码短信到<?php echo $_GET['phone'];?>，请注意查收，如果您在6分钟之内没收到短信，请联系客服<a href="tel:13701272752">13701272752</a>
 
 <br><br>
-<p align=center>点“<a href="/wap/member/">此处</a>”后回到“个人中心”页面</p>
+<p align=center><a href="/wap/member/">回到“个人中心”页面</a></p>
   
 </div>  
 <br><br><br><br><br><br><br><br><br>

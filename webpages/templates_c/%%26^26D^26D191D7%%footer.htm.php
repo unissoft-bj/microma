@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2014-11-29 14:14:44
+<?php /* Smarty version 2.6.26, created on 2015-01-22 18:14:01
          compiled from ../template/wap/footer.htm */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', '../template/wap/footer.htm', 6, false),)), $this); ?>
@@ -14,9 +14,9 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', '.
   -->
 <?php else: ?>
 欢迎,<strong><?php echo $this->_tpl_vars['cookie']['username']; ?>
-</strong> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
+</strong> <!-- a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /wap/<?php echo smarty_function_wapurl(array('url' => "c:loginout"), $this);?>
-">退出</a>
+">退出</a> -->
 <?php endif; ?>
 </nav>
 <footer class="footer">
@@ -26,9 +26,9 @@ smarty_core_load_plugins(array('plugins' => array(array('function', 'wapurl', '.
 -
 <a href="javascript:window.history.back();">返回</a>
 -
-<a href="http://www.unissoft.com/" ><small>Powered by unissoft</small></a>
+<a href="javascript:" ><small>Powered by Matrix Wifi</small></a>
 <br>
-由紫光智能WIFI提供解决方案 联系电话<a href="tel:电话号码">13701272752</a>
+由Matrix Wifi提供解决方案 联系电话<a href="tel:13701272752">13701272752</a>
 </footer>
 </div>
 </body>
