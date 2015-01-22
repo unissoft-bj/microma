@@ -42,6 +42,11 @@ sed -i 's|;include_path = ".:/usr/share/php"|;include_path = ".:/usr/share/php:/
 mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/ma_news.sql
 mysql -uroot -prootatussp wlsp < /usr/src/ihostupd/db/ma_newssort.sql
 
+mysql -uroot -prootatussp wlsp < /media/data/microma/db/shouqibucuo.sql
+# 用某个手机充当销售员签到；签到后执行
+# update useraccounts set usertype='100' where id='xx'
+# 然后在积分礼包界面，出现发送邀请码的链接
+
 # reboot
 reboot
 
