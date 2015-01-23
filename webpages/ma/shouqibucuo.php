@@ -8,7 +8,7 @@ if($_POST){
 	$invite_code = $_POST['invite_code'];
 // 	echo $_POST['jifen'];
 // 	die();
-	$sql="select * from shouqibucuo where invite_code='".$invite_code."' and TO_DAYS(rectime) = TO_DAYS(NOW())";
+	$sql="select * from shouqibucuo where invite_code='".$invite_code."' and TO_DAYS(rectime) = TO_DAYS(NOW()) and client_mac IS NULL";
 	
 	$rs=$db->r($sql);
 	

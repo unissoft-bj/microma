@@ -9,7 +9,7 @@ if($_POST){
 	$invite_code = str_replace("%20","",$invite_code);
 	$invite_code = str_replace(" ","",$invite_code);
 	
-	$sql="update shouqibucuo set client_code=".$_POST['client_code'] ."  where invite_code='".$invite_code."' and salesperson_userid='".$_COOKIE['userid']."'";
+	$sql="update shouqibucuo set client_code=".$_POST['client_code'] .",invite_code=''  where invite_code='".$invite_code."' and salesperson_userid='".$_COOKIE['userid']."'";
 	//echo $sql;die();
 	$rs=$db->q($sql);
 	//echo($rs);
