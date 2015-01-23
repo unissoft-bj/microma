@@ -22,7 +22,7 @@ class register_controller extends common
 			mysql_select_db($db_config['dbname'], $con);
 			
 			
-			$usertype=$_POST['usertype']?$_POST['usertype']:1;
+			$regtype=$_POST['usertype']?$_POST['usertype']:1;
 
 			
 			//$member=$this->obj->DB_select_once("member","`username`='".$_POST['username']."' OR `email`='".$_POST['email']."'");
@@ -59,16 +59,96 @@ class register_controller extends common
 			$idata['regphone'] = $_POST['regphone'];
 			$idata['phone'] = $_POST['regphone'];
 			$idata['password'] = $pass;
+			if ($regtype==2) {
+				$usertype=100;
+			}elseif ($regtype==1){
+				$usertype=1;
+			}
 			$idata['usertype'] = $usertype;
 			$idata['salt']     = $salt;
 			$idata['reg_date'] = time();
 			$idata['mac'] = $_COOKIE["mymac"];
 			
-			
+			//店长注册
+			if($regmsg=="999999"){
+				
+				$sql="select * from useraccounts where captcha='999999'";
+				$result = mysql_query($sql,$con);
+				$member =  mysql_fetch_array($result);
+				if (is_array($member)) {
+					$usertype='1000';
+					if ($member['intid']=="" or $member['intid']==null) {
+						//如果没有intid，则插入到member中，并得到member中的uid
+						$sql = "INSERT INTO member (username, password,usertype,salt) VALUES
+							('".$idata['phone']."',
+							 '".$idata['password']."',
+							 '".$idata['usertype']."',
+							 '".$idata['salt']."')";
+						mysql_query($sql,$con);
+						$intid =mysql_insert_id();
+						echo $intid;
+					
+						
+						//$userid=$this->obj->insert_into('member',$idata);
+						//更新useraccounts表
+						$userid = $this->uuid();
+						$sql ="UPDATE useraccounts SET intid = '".$intid."',
+								mac='".$idata['mac']."',
+								userid='".$userid."',
+								captcha='-999999',
+								phone='".$idata['phone']."',
+								regphone='".$idata['regphone']."',
+								lname='".$idata['regphone']."',		
+								usertype='1000',
+								rectime='".date("Y-m-d H:i:s",time())."'
+								WHERE id = ".$member['id'];
+						mysql_query($sql,$con);
+						echo $sql;
+						//die("mark");
+						//$this->obj->update_once('useraccounts',array('userid'=>$member['id'],'mac'=>$_COOKIE["mymac"],'usertype'=>$idata['usertype'],'phone'=>$idata['regphone'],'intid'=>$userid,'updtime'=> date("Y-m-d H:i:s",time())),array('id'=>$member['id']));
+						//插入usermacs表
+						$idata['userid']=$userid;
+						$idata['rectime'] =  date("Y-m-d H:i:s",time());
+						$sql = "select * from usermacs where
+							 mac='".$idata['mac']."' and
+							 userid='".$idata['userid']."' and
+							 phone='".$idata['phone']."'";
+						$result = mysql_query($sql,$con);
+						if(mysql_num_rows($result)==0){
+							$sql = "INSERT INTO usermacs (mac, userid,phone,rectime) VALUES
+								('".$idata['mac']."',
+								 '".$idata['userid']."',
+								 '".$idata['phone']."',
+								 '".$idata['rectime']."')";
+							mysql_query($sql,$con);
+							//$this->obj->insert_into('usermacs',$idata);
+						}
+						//$this->obj->insert_into('usermacs',$idata);
+						$this->pointsToIntegral($member['userid']);
+						setcookie("uid",$intid,time() + 3600, "/");
+						setcookie("username",$idata['username'],time() + 3600, "/");
+						setcookie("usertype",$usertype,time() + 3600, "/");
+						setcookie("salt",$salt,time() + 3600, "/");
+						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 3600,"/");
+					
+						setcookie("userid",$userid,time() + 3600, "/");
+						setcookie("phone",$idata['phone'],time() + 3600, "/");
+						setcookie("userrole",$member['userrole'],time() + 3600, "/");
+						$this->active_login($userid);
+						
+						$this->wapheader('index.php?internet=ok&','恭喜您设置成功，您可以进入个人中心添加员工。');
+						die();
+					}
+					
+				}else{
+					$this->wapheader('index.php?m=register&','非法操作，请联系管理员！');
+					die();
+				}
+			}
 			
 			
 			//如果是预注册用户,查看member和usermacs中是否有该用户id
-			if ($usertype==2) {
+			if ($regtype==2) {
 				
 				$sql = "select * from useraccounts where
 							 regphone='".$_POST['regphone']."'";
@@ -210,7 +290,7 @@ class register_controller extends common
 			}
 			
 			//如果是现场注册用户,先查看是否新用户（用户名和手机号确定唯一身份）
-			if ($usertype==1){
+			if ($regtype==1){
 				echo "usertype<br>";
 				$regmsg = $_POST['regmsg'];
 				
@@ -331,10 +411,10 @@ class register_controller extends common
 					
 					$this->pointsToIntegral($userid);
 					setcookie("uid",$intid,time() + 3600, "/");
-					setcookie("username",$idata['username'],time() + 3600, "/");
+					setcookie("username",$idata['phone'],time() + 3600, "/");
 					setcookie("usertype",$usertype,time() + 3600, "/");
 					setcookie("salt",$salt,time() + 3600, "/");
-					setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 3600,"/");
+					setcookie("shell",md5($idata['phone'].$idata['password'].$idata['salt']), time() + 3600,"/");
 					
 					setcookie("userid",$userid,time() + 3600, "/");
 					setcookie("phone",$_POST['regphone'],time() + 3600, "/");
