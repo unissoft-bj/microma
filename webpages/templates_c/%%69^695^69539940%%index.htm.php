@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2015-01-22 18:18:03
+<?php /* Smarty version 2.6.26, created on 2015-01-23 21:22:58
          compiled from wap/member/user/index.htm */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => ($this->_tpl_vars['wap_style'])."/member/header.htm", 'smarty_include_vars' => array()));
@@ -23,8 +23,13 @@ unset($_smarty_tpl_vars);
 </div-->
 
 <div class="wap_member_mrecord">
+<?php if ($_SESSION['usertype'] >= 100): ?>
+<a href="/ma/invite.php?type=2" class="wap_member_mrecord_list">我的积分:<em><?php echo $_SESSION['jifen']; ?>
+</em></a>
+<?php else: ?>
 <a href="javascript:" class="wap_member_mrecord_list">我的积分:<em><?php echo $_SESSION['jifen']; ?>
 </em></a>
+<?php endif; ?>
 <!-- <a href="/ma/jifen_list.php?title=%e7%a7%af%e5%88%86%e8%ae%b0%e5%bd%95" class="wap_member_mrecord_list">积分记录</a> 
 <a href="/ma/product_list.php?title=%E7%A7%AF%E5%88%86%E5%95%86%E5%9F%8E" class="wap_member_mrecord_list">积分商城<em>new</em></a>-->
 <a href="/ma/caipiao.php" class="wap_member_mrecord_list">积分兑换 中国福利彩票双色球</a>
@@ -38,7 +43,13 @@ unset($_smarty_tpl_vars);
 <a href="#" class="wap_member_mrecord_list wap_member_mrecord_list_no">个人设置</a>
  -->
 <?php if ($_SESSION['usertype'] == 100): ?>
-<a href="/ma/invite.php" class="wap_member_mrecord_list">邀请客户</a>
+<a href="/ma/invite.php?type=1" class="wap_member_mrecord_list">邀请客户</a>
+
+<?php endif; ?>
+
+<?php if ($_SESSION['usertype'] == 1000): ?>
+<a href="/ma/invite.php?type=1" class="wap_member_mrecord_list">邀请客户</a>
+<a href="/ma/addUser.php" class="wap_member_mrecord_list">添加员工</a>
 <?php endif; ?>
 </div>
 

@@ -12,7 +12,11 @@
 </div-->
 
 <div class="wap_member_mrecord">
+{yun:}if $smarty.session.usertype>=100{/yun}
+<a href="/ma/invite.php?type=2" class="wap_member_mrecord_list">我的积分:<em>{yun:}$smarty.session.jifen{/yun}</em></a>
+{yun:}else{/yun}
 <a href="javascript:" class="wap_member_mrecord_list">我的积分:<em>{yun:}$smarty.session.jifen{/yun}</em></a>
+{yun:}/if{/yun}
 <!-- <a href="/ma/jifen_list.php?title=%e7%a7%af%e5%88%86%e8%ae%b0%e5%bd%95" class="wap_member_mrecord_list">积分记录</a> 
 <a href="/ma/product_list.php?title=%E7%A7%AF%E5%88%86%E5%95%86%E5%9F%8E" class="wap_member_mrecord_list">积分商城<em>new</em></a>-->
 <a href="/ma/caipiao.php" class="wap_member_mrecord_list">积分兑换 中国福利彩票双色球</a>
@@ -26,7 +30,13 @@
 <a href="#" class="wap_member_mrecord_list wap_member_mrecord_list_no">个人设置</a>
  -->
 {yun:}if $smarty.session.usertype==100 {/yun}
-<a href="/ma/invite.php" class="wap_member_mrecord_list">邀请客户</a>
+<a href="/ma/invite.php?type=1" class="wap_member_mrecord_list">邀请客户</a>
+
+{yun:}/if{/yun}
+
+{yun:}if $smarty.session.usertype==1000 {/yun}
+<a href="/ma/invite.php?type=1" class="wap_member_mrecord_list">邀请客户</a>
+<a href="/ma/addUser.php" class="wap_member_mrecord_list">添加员工</a>
 {yun:}/if{/yun}
 </div>
 
