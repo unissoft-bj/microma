@@ -5,7 +5,7 @@
 }
 
 function runzp() {
-	var data = '[{"id":1,"prize":"哇！500积分，老板都不淡定了呢","v":1.0},{"id":2,"prize":"300积分！运气太棒了 ","v":2.0},{"id":3,"prize":"200积分哦，今天有艳遇哦~ ","v":48.0}]';// 奖项json
+	var data = '[{"id":1,"prize":"哇！大大大奖哦，老板都不淡定了呢","v":1.0},{"id":2,"prize":"大奖啊！运气太棒了 ","v":2.0},{"id":3,"prize":"运气不错，今天有艳遇哦~ ","v":48.0}]';// 奖项json
 	var obj = eval('(' + data + ')');
 	var result = randomnum(1, 100);
 	var line = 0;
@@ -56,7 +56,7 @@ function runzp() {
 		}
 		myreturn.prize = returnobj.prize;
 	} else {// 没有
-		message = "给您100积分安慰奖";
+		message = "送您鼓励奖一份，再接再厉哦";
 		var angle3 = [ 17, 103 ];
 		var angle4 = [ 197, 220 ];
 		var angle5 = [ 259, 340 ];

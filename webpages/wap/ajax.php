@@ -123,10 +123,12 @@ if(isset($_GET['checkmsg'])){
  * 生成并输入邀请码
  */
 if(isset($_GET['getInviteCode'])){
-	$invite_code =rand(100000,999999);
-	$sql="INSERT INTO shouqibucuo (salesperson_userid,invite_code,rectime)
+	$invite_code1 =rand(0,9);
+	$invite_code2 =rand(10000,99999);
+	$invite_code = $invite_code1.$invite_code2;
+	$sql="INSERT INTO shouqibucuo (salesperson_userid,invite_code,rectime,type)
 			VALUES ('".$_COOKIE['userid']."','".
-				$invite_code."',now())";
+				$invite_code."',now(),'".$_GET['type']."')";
 	mysql_query($sql,$con);	
 	echo $invite_code;
 }

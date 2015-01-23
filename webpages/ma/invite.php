@@ -66,7 +66,7 @@ else
     }
   }
 
-xmlhttp.open("GET","/wap/ajax.php?getInviteCode=1",true);
+xmlhttp.open("GET","/wap/ajax.php?getInviteCode=1&type="+<?php echo $_GET['type']?>,true);
 xmlhttp.send();
 }
 

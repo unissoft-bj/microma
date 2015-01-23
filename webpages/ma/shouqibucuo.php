@@ -6,22 +6,38 @@ require 'inc/function.inc.php';
 if($_POST){
 	
 	$invite_code = $_POST['invite_code'];
-// 	echo $_POST['jifen'];
-// 	die();
-	$sql="select * from shouqibucuo where invite_code='".$invite_code."' and TO_DAYS(rectime) = TO_DAYS(NOW()) and client_mac IS NULL";
+	$jifen_tmp = $_POST['jifen'];
 	
+	//如果今天已经参与过该活动，则提示退出
+	$sql ="SELECT * FROM shouqibucuo WHERE client_mac='".$_COOKIE['mymac']."' AND is_success=1 AND TO_DAYS(rectime) = TO_DAYS(NOW())";
+	$rs=$db->r($sql);
+	if ($rs) {
+		header("location: shouqibucuo.php?point=您今天已经参与过该活动，别太贪心哦");
+		die("ok");
+	}
+
+	
+	$sql="select * from shouqibucuo where invite_code='".$invite_code."' and TO_DAYS(rectime) = TO_DAYS(NOW()) and client_mac IS NULL";	
 	$rs=$db->r($sql);
 	
 	//echo dump($rs['id']);die();
 	if($rs){
+		
+		if($rs['type']==1){
+			$jifen = (int)($jifen_tmp*0.15);
+		}elseif ($rs['type']==2){
+			$jifen = (int)($jifen_tmp*2);
+		}else{
+			$jifen =0;
+		}
 		mysql_query("BEGIN");
 		$id=$rs['id'];
-		$sql1="update shouqibucuo set client_mac='".$_COOKIE['mymac']."' ,client_userid='".$_COOKIE['userid']."',is_success=1 where id=".$id;
+		$sql1="update shouqibucuo set client_integral=$jifen, client_mac='".$_COOKIE['mymac']."' ,client_userid='".$_COOKIE['userid']."',is_success=1 where id=".$id;
 		$rs1=$db->q($sql1);
 		
 		//将积分写入userlog
 		if($_COOKIE['userid']!="" && $_COOKIE['userid']!=null){		
-			$sql2="update useraccounts set integral=integral+".$_POST['jifen']."  where userid='".$_COOKIE['userid']."'";
+			$sql2="update useraccounts set integral=integral+".$jifen."  where userid='".$_COOKIE['userid']."'";
 			$rs2=$db->q($sql2);
 		}elseif($_COOKIE['mymac']!="" && $_COOKIE['mymac']!=null){
 			//将积分写入userpoints
@@ -29,12 +45,12 @@ if($_POST){
 			$rs_points = $db->r($sql_points);
 			if ($rs_points) {
 				//update
-				$sql3="update userpoints set points=points+".$_POST['jifen']."  where mac='".$_COOKIE['mymac']."'";
+				$sql3="update userpoints set points=points+".$jifen."  where mac='".$_COOKIE['mymac']."'";
 				$rs3=$db->q($sql3);
 			}else{
 				//insert
 				$sql3="INSERT INTO userpoints (mac,points,action,rectime)
-			VALUES ('".$_COOKIE['mymac']."',".$_POST['jifen'].",'shouqibucuo',now())";
+			VALUES ('".$_COOKIE['mymac']."',".$jifen.",'shouqibucuo',now())";
 				
 				$rs3=$db->q($sql3);
 // 				echo $sql3;
@@ -50,9 +66,9 @@ if($_POST){
 		if($rs2||$rs3){
 			mysql_query("COMMIT");
 			if($_COOKIE['userid'])
-				header("location: shouqibucuo_ok.php?point=恭喜您获得".$_POST['jifen']."积分");
+				header("location: shouqibucuo_ok.php?point=恭喜您获得".$jifen."积分");
 			else
-				header("location: shouqibucuo_ok.php?point=恭喜您获得". $_POST['jifen'] ."积分券");
+				header("location: shouqibucuo_ok.php?point=恭喜您获得". $jifen."积分券");
 			die("ok");
 		}else{
 			mysql_query("ROLLBACK");
