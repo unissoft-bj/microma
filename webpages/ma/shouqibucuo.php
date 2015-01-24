@@ -131,8 +131,8 @@ $_GET['title']="手气不错";
 <style type="text/css">
 body{background:url(/ma/zhuan/images/bg.png) 0 0 repeat;}
 
-.rotate-con-pan{background:url(/ma/zhuan/images/disk.jpg) no-repeat 0 0;background-size:100% 100%;position:relative;width:480px;height:480px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;margin:0 auto}
-.rotate-con-zhen{width:112px;height:224px;background:url(/ma/zhuan/images/start.png) no-repeat 0 0;background-size:100% 100%;cursor:pointer;position:absolute;left:180px;top:140px;}
+.rotate-con-pan{background:url(/ma/zhuan/images/disk.jpg) no-repeat 0 0;background-size:100% 100%;position:relative;width:320px;height:320px;box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;margin:0 auto}
+.rotate-con-zhen{width:75px;height:150px;background:url(/ma/zhuan/images/start.png) no-repeat 0 0;background-size:100% 100%;cursor:pointer;position:absolute;left:120px;top:90px;}
 </style>
 
 </head>

@@ -1,4 +1,9 @@
-
+<?php 
+require 'global.php';
+require 'inc/mysql.Class.php';
+require 'inc/function.inc.php';
+$_GET['title']="中国福利彩票双色球";
+?>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -7,10 +12,7 @@
 <title>中国福利彩票双色球</title>
 <link rel="stylesheet" type="text/css" href="css/css.css">
 <?php 
-require 'global.php';
-require 'inc/mysql.Class.php';
-require 'inc/function.inc.php';
-$_GET['title']="中国福利彩票双色球";
+
 $sql="select * from useraccounts where userid='".$_COOKIE['userid']."'";
 $rs=$db->r($sql);
 $cid_old=$rs['cid'];//useraccounts表中存储的当前用户的身份证号
@@ -89,12 +91,12 @@ if($_POST){
 // 		$rs=$db->r($sql);
 // 		$cid_old=$rs['cid'];//useraccounts表中存储的当前用户的身份证号
 // 		$birthday_old = substr($cid_old, 6,8);
-		echo $birthday_old;
-		echo $_POST['cid'];
+// 		echo $birthday_old;
+// 		echo $_POST['cid'];
 		//die();
 		if($birthday_old!=$_POST['cid']){			
-			echo $birthday_old;
-			echo $_POST['cid'];
+// 			echo $birthday_old;
+// 			echo $_POST['cid'];
 			
 			//die();
 			$cid_new = $cid_new_qian.$_POST['cid'].$cid_new_hou;
@@ -108,12 +110,14 @@ if($_POST){
 			mysql_query("COMMIT");
 			$_SESSION['jifen']=$integral_new;
 			
-			header("location: caipiao_order.php?point=兑换成功，消耗积分100&phone=".$_POST['phone']);
+			//header("location: caipiao_order.php?point=兑换成功，消耗积分100&phone=".$_POST['phone']);
+			msg("彩票兑换成功","caipiao_order.php?point=兑换成功，消耗积分100&phone=".$_POST['phone'],1);
 			die();
 			echo '提交成功。';
 		}else{
 			mysql_query("ROLLBACK");
-			header("location: caipiao.php?point=兑换失败，数据异常");
+			//header("location: caipiao.php?point=兑换失败，数据异常");
+			msg("彩票兑换失败","caipiao_order.php?point=兑换失败&phone=".$_POST['phone'],1);
 			die();
 			echo '数据回滚。';
 		}
@@ -121,7 +125,9 @@ if($_POST){
 	
 	}else {
 		//��ת����Ʒ����ҳ
-		header("location: caipiao.php?point=积分不足，兑换失败");
+		兑换失败
+		msg("彩票兑换失败","caipiao_order.php?point=积分不足兑换失败&phone=".$_POST['phone'],1);
+		//header("location: caipiao.php?point=积分不足，兑换失败");
 		die();
 		//msg("兑积分不足 兑换失败",$lailu."?&point=积分不足 兑换失败",1);
 	}
