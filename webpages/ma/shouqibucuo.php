@@ -12,7 +12,8 @@ if($_POST){
 	$sql ="SELECT * FROM shouqibucuo WHERE client_mac='".$_COOKIE['mymac']."' AND is_success=1 AND TO_DAYS(rectime) = TO_DAYS(NOW())";
 	$rs=$db->r($sql);
 	if ($rs) {
-		header("location: shouqibucuo.php?point=您今天已经参与过该活动，别太贪心哦");
+		$point = urlencode('您今天已经参与过该活动 别太贪心哦');
+		header("location: shouqibucuo.php?point=$point");
 		die("ok");
 	}
 
@@ -59,26 +60,34 @@ if($_POST){
 			
 			
 		}else{
-			header("location: shouqibucuo.php?point=没有得到您的mac地址，请联系销售员进行操作");
+			$point = urlencode('没有得到您的mac地址，请联系销售员进行操作');
+			header("location: shouqibucuo.php?point=$point");
 			die();
 		}
 		
 		if($rs2||$rs3){
 			mysql_query("COMMIT");
-			if($_COOKIE['userid'])
-				header("location: shouqibucuo_ok.php?point=恭喜您获得".$jifen."积分");
-			else
-				header("location: shouqibucuo_ok.php?point=恭喜您获得". $jifen."积分券");
-			die("ok");
+			if($_COOKIE['userid']){
+				$point = urlencode('恭喜您获得'.$jifen.'积分');
+				header("location: shouqibucuo_ok.php?point=$point");
+				die();
+			}
+			else{
+				$point = urlencode('恭喜您获得'.$jifen.'积分券');
+				header("location: shouqibucuo_ok.php?point=$point");
+				die("ok");
+			}
 		}else{
 			mysql_query("ROLLBACK");
-			header("location: shouqibucuo.php?point=数据异常");
+			$point = urlencode('数据异常');
+			header("location: shouqibucuo.php?point=$point");
 			die("ok");
 		}
 		
 		
 	}else{
-		header("location: shouqibucuo.php?point=邀请码错误，请重新输入");
+		$point = urlencode('邀请码错误，请重新输入');
+		header("location: shouqibucuo.php?point=$point");
 		die("ok");
 	}
 	

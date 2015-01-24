@@ -109,25 +109,25 @@ if($_POST){
 		if($rs1&&$rs2&&$rs3){
 			mysql_query("COMMIT");
 			$_SESSION['jifen']=$integral_new;
-			
-			//header("location: caipiao_order.php?point=兑换成功，消耗积分100&phone=".$_POST['phone']);
-			msg("彩票兑换成功","caipiao_order.php?point=兑换成功，消耗积分100&phone=".$_POST['phone'],1);
+			$point = urlencode("兑换成功，消耗积分100");
+			header("location: caipiao_order.php?point=$point&phone=".$_POST['phone']);
+			//msg("彩票兑换成功","caipiao_order.php?point=兑换成功，消耗积分100&phone=".$_POST['phone'],1);
 			die();
 			echo '提交成功。';
 		}else{
 			mysql_query("ROLLBACK");
-			//header("location: caipiao.php?point=兑换失败，数据异常");
-			msg("彩票兑换失败","caipiao_order.php?point=兑换失败&phone=".$_POST['phone'],1);
+			$point = urlencode('兑换失败，数据异常');
+			header("location: caipiao.php?point=$point");
+			//msg("彩票兑换失败","caipiao_order.php?point=兑换失败&phone=".$_POST['phone'],1);
 			die();
 			echo '数据回滚。';
 		}
 			
 	
 	}else {
-		//��ת����Ʒ����ҳ
-		兑换失败
-		msg("彩票兑换失败","caipiao_order.php?point=积分不足兑换失败&phone=".$_POST['phone'],1);
-		//header("location: caipiao.php?point=积分不足，兑换失败");
+		$point = urlencode('积分不足，兑换失败');
+		//msg("彩票兑换失败","caipiao_order.php?point=积分不足兑换失败&phone=".$_POST['phone'],1);
+		header("location: caipiao.php?point=$point");
 		die();
 		//msg("兑积分不足 兑换失败",$lailu."?&point=积分不足 兑换失败",1);
 	}
