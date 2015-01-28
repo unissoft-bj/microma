@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2015-01-22 18:12:24
+<?php /* Smarty version 2.6.26, created on 2015-01-28 17:01:42
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -92,8 +92,8 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 <!-- //yc 判断调查的进度是否存在cookie中 如果存在则跳转到cookie中的进度中 否则打开调查页面 -->
 <?php if ($this->_tpl_vars['cookie']['uid']): ?>
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/member/"><p class="mune_a"><i></i><em>积分礼包<font color=red>[<?php echo $_SESSION['jifen']; ?>
-]</font></em></p></a></td>
+/wap/member/"><p class="mune_a"><br><font color=red>[<?php echo $_SESSION['jifen']; ?>
+]</font><em>积分礼包</em></p></a></td>
 <?php endif; ?>
 <?php if (! $this->_tpl_vars['cookie']['uid']): ?>
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>

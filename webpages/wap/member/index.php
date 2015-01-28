@@ -28,11 +28,11 @@ if($_COOKIE["username"]==""){
 	mysql_close($con);
 }else{
 	//mysql_select_db($db_config['dbname'], $con);
-	$sql = "select integral,usertype from useraccounts where userid='".$_COOKIE['userid']."';";
+	$sql = "select integral,userrole from useraccounts where userid='".$_COOKIE['userid']."';";
 	$result = mysql_query($sql);
 	$row = mysql_fetch_array($result);
 	$_SESSION['jifen']=$row['integral'];
-	$_SESSION['usertype']=$row['usertype'];
+	$_SESSION['userrole']=$row['userrole'];
 	mysql_close($con);
 }
 if ($_SESSION['jifen']=="" ||$_SESSION['jifen']==null) {

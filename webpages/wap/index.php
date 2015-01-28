@@ -37,15 +37,15 @@ if($_COOKIE["username"]==""){
 	while($userinfo = mysql_fetch_array($result2))
 	{
 		//echo  $userinfo['username']."验证中……";
-		setcookie("uid",$userinfo['uid'],time() + 86400, "/");
-		setcookie("username",$userinfo['username'],time() + 86400, "/");
-		setcookie("usertype",$userinfo['usertype'],time() + 86400, "/");
-		setcookie("salt",$userinfo['salt'],time() + 86400, "/");
-		setcookie("shell",md5($userinfo['username'].$userinfo['password'].$userinfo['salt']), time() + 86400,"/");
+		setcookie("uid",$userinfo['uid'],time() + 3600, "/");
+		setcookie("username",$userinfo['username'],time() + 3600, "/");
+		setcookie("usertype",$userinfo['usertype'],time() + 3600, "/");
+		setcookie("salt",$userinfo['salt'],time() + 3600, "/");
+		setcookie("shell",md5($userinfo['username'].$userinfo['password'].$userinfo['salt']), time() + 3600,"/");
 		//echo $userinfo['uid'];
-		setcookie("userid",$userinfoId['userid'],time() + 86400, "/");
-		setcookie("phone",$userinfoId['phone'],time() + 86400, "/");
-		setcookie("userrole",$userinfoId['userrole'],time() + 86400, "/");
+		setcookie("userid",$userinfoId['userid'],time() + 3600, "/");
+		setcookie("phone",$userinfoId['phone'],time() + 3600, "/");
+		setcookie("userrole",$userinfoId['userrole'],time() + 3600, "/");
 	}
 
 	mysql_close($con);

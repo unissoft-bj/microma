@@ -21,7 +21,7 @@ if($_POST){
 	$sql="select * from useraccounts where phone='".$phone."'";
 	$rs=$db->r($sql);
 	if ($rs) {
-		$sql = "update useraccounts set usertype='100' where phone='".$phone."'";
+		$sql = "update useraccounts set userrole='100' where phone='".$phone."'";
 		$rs=$db->q($sql);
 	}else{
 		$chars = md5(uniqid(mt_rand(), true));
@@ -32,15 +32,15 @@ if($_POST){
 		$uuid .= substr($chars,20,12);
 		
 		$sql="insert into `useraccounts`
-				(`userid`, `lname`, `regphone`, `phone`, `usertype`, `captcha`, `rectime`)
+				(`userid`, `lname`, `regphone`, `phone`, `userrole`, `captcha`, `rectime`)
 		  values('".$uuid."','".$phone."','$phone','$phone','100','".$captcha."',now());
 		";
 		$rs=$db->q($sql);
 		
 	}
 	
-	
-	header("location: addUser.php?point=添加员工信息成功，请让该员工激活  邀请码为".$captcha);
+	$point = urlencode('添加员工信息成功，请让该员工激活  邀请码为');
+	header("location: addUser.php?point=".$point.$captcha);
 	die();
 	
 	
@@ -117,7 +117,7 @@ function isjsMobile(obj){
     
     <p>输入6位邀请码：</p>
     <p>    
-      <input name="captcha" id="captcha" type="text" class="input-common placeholder" placeholder="输入员工手机号" />
+      <input name="captcha" id="captcha" type="text" class="input-common placeholder" placeholder="输入输入6位邀请码" />
     </p>
     
     

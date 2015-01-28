@@ -12,7 +12,7 @@
 </div-->
 
 <div class="wap_member_mrecord">
-{yun:}if $smarty.session.usertype>=100{/yun}
+{yun:}if $smarty.session.userrole>=100{/yun}
 <a href="/ma/invite.php?type=2" class="wap_member_mrecord_list">我的积分:<em>{yun:}$smarty.session.jifen{/yun}</em></a>
 {yun:}else{/yun}
 <a href="javascript:" class="wap_member_mrecord_list">我的积分:<em>{yun:}$smarty.session.jifen{/yun}</em></a>
@@ -29,12 +29,12 @@
 <a href="/ma/meeting_list.php?title=%e8%b5%84%e6%96%99%e4%b8%8b%e8%bd%bd" class="wap_member_mrecord_list">资料下载</a>
 <a href="#" class="wap_member_mrecord_list wap_member_mrecord_list_no">个人设置</a>
  -->
-{yun:}if $smarty.session.usertype==100 {/yun}
+{yun:}if $smarty.session.userrole==100 {/yun}
 <a href="/ma/invite.php?type=1" class="wap_member_mrecord_list">邀请客户</a>
 
 {yun:}/if{/yun}
 
-{yun:}if $smarty.session.usertype==1000 {/yun}
+{yun:}if $smarty.session.userrole==1000 {/yun}
 <a href="/ma/invite.php?type=1" class="wap_member_mrecord_list">邀请客户</a>
 <a href="/ma/addUser.php" class="wap_member_mrecord_list">添加员工</a>
 {yun:}/if{/yun}

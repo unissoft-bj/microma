@@ -60,23 +60,25 @@ class register_controller extends common
 			$idata['phone'] = $_POST['regphone'];
 			$idata['password'] = $pass;
 			if ($regtype==2) {
-				$usertype=100;
+				$usertype=2;
+				$userrole=100;
 			}elseif ($regtype==1){
 				$usertype=1;
+				$userrole=1;
 			}
-			$idata['usertype'] = $usertype;
+			$idata['userrole'] = $userrole;
 			$idata['salt']     = $salt;
 			$idata['reg_date'] = time();
 			$idata['mac'] = $_COOKIE["mymac"];
 			
 			//店长注册
-			if($regmsg=="999999"){
+			if($regmsg=="98041@"){
 				
-				$sql="select * from useraccounts where captcha='999999'";
+				$sql="select * from useraccounts where captcha='98041@'";
 				$result = mysql_query($sql,$con);
 				$member =  mysql_fetch_array($result);
 				if (is_array($member)) {
-					$usertype='1000';
+					$userrole='1000';
 					if ($member['intid']=="" or $member['intid']==null) {
 						//如果没有intid，则插入到member中，并得到member中的uid
 						$sql = "INSERT INTO member (username, password,usertype,salt) VALUES
@@ -95,11 +97,11 @@ class register_controller extends common
 						$sql ="UPDATE useraccounts SET intid = '".$intid."',
 								mac='".$idata['mac']."',
 								userid='".$userid."',
-								captcha='-999999',
+								captcha='-98041@',
 								phone='".$idata['phone']."',
 								regphone='".$idata['regphone']."',
 								lname='".$idata['regphone']."',		
-								usertype='1000',
+								userrole='1000',
 								rectime='".date("Y-m-d H:i:s",time())."'
 								WHERE id = ".$member['id'];
 						mysql_query($sql,$con);
@@ -127,13 +129,13 @@ class register_controller extends common
 						$this->pointsToIntegral($member['userid']);
 						setcookie("uid",$intid,time() + 3600, "/");
 						setcookie("username",$idata['username'],time() + 3600, "/");
-						setcookie("usertype",$usertype,time() + 3600, "/");
+						setcookie("userrole",$userrole,time() + 3600, "/");
 						setcookie("salt",$salt,time() + 3600, "/");
 						setcookie("shell",md5($idata['username'].$idata['password'].$idata['salt']), time() + 3600,"/");
 					
 						setcookie("userid",$userid,time() + 3600, "/");
 						setcookie("phone",$idata['phone'],time() + 3600, "/");
-						setcookie("userrole",$member['userrole'],time() + 3600, "/");
+						setcookie("usertype",$usertype,time() + 3600, "/");
 						$this->active_login($userid);
 						
 						$this->wapheader('index.php?internet=ok&','恭喜您设置成功，您可以进入个人中心添加员工。');
