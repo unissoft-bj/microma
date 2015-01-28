@@ -52,6 +52,36 @@ class index_controller extends common
 			if ($_GET['internet']) {
 				
 			}else{
+				
+				
+				if (strpos($_GET['userurl'],'163.com')) {					
+					$usertitle="网易";
+					$usertitle = iconv("utf-8","gbk",$usertitle);
+				}elseif (strpos($_GET['userurl'],'baidu.com')){
+					$usertitle="百度一下，你就知道";
+					$usertitle = iconv("utf-8","gbk",$usertitle);
+				}elseif (strpos($_GET['userurl'],'sohu.com')){
+					$usertitle="搜狐";
+					$usertitle = iconv("utf-8","gbk",$usertitle);
+				}elseif (strpos($_GET['userurl'],'sina.com')){
+					$usertitle="新浪网";
+					$usertitle = iconv("utf-8","gbk",$usertitle);
+				}elseif (strpos($_GET['userurl'],'qq.com')){
+					$usertitle="腾通网";
+					$usertitle = iconv("utf-8","gbk",$usertitle);
+				}else{
+					$content=file_get_contents($_GET['userurl']);
+					$pos = strpos($content,'utf-8');
+					if($pos===false){$content = iconv("gbk","utf-8",$content);}
+					$postb=strpos($content,'<title>')+7;
+					$poste=strpos($content,'</title>');
+					$length=$poste-$postb;
+					$usertitle= substr($content,$postb,$length);
+					$usertitle = iconv("utf-8","gbk",$usertitle);
+					$usertitle = $this->msubstr($usertitle,0,20);
+					$usertitle = str_replace('受限制','',$usertitle);
+				}
+				setcookie("usertitle", $usertitle, time()+3600,"/");
 				setcookie("userurl", $_GET['userurl'], time()+3600,"/");
 			}
 			
@@ -149,6 +179,24 @@ class index_controller extends common
 		SetCookie("username","",time() - 86400, "/");
 		SetCookie("salt","",time() -86400, "/");
 		$this->wapheader('index.php');
+	}
+	
+
+	/******************************************************************
+	 * 程序一：PHP截取中文字符串方法
+	* 截取中文字符串时出现乱码
+	****************************************************************/
+	function msubstr($str, $start, $len) {
+		$tmpstr = "";
+		$strlen = $start + $len;
+		for($i = 0; $i < $strlen; $i++) {
+			if(ord(substr($str, $i, 1)) > 0xa0) {
+				$tmpstr .= substr($str, $i, 2);
+				$i++;
+			} else
+				$tmpstr .= substr($str, $i, 1);
+		}
+		return $tmpstr;
 	}
 }
 ?>

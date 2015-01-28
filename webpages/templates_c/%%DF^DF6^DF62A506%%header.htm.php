@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2015-01-28 17:01:42
+<?php /* Smarty version 2.6.26, created on 2015-01-28 19:18:37
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -20,7 +20,8 @@
 <?php endif; ?>
 <?php if ($this->_tpl_vars['cookie']['uid']): ?>
 <div class="left-box"> <a class="hd-lbtn" href="<?php echo $this->_tpl_vars['cookie']['userurl']; ?>
-"><span>·ÃÎÊInternet</span></a></div>
+"><span>¼ÌĞø·ÃÎÊ--> <?php echo $this->_tpl_vars['cookie']['usertitle']; ?>
+</span></a></div>
 <?php endif; ?>
 <div class="header_user"><a href="member/"></a></div>
 <div class="logo"><img src="<?php echo $this->_tpl_vars['wapstyle']; ?>
