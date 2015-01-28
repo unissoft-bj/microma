@@ -7,7 +7,7 @@
 if($_COOKIE["userid"]!=""){
   
   
-  	echo "begin";
+  	//echo "begin";
   
   	$sql = "select id from useractive where userid='".$_COOKIE['userid']."' order by id desc limit 1";
   	//echo $sql;

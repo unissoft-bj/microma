@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2015-01-23 21:22:58
+<?php /* Smarty version 2.6.26, created on 2015-01-28 16:43:23
          compiled from wap/member/user/index.htm */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => ($this->_tpl_vars['wap_style'])."/member/header.htm", 'smarty_include_vars' => array()));
@@ -23,7 +23,7 @@ unset($_smarty_tpl_vars);
 </div-->
 
 <div class="wap_member_mrecord">
-<?php if ($_SESSION['usertype'] >= 100): ?>
+<?php if ($_SESSION['userrole'] >= 100): ?>
 <a href="/ma/invite.php?type=2" class="wap_member_mrecord_list">我的积分:<em><?php echo $_SESSION['jifen']; ?>
 </em></a>
 <?php else: ?>
@@ -42,12 +42,12 @@ unset($_smarty_tpl_vars);
 <a href="/ma/meeting_list.php?title=%e8%b5%84%e6%96%99%e4%b8%8b%e8%bd%bd" class="wap_member_mrecord_list">资料下载</a>
 <a href="#" class="wap_member_mrecord_list wap_member_mrecord_list_no">个人设置</a>
  -->
-<?php if ($_SESSION['usertype'] == 100): ?>
+<?php if ($_SESSION['userrole'] == 100): ?>
 <a href="/ma/invite.php?type=1" class="wap_member_mrecord_list">邀请客户</a>
 
 <?php endif; ?>
 
-<?php if ($_SESSION['usertype'] == 1000): ?>
+<?php if ($_SESSION['userrole'] == 1000): ?>
 <a href="/ma/invite.php?type=1" class="wap_member_mrecord_list">邀请客户</a>
 <a href="/ma/addUser.php" class="wap_member_mrecord_list">添加员工</a>
 <?php endif; ?>

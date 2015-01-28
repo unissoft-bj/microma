@@ -41,10 +41,10 @@ while($row = mysql_fetch_array($result))
   
   $userrole='';
   if ($row['userrole']=="100") {
-  	$userrole = "代表";
+  	$userrole = "销售员";
   }
-  if ($row['userrole']=="200") {
-  	$userrole = "专家";
+  if ($row['userrole']=="1000") {
+  	$userrole = "店长";
   }
   if ($row['userrole']=="300") {
   	$userrole = "媒体";
