@@ -2,7 +2,9 @@
 require 'global.php';
 require 'inc/mysql.Class.php';
 require 'inc/function.inc.php';
-
+if(!isset($_GET['mac'])){
+	setcookie("mymac",$_GET['mac'],time() + 3600, "/");
+}
 if($_POST){
 	
 	$invite_code = $_POST['invite_code'];
@@ -180,7 +182,7 @@ $(function(){
     
     <p>
       <input  name="jifen" id="jifen" type="hidden"   />    
-      <input  name="invite_code" id="invite_code" type="text" class="input-common placeholder" placeholder="请输入邀请码" />
+      <input  name="invite_code" id="invite_code" type="text" class="input-common placeholder" placeholder="请向销售人员索取邀请码" />
     </p>
     
     
