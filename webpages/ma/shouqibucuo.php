@@ -2,7 +2,8 @@
 require 'global.php';
 require 'inc/mysql.Class.php';
 require 'inc/function.inc.php';
-if(!isset($_GET['mac'])){
+
+if(isset($_GET['mac'])){
 	setcookie("mymac",$_GET['mac'],time() + 3600, "/");
 }
 if($_POST){
