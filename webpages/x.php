@@ -6,6 +6,6 @@ if (!isset($_GET['x'])) {
 
 $param = $_GET['x'];
 $mac = base64_decode($param);
-
+setcookie("mymac",$mac,time() + 3600, "/");
 header("location: http://mtxwifi.net/ma/shouqibucuo.php?mac=".$mac);
 ?>
