@@ -70,7 +70,15 @@ class index_controller extends common
 					$usertitle="腾通网";
 					$usertitle = iconv("utf-8","gbk",$usertitle);
 				}else{
-					$content=file_get_contents($_GET['userurl']);
+					$opts = array(
+							'http'=>array(
+									'method'=>"GET",
+									'timeout'=>5,
+							)
+					);
+					$context = stream_context_create($opts);
+					
+					$content=file_get_contents($_GET['userurl'], false, $context);
 					$pos = strpos($content,'utf-8');
 					if($pos===false){$content = iconv("gbk","utf-8",$content);}
 					$postb=strpos($content,'<title>')+7;
@@ -80,6 +88,22 @@ class index_controller extends common
 					$usertitle = iconv("utf-8","gbk",$usertitle);
 					$usertitle = $this->msubstr($usertitle,0,20);
 					$usertitle = str_replace('受限制','',$usertitle);
+				}
+				if(strstr($usertitle,"Warning")){
+					$usertitle="";
+				}
+				if ($usertitle==null || $usertitle=="") {
+					$usertitle=$_GET['userurl'];
+					$str = parse_url($usertitle);
+					$usertitle = $str['host'];
+					if ($this->is_ip($usertitle)!=1) {//非ip地址
+						//
+						$arr = explode(".",$usertitle);
+						$count = count($arr);
+						if ($count>3) {
+							$usertitle=$arr[$count-3].'.'.$arr[$count-2].'.'.$arr[$count-1];
+						}
+					}
 				}
 				setcookie("usertitle", $usertitle, time()+3600,"/");
 				setcookie("userurl", $_GET['userurl'], time()+3600,"/");
@@ -197,6 +221,17 @@ class index_controller extends common
 				$tmpstr .= substr($str, $i, 1);
 		}
 		return $tmpstr;
+	}
+	
+	function is_ip($gonten){
+		$ip = explode('.',$gonten);
+		for($i=0;$i<count($ip);$i++)
+		{
+		if($ip[$i]>255){
+		return (0);
+		}
+		}
+		return ereg('^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$',$gonten);
 	}
 }
 ?>

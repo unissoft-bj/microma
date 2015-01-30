@@ -24,10 +24,10 @@ if (!$con)
 
 mysql_select_db($db_config['dbname'], $con);
 //如果cookie为空，则自动创建cookie
-if($_COOKIE["username"]==""){
+if(!isset($_COOKIE["username"])){
 	//根据mac地址得到最后登录的id
 	$sql = "SELECT intid,phone,userid,userrole FROM `useraccounts` WHERE mac='".$_COOKIE["mymac"]."' and stat>=100 order by stat desc limit 1;";
-	//echo $sql;
+	//echo $sql;exit();
 	$result = mysql_query($sql);
 	$userinfoId = mysql_fetch_array($result);
 	$userid =  $userinfoId['intid'];
