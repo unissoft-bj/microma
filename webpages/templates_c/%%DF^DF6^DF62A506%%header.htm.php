@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2015-01-30 17:24:55
+<?php /* Smarty version 2.6.26, created on 2015-02-04 21:20:33
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,9 +23,8 @@
 "><span>继续访问：<?php echo $this->_tpl_vars['cookie']['usertitle']; ?>
 </span></a></div>
 <?php endif; ?>
-<div class="header_user"><a href="member/"></a></div>
-<div class="logo"><img src="<?php echo $this->_tpl_vars['wapstyle']; ?>
-/images/logo.png"></div>
+
+<div class="logo" align=right></div>
 <div class="header_user"><a href="member/"></a></div>
 </div>
 </header>
@@ -98,8 +97,8 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 <?php endif; ?>
 <?php if (! $this->_tpl_vars['cookie']['uid']): ?>
 <td width="30%"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/wap/member/"><p class="mune_a"><i></i><em>积分券<font color=red>[<?php echo $_SESSION['jifen']; ?>
-]</font></em></p></a></td>
+/wap/member/"><p class="mune_a"><br><font color=red>[<?php echo $_SESSION['jifen']; ?>
+]</font><em>积分券</em></p></a></td>
 <?php endif; ?>
 <td width="30%"> <a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
 /ma/shipin.php"><p class="mune_e"><i></i><em>精彩视频</em></p></a></td>

@@ -18,8 +18,8 @@
 {yun:}if $cookie.uid{/yun}
 <div class="left-box"> <a class="hd-lbtn" href="{yun:}$cookie.userurl{/yun}"><span>继续访问：{yun:}$cookie.usertitle{/yun}</span></a></div>
 {yun:}/if{/yun}
-<div class="header_user"><a href="member/"></a></div>
-<div class="logo"><img src="{yun:}$wapstyle{/yun}/images/logo.png"></div>
+
+<div class="logo" align=right></div>
 <div class="header_user"><a href="member/"></a></div>
 </div>
 </header>
@@ -81,7 +81,7 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 <td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/wap/member/"><p class="mune_a"><br><font color=red>[{yun:}$smarty.session.jifen{/yun}]</font><em>积分礼包</em></p></a></td>
 {yun:}/if{/yun}
 {yun:}if !$cookie.uid{/yun}
-<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/wap/member/"><p class="mune_a"><i></i><em>积分券<font color=red>[{yun:}$smarty.session.jifen{/yun}]</font></em></p></a></td>
+<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/wap/member/"><p class="mune_a"><br><font color=red>[{yun:}$smarty.session.jifen{/yun}]</font><em>积分券</em></p></a></td>
 {yun:}/if{/yun}
 <td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/shipin.php"><p class="mune_e"><i></i><em>精彩视频</em></p></a></td>
 </tr>

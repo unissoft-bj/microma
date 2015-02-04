@@ -8,7 +8,7 @@ session_start();
 // store session data
 
 
-if (!isset($_COOKIE['mymac']) && !isset($_GET['mac'])) {
+if (!isset($_COOKIE['username']) && !isset($_GET['mac'])) {
 	header("location: http://www.baidu.com");
 	die();
 }
