@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2015-01-28 16:43:23
+<?php /* Smarty version 2.6.26, created on 2015-02-04 10:50:18
          compiled from wap/member/user/index.htm */ ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => ($this->_tpl_vars['wap_style'])."/member/header.htm", 'smarty_include_vars' => array()));
@@ -34,7 +34,13 @@ unset($_smarty_tpl_vars);
 <a href="/ma/product_list.php?title=%E7%A7%AF%E5%88%86%E5%95%86%E5%9F%8E" class="wap_member_mrecord_list">积分商城<em>new</em></a>-->
 <a href="/ma/caipiao.php" class="wap_member_mrecord_list">积分兑换 中国福利彩票双色球</a>
 <a href="/ma/aixin.php" class="wap_member_mrecord_list">积分捐助 中国青少年发展基金希望工程</a>
-<a href="/diaocha/view.php?id=10392" class="wap_member_mrecord_list">公益拇指</a>
+<?php if (! $this->_tpl_vars['cookie']['diaocha_url']): ?>
+<a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
+/diaocha/view.php?id=10392" class="wap_member_mrecord_list">公益拇指</a>
+<?php else: ?>
+<a href="../diaocha/<?php echo $this->_tpl_vars['cookie']['diaocha_url']; ?>
+" class="wap_member_mrecord_list">公益拇指</a>
+<?php endif; ?>
 <a href="/ma/shouqibucuo.php" class="wap_member_mrecord_list">手气不错</a>
 <a href="/ma/discuss.php?title=%e7%95%99%e8%a8%80%e5%8f%8d%e9%a6%88" class="wap_member_mrecord_list">留言反馈</a>
 <!-- 
