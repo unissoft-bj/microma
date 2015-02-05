@@ -14,7 +14,7 @@ session_start();
 // die();
 
 if (!isset($_COOKIE['mymac']) && !isset($_GET['mac'])) {
-	header("location: http://www.baidu.com");
+	header("location: http://182.92.195.40/base/auto/index.htm");
 	die();
 }
 
