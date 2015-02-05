@@ -431,7 +431,7 @@ class register_controller extends common
 				$result = mysql_query($sql,$con);				
 				$integral_value =  mysql_fetch_array($result);
 				$integral_now = $integral_value['integral'];
-				$this->wapheader('index.php?internet=ok&','签到成功。请点击“积分礼包”查看'.$integral_now.'积分-请点击“签到上网”接通Internet');
+				$this->wapheader('index.php?internet=ok&','签到成功。请点击“积分礼包”查看'.$integral_now.'积分');
 			}
 			
 			
