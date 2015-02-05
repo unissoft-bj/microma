@@ -89,7 +89,7 @@ if(isset($_GET['sendmsg'])){
 	
 	$prefix="欢迎使用Matrix Wifi，您的短信验证码为：";
 	$prefix=iconv('utf-8', 'gbk', $prefix);
-	$postfix="， WIFI网络服务电话 13701272752！";
+	$postfix="， WIFI网络服务电话 13701272752";
 	$postfix=iconv('utf-8', 'gbk', $postfix);
 	$optime = date("Y-m-d H:i:s",time());
 	//将msg发送到指定手机号，写入数据库 $mymac
