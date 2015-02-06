@@ -5120,7 +5120,9 @@ EOT;
 -
 <a href="javascript:window.history.back();">返回</a>
 -
-<a href="http://www.unissoft.com/" ><small>Powered by unissoft</small></a>
+<a href="javascript:" ><small>Powered by Matrix Wifi</small></a>
+<br>
+由Matrix Wifi提供解决方案 联系电话<a href="tel:13701272752">13701272752</a>
 </footer>
 	</body>
 </html>
@@ -5790,7 +5792,9 @@ EOT;
 -
 <a href="javascript:window.history.back();">返回</a>
 -
-<a href="http://www.unissoft.com/" ><small>Powered by unissoft</small></a>
+<a href="javascript:" ><small>Powered by Matrix Wifi</small></a>
+<br>
+由Matrix Wifi提供解决方案 联系电话<a href="tel:13701272752">13701272752</a>
 </footer>
 </body>
 </html>
