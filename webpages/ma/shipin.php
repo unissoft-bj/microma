@@ -29,10 +29,21 @@ $_GET['title']="精彩视频";
 </nav>
    
 <section class="wap_login" id='mainbody' >
+<br>
+精彩视频1
 <div width=100% align=center>
 <video width="100%" height="" controls="controls">
-  <source src="/ma/v/1.ogg" type="video/ogg">
-  <source src="/ma/v/1.mp4" type="video/mp4">
+  <source src="/ma/v/2.ogg" type="video/ogg">
+  <source src="/ma/v/2.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</div>
+<br>
+精彩视频2
+<div width=100% align=center>
+<video width="100%" height="" controls="controls">
+  <source src="/ma/v/3.ogg" type="video/ogg">
+  <source src="/ma/v/3.mp4" type="video/mp4">
 Your browser does not support the video tag.
 </video>
 </div>
