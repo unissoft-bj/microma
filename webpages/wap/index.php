@@ -13,11 +13,20 @@ session_start();
 // }
 // die();
 
+
 if (!isset($_COOKIE['mymac']) && !isset($_GET['mac'])) {
 	header("location: http://182.92.195.40/base/auto/index.htm");
 	die();
 }
 
+if ($_GET['mac'] ) {
+	
+	//接受到的mac地址
+	$mymac = $_GET['mac'];
+	//将mac写入cookie
+		
+	setcookie("mymac", $mymac, time()+3600*24*30,"/");
+}
 //echo 'qqqq';die();
 $con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
 mysql_query("SET NAMES 'GBK'");
