@@ -3,24 +3,19 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
 <meta http-equiv="Cache-Control" content="no-cache"/>
-<title>Matrix Wifi</title>
-<meta http-equiv="keywords" content="人才招聘,网络招聘,wap" />
-<meta http-equiv="description" content="人才招聘网wap网站" />
+<title>中国汽车安全主题巡展</title>
+<meta http-equiv="keywords" content="" />
+<meta http-equiv="description" content="" />
 <link rel="stylesheet" type="text/css" href="{yun:}$wapstyle{/yun}/css/wap.css"/>
 </head>
 <body>
 <div class="main_body">
 <header class="header">
 <div class="header_cont">
-{yun:}if !$cookie.uid{/yun}
-<div class="left-box"> <a class="hd-lbtn" href="/wap/index.php?m=register"><span>申请Internet</span></a></div>
-{yun:}/if{/yun}
-{yun:}if $cookie.uid{/yun}
-<div class="left-box"> <a class="hd-lbtn" href="{yun:}$cookie.userurl{/yun}"><span>继续访问：{yun:}$cookie.usertitle{/yun}</span></a></div>
-{yun:}/if{/yun}
 
-<div class="logo" align=right></div>
-<div class="header_user"><a href="member/"></a></div>
+
+<div class="header_name">中国汽车安全主题巡展</div>
+
 </div>
 </header>
 {yun:}if $smarty.get.point{/yun}
@@ -59,34 +54,28 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 </script>
 <table class="mune_list">
 <tr>
+
+<td width="30%"> <a href="javascript:0"><p class="mune_b"><i></i><em>神秘优惠1</em></p></a></td>
+
+
+
 {yun:}if !$cookie.diaocha_url{/yun}
-<td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/diaocha/view.php?id=10392"><p class="mune_b"><i></i><em>公益拇指</em></p></a></td>
+<td width="30%" rowspan="2"><a href="{yun:}$config.sy_weburl{/yun}/diaocha/view.php?id=12465"><p class="mune_c"><i></i><em>大问题<br>抽大奖</em></p></a></td>
 {yun:}else{/yun}
-<td width="30%"> <a href="../diaocha/{yun:}$cookie.diaocha_url{/yun}"><p class="mune_b"><i></i><em>公益拇指</em></p></a></td>
+<td width="30%" rowspan="2"><a href="../diaocha/{yun:}$cookie.diaocha_url{/yun}"><p class="mune_c"><i></i><em>大问题<br>抽大奖</em></p></a></td>
 {yun:}/if{/yun}
-{yun:}if !$cookie.uid{/yun}
 
-
-<td width="30%" rowspan="2"><a href="{yun:}$config.sy_weburl{/yun}/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>签到上网<br><small>>> 接通Internet</small><br><small>>> 参与线上活动</small></em></p></a></td>
-{yun:}else{/yun}
-<td width="30%" rowspan="2"><a href="{yun:}$config.sy_weburl{/yun}/wap/index.php?m=register&usertype=2"><p class="mune_c"><i></i><em>欢迎！<br><small>{yun:}$cookie.username{/yun}</small></em></p></a></td>
-
-{yun:}/if{/yun}
-<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/ma/shouqibucuo.php"><p class="mune_d"><i></i><em>手气不错</em></p></a></td>
+<td width="30%"><a href="javascript:0"><p class="mune_d"><i></i><em>神秘优惠2</em></p></a></td>
 </tr>
 <tr>
-<!-- <td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/vote.php?title=%e6%85%88%e5%96%84%e6%8b%87%e6%8c%87"><p class="mune_b"><i></i><em>慈善拇指</em></p></a></td> -->
-<!-- //yc 判断调查的进度是否存在cookie中 如果存在则跳转到cookie中的进度中 否则打开调查页面 -->
-{yun:}if $cookie.uid{/yun}
-<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/wap/member/"><p class="mune_a"><br><font color=red>[{yun:}$smarty.session.jifen{/yun}]</font><em>积分礼包</em></p></a></td>
-{yun:}/if{/yun}
-{yun:}if !$cookie.uid{/yun}
-<td width="30%"><a href="{yun:}$config.sy_weburl{/yun}/wap/member/"><p class="mune_a"><br><font color=red>[{yun:}$smarty.session.jifen{/yun}]</font><em>积分券</em></p></a></td>
-{yun:}/if{/yun}
-<td width="30%"> <a href="{yun:}$config.sy_weburl{/yun}/ma/shipin.php"><p class="mune_e"><i></i><em>精彩视频</em></p></a></td>
+
+<td width="30%"><a href="javascript:0"><p class="mune_a"><br><em>神秘优惠3</em></p></a></td>
+
+
+<td width="30%"> <a href="javascript:0"><p class="mune_e"><i></i><em>神秘优惠4</em></p></a></td>
 </tr>
 <tr>
-<td colspan="3"> <a  href="javascript:"><p class="mune_f">Matrix Wifi介绍</p></a></td>
+<td colspan="3"> <a  href="javascript:"><p class="mune_f">巡展介绍</p></a></td>
 </tr>
 </table>
 
