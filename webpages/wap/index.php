@@ -5,9 +5,53 @@ include(dirname(dirname(__FILE__))."/global.php");
 
 session_start();
 
+//得到页面元素如幻灯的图片，优惠活动的标题等
+$con = mysql_connect($db_config['dbhost'],$db_config['dbuser'],$db_config['dbpass']);
+mysql_query("SET NAMES 'GBK'");
+if (!$con)
+{
+	die('Could not connect: ' . mysql_error());
+}
 
+	$sql = "select * from ma_news where id=174";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$_SESSION['adurl1']=$row['picurl'];
+	
+	$sql = "select * from ma_news where id=175";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$_SESSION['adurl2']=$row['picurl'];
+	
+	$sql = "select * from ma_news where id=176";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$_SESSION['adurl3']=$row['picurl'];
+	
+	$sql = "select * from ma_news where id=177";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$_SESSION['huodong1']=$row['des'];
+	
+	$sql = "select * from ma_news where id=178";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$_SESSION['huodong2']=$row['des'];
+	
+	$sql = "select * from ma_news where id=179";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$_SESSION['huodong3']=$row['des'];
+	
+	$sql = "select * from ma_news where id=180";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$_SESSION['huodong4']=$row['des'];
+	
+	
+	mysql_close($con);
 
-
+	
 if ($_GET['mac'] ) {
 	
 	//接受到的mac地址

@@ -18,12 +18,17 @@ if (! $cookia_a_flag) {
 		
 							<li<?php if ($show1=="文章") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/news/index.php">文章</a></li>
 							
-							<li<?php if ($show1=="短信") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/sms/index.php">短信</a></li>
+							<li<?php if ($show1=="问卷抽奖设置") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/choujiang/index.php">问卷抽奖设置</a></li>
+							
+							<li<?php if ($show1=="调查问卷") echo " class=\"current\""; ?>><a href="/diaocha/index.php">调查问卷(用户名admin@qq.com 密码admin)</a></li>
+							<!-- li<?php if ($show1=="短信") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/sms/index.php">短信</a></li>
 							<li<?php if ($show1=="商城") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/product/index.php">商城</a></li>
 							
 							<li<?php if ($show1=="留言") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/discuss/index.php">留言</a></li>
 							
  							<li<?php if ($show1=="投票") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/vote/index.php">投票</a></li>
+ 							
+ 							 -->
 		</ul> 
 		<div class="vcoupon">»&nbsp;<a href="<?php echo $cfg['siteurl'];?>admin/logout.php">管理员退出</a></div>	</div>
 </div>

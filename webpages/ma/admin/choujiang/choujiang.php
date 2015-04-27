@@ -1,0 +1,48 @@
+<?php 
+require_once('../../global.php');
+require_once('inc/mysql.Class.php');
+require_once('inc/function.inc.php');
+
+if($_POST){
+	session_start();
+	$sql="select * from ap_form_12465 where 1=1 and ".$_SESSION['choujiangtiaojian']." order by id desc";
+	$sqlc="select count(id) as c from ap_form_12465 where 1=1 and ".$_SESSION['choujiangtiaojian'] ;
+					  //echo $sql;
+	$counts_r = $db->r($sqlc);
+	$counts = $counts_r[c];
+
+	$target =  rand(0,$counts-1);
+	
+	$rsdb=$db->a($sql);
+	
+	
+	$i=0;
+	foreach($rsdb as $key=>$rs){
+		
+		$phone = $rs['element_24'];
+		
+		
+		if($i==$target){
+			break;
+		}
+		$i++;
+	}
+
+	echo $phone;
+	
+	
+	
+	
+} 
+
+
+ 
+?>
+
+<form method='post' action="">
+<input type='hidden' value='a' name='test'>
+	<input type=submit value='post'>
+</form>
+
+
+
