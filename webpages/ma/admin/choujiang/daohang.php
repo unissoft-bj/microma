@@ -12,11 +12,7 @@
  			<?php if ($show2=="编辑分类"){?>
  			<li class="current"><a href="#">编辑分类</a><span></span></li><?php }?>
  			
- 			<li<?php if ($show2=="短信通道") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/choujiang/authsms_list.php">中奖纪录</a><span></span></li>
-			<?php if ($show2=="新建分类"){?>
- 			<li class="current"><a href="#">新建分类</a><span></span></li><?php }?>
- 			<?php if ($show2=="编辑分类"){?>
- 			<li class="current"><a href="#">编辑分类</a><span></span></li><?php }?>
+ 			
  			
  			
  		</ul>

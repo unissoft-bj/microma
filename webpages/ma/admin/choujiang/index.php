@@ -77,7 +77,7 @@ if ($_GET['action']=='delete')
 						echo "<div align=center><font color=red>请先设置抽奖池起始时间</font></div>";
 					}else{
 					?>
-					<div align=center><a href="choujiang.php"><font color=red >点击此处抽奖</font></a></div>
+					<div align=center><a href="award6/index.html"><font color=red >点击此处抽奖</font></a></div>
 					<tr><th width="">ID</th>
 					<th width="">手机号</th>
 					<th width="">姓名</th>
