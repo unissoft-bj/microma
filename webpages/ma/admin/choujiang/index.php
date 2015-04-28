@@ -61,7 +61,7 @@ if ($_GET['action']=='delete')
             <div class="box-top"></div>
             <div class="box-content">
 <div class="head">
-                    <h2>抽奖池列表</h2>
+                    <h2>抽奖池概况</h2>
                     <ul class="filter">
                     	
                     </ul>
@@ -76,46 +76,22 @@ if ($_GET['action']=='delete')
 					if($_SESSION['choujiangtiaojian']==null){
 						echo "<div align=center><font color=red>请先设置抽奖池起始时间</font></div>";
 					}else{
-					?>
-					<div align=center><a href="award6/index.html"><font color=red >点击此处抽奖</font></a></div>
-					<tr><th width="">ID</th>
-					<th width="">手机号</th>
-					<th width="">姓名</th>
-					<th width="" nowrap>答题时间</th>
-					<th width="">备注</th></tr>
-					
-					<?php
 					
 					
-					$sql="select * from ap_form_12465 where 1=1 and ".$_SESSION['choujiangtiaojian']." order by id desc";
-					$sqlc="select count(id) as c from ap_form_12465 where 1=1 and ".$_SESSION['choujiangtiaojian'] ;
+					$sqlc="SELECT COUNT(DISTINCT(element_24)) AS c FROM ap_form_12465 where 1=1 and ".$_SESSION['choujiangtiaojian'] ;
 					  //echo $sql;
 					$counts_r = $db->r($sqlc);
 					$counts = $counts_r[c];
-					$page= isset($_GET['page'])?$_GET['page']:1;//默认页码
 					
-					$getpageinfo = page($page,$counts,"?title=$title&botton=筛选",20,5);
-					$sql.=$getpageinfo['sqllimit'];
-					// echo $sql;
-					$rsdb=$db->a($sql);
-				 	$i=2;
-					foreach($rsdb as $key=>$rs){
-					 $i=$i+1;
+					
+					
 					?>
 					
-					<tr <?php if ($i % 2 ==1 ) echo "class=\"alt\" ";?> id="team-list-id-<?php echo $rs["id"];?>">
-						<td><?php echo $rs["id"];?></td>
-						<td><?php echo $rs["element_24"];?></td>
-						<td><?php echo $rs["element_20"];?>  </td>
-						<td><?php echo $rs["date_created"];?>  </td>
-						<td>&nbsp; </td>						
-					</tr>
-					<?php }
-					
-					}?>
+					<div align=center><font size=20>当前奖池中符合条件的手机号有<?php echo $counts;?>个</font></div>
+					<div align=center><a href="award6/index.html"><font color=red size=5>点击此处抽奖</font></a></div>
+					<?php }?>
 					 
-					<tr><td colspan="5"><ul class="paginator"><?php echo $getpageinfo['pagecode'];?></ul></tr>
-                    </table>
+				</table>	
 				</div>
             </div>
             <div class="box-bottom"></div>
