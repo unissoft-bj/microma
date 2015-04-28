@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2015-04-27 10:23:28
+<?php /* Smarty version 2.6.26, created on 2015-04-28 10:59:59
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -80,7 +80,7 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 </tr>
 <tr>
 
-<td width="30%"><a href="/ma/meeting_show.php?id=179"><p class="mune_a"><br><em><?php echo $_SESSION['huodong3']; ?>
+<td width="30%"><a href="/ma/meeting_show.php?id=179"><p class="mune_a"><i></i><em><?php echo $_SESSION['huodong3']; ?>
 </em></p></a></td>
 
 

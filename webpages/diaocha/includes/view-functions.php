@@ -5089,7 +5089,7 @@ EOT;
 <div class="header_cont">
  <div class="left-box"> <a class="hd-lbtn" href="/wap"><span>返回</span></a></div>
 <div class="header_name">{$form->name}</div>
-<div class="header_user"><a href="../wap/member/"></a></div>
+
 </div>
 </header>
 	<div id="form_container" class="{$form_container_class}">
@@ -5769,7 +5769,7 @@ EOT;
 <div class="header_cont">
  <div class="left-box"> <a class="hd-lbtn" href="/wap"><span>返回</span></a></div>
 <div class="header_name">{$form->name}</div>
-<div class="header_user"><a href="../wap/member/"></a></div>
+
 </div>
 </header>
 	<img id="top" src="{$machform_path}images/top.png" alt="" />

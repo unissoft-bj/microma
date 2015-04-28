@@ -529,13 +529,13 @@ CREATE TABLE `ap_form_12465` (
   `element_25` text COMMENT 'Single Line Text',
   `element_26` int(4) unsigned NOT NULL default '0' COMMENT 'Multiple Choice',
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `ap_form_12465` */
 
 LOCK TABLES `ap_form_12465` WRITE;
 
-insert  into `ap_form_12465`(`id`,`date_created`,`date_updated`,`ip_address`,`userid`,`username`,`status`,`resume_key`,`element_1`,`element_2`,`element_3_4`,`element_3_5`,`element_3_6`,`element_3_7`,`element_3_8`,`element_3_9`,`element_3_10`,`element_3_11`,`element_3_12`,`element_3_13`,`element_7_4`,`element_7_5`,`element_7_6`,`element_7_7`,`element_7_8`,`element_7_9`,`element_7_10`,`element_7_11`,`element_7_other`,`element_8`,`element_10`,`element_13_4`,`element_13_5`,`element_13_6`,`element_13_7`,`element_13_8`,`element_13_9`,`element_13_10`,`element_20`,`element_21`,`element_22`,`element_23`,`element_24`,`element_25`,`element_26`) values (1,'2015-04-25 22:34:19',NULL,NULL,NULL,NULL,1,NULL,0,9,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,'',8,12,0,0,0,0,0,1,0,'杨超',66,1,'秦皇岛',13333333333,'543335',1);
+insert  into `ap_form_12465`(`id`,`date_created`,`date_updated`,`ip_address`,`userid`,`username`,`status`,`resume_key`,`element_1`,`element_2`,`element_3_4`,`element_3_5`,`element_3_6`,`element_3_7`,`element_3_8`,`element_3_9`,`element_3_10`,`element_3_11`,`element_3_12`,`element_3_13`,`element_7_4`,`element_7_5`,`element_7_6`,`element_7_7`,`element_7_8`,`element_7_9`,`element_7_10`,`element_7_11`,`element_7_other`,`element_8`,`element_10`,`element_13_4`,`element_13_5`,`element_13_6`,`element_13_7`,`element_13_8`,`element_13_9`,`element_13_10`,`element_20`,`element_21`,`element_22`,`element_23`,`element_24`,`element_25`,`element_26`) values (1,'2015-04-25 22:34:19',NULL,NULL,NULL,NULL,1,NULL,0,9,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,'',8,12,0,0,0,0,0,1,0,'杨超',66,1,'秦皇岛',13333333333,'543335',1),(2,'2015-04-25 22:34:19',NULL,NULL,NULL,NULL,1,NULL,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,0,NULL,0,0,0,0,0,0,0,NULL,NULL,0,NULL,13653361207,NULL,0),(3,'2015-04-28 10:27:43',NULL,NULL,NULL,NULL,1,NULL,0,5,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,'',9,12,0,0,0,0,0,0,1,'张三',67,1,'秦皇岛',13512121212,'12121212',1);
 
 UNLOCK TABLES;
 
@@ -591,11 +591,13 @@ CREATE TABLE `ap_form_12465_review` (
   `element_26` int(4) unsigned NOT NULL default '0' COMMENT 'Multiple Choice',
   `session_id` varchar(100) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `ap_form_12465_review` */
 
 LOCK TABLES `ap_form_12465_review` WRITE;
+
+insert  into `ap_form_12465_review`(`id`,`date_created`,`date_updated`,`ip_address`,`userid`,`username`,`status`,`resume_key`,`element_1`,`element_2`,`element_3_4`,`element_3_5`,`element_3_6`,`element_3_7`,`element_3_8`,`element_3_9`,`element_3_10`,`element_3_11`,`element_3_12`,`element_3_13`,`element_7_4`,`element_7_5`,`element_7_6`,`element_7_7`,`element_7_8`,`element_7_9`,`element_7_10`,`element_7_11`,`element_7_other`,`element_8`,`element_10`,`element_13_4`,`element_13_5`,`element_13_6`,`element_13_7`,`element_13_8`,`element_13_9`,`element_13_10`,`element_20`,`element_21`,`element_22`,`element_23`,`element_24`,`element_25`,`element_26`,`session_id`) values (2,'2015-04-27 16:51:22',NULL,'101','101','13653361207',1,NULL,0,9,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,'',7,1,0,0,0,0,0,0,0,'',NULL,0,'',NULL,'',0,'jloe0rda8a8a4e9v9ita5lle25'),(4,'2015-04-28 11:02:04',NULL,NULL,NULL,NULL,1,NULL,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,NULL,0,NULL,0,0,0,0,0,0,0,NULL,NULL,0,NULL,NULL,NULL,0,'22jevtfa62ko2ahb7n0o9qd7b3');
 
 UNLOCK TABLES;
 
@@ -728,7 +730,7 @@ CREATE TABLE `ap_form_locks` (
 
 LOCK TABLES `ap_form_locks` WRITE;
 
-insert  into `ap_form_locks`(`form_id`,`user_id`,`lock_date`) values (10392,2,'2015-04-25 22:04:34');
+insert  into `ap_form_locks`(`form_id`,`user_id`,`lock_date`) values (10392,2,'2015-04-25 22:04:34'),(12465,2,'2015-04-28 10:42:36');
 
 UNLOCK TABLES;
 
@@ -1111,7 +1113,7 @@ CREATE TABLE `ap_users` (
 
 LOCK TABLES `ap_users` WRITE;
 
-insert  into `ap_users`(`user_id`,`user_email`,`user_password`,`user_fullname`,`priv_administer`,`priv_new_forms`,`priv_new_themes`,`last_login_date`,`last_ip_address`,`cookie_hash`,`status`) values (1,'ycyn521@qq.com','$2a$08$XztiKMA8iEr1Pb2jPHh.q.ZRZlQTTpKGfOtY1HsgiX71QQFWHR0Bi','Administrator',1,1,1,'2014-11-15 22:18:16','127.0.0.1','',1),(2,'admin@qq.com','$2a$08$5NNwksCfUchdw9cxxpFc4.bIt2j35CMp9aM.7L3VYO2MAn9Y5b7ki','admin',1,1,1,'2015-04-25 21:47:09','127.0.0.1','',1);
+insert  into `ap_users`(`user_id`,`user_email`,`user_password`,`user_fullname`,`priv_administer`,`priv_new_forms`,`priv_new_themes`,`last_login_date`,`last_ip_address`,`cookie_hash`,`status`) values (1,'ycyn521@qq.com','$2a$08$XztiKMA8iEr1Pb2jPHh.q.ZRZlQTTpKGfOtY1HsgiX71QQFWHR0Bi','Administrator',1,1,1,'2014-11-15 22:18:16','127.0.0.1','',1),(2,'admin@qq.com','$2a$08$5NNwksCfUchdw9cxxpFc4.bIt2j35CMp9aM.7L3VYO2MAn9Y5b7ki','admin',1,1,1,'2015-04-28 10:22:15','127.0.0.1','',1);
 
 UNLOCK TABLES;
 

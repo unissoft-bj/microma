@@ -30,7 +30,7 @@ $_GET['title']="问卷调查";
    
 <section class="wap_login" id='mainbody' >
 <br><br><br><br>
-<div align=center>谢谢您的参与，您的手机号将参加hh:mm的抽奖</div>
+<div align=center>谢谢您的参与，敬请关注稍后的抽奖活动！</div>
 <br><br><br><br>
 </section>
  

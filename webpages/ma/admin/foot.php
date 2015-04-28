@@ -45,6 +45,6 @@
 			</li>
 		</ul>
 		<div class="copyright">
-		<p>©<span>2014</span>&nbsp;智隆网络（zealnet.cn）版权所有&nbsp; &nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank"></a>&nbsp;Powered by <a href="#" target="_blank">zealnet</a> software.</p>
+		<p>©<span>2015</span>&nbsp;Matrix Wifi版权所有&nbsp; &nbsp;<a href="http://www.miibeian.gov.cn/" target="_blank"></a>&nbsp;Powered by <a href="#" target="_blank">zealnet</a> software.</p>
 		</div>
 	</div>

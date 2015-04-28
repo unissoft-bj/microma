@@ -16,52 +16,52 @@ class index_controller extends common
 	function index_action()
 	{
 		$this->get_moblie();
-		$this->yunset("title","阿萨斯");
+// 		$this->yunset("title","阿萨斯");
 		
-		if ($_GET['internet']) {
-			//echo "<script id=\"chillijs\" src=\"../auth/ussp.js\"></script>";
-			$this->yuntpl(array('wap/index'));
-			echo "<script id=\"chillicontroller\" src=\"http://172.16.0.1:3990/www/chillijs.chi\"></script>";
-			//echo "hel";			
-			die("");
-		}
+// 		if ($_GET['internet']) {
+// 			//echo "<script id=\"chillijs\" src=\"../auth/ussp.js\"></script>";
+// 			$this->yuntpl(array('wap/index'));
+// 			echo "<script id=\"chillicontroller\" src=\"http://172.16.0.1:3990/www/chillijs.chi\"></script>";
+// 			//echo "hel";			
+// 			die("");
+// 		}
 		
-		if ($_GET['mac'] ) {
-			//include "../auth/ihost.php";
-			/**
-			 * 如果ihost验证成功 则跳转到首页 提示继续浏览互联网
-			 *      {
-			 *              有权限，将左上角链接设为来路页面
-			 * }
-			 *
-			 * 否则 跳转到首页，提示验证手机后访问互联网{
-			 *              无权限，将左上角链接设为手机验证页面
-			 * }
-			 *
-			 * 需要传递的参数：
-			 * 1.来路页面
-			 * 2.是否有互联网权限
-			 * 3.提示point
-			 */
-			if ($auth == 0){
+// 		if ($_GET['mac'] ) {
+// 			//include "../auth/ihost.php";
+// 			/**
+// 			 * 如果ihost验证成功 则跳转到首页 提示继续浏览互联网
+// 			 *      {
+// 			 *              有权限，将左上角链接设为来路页面
+// 			 * }
+// 			 *
+// 			 * 否则 跳转到首页，提示验证手机后访问互联网{
+// 			 *              无权限，将左上角链接设为手机验证页面
+// 			 * }
+// 			 *
+// 			 * 需要传递的参数：
+// 			 * 1.来路页面
+// 			 * 2.是否有互联网权限
+// 			 * 3.提示point
+// 			 */
+// 			if ($auth == 0){
 			
-				$point = "%c7%a9%b5%bd%b3%c9%b9%a6";
-				header("location: /wap/index.php?internet=ok");
+// 				$point = "%c7%a9%b5%bd%b3%c9%b9%a6";
+// 				header("location: /wap/index.php?internet=ok");
 			
-			}
-			else{
-				$point = "%c7%a9%b5%bd%b3%c9%b9%a6";
-				header("location: /wap/index.php?internet=ok");
-// 				
-				die();
+// 			}
+// 			else{
+// 				$point = "%c7%a9%b5%bd%b3%c9%b9%a6";
+// 				header("location: /wap/index.php?internet=ok");
+// // 				
+// 				die();
 				
 			
-			}
+// 			}
 			
 			
 			
 			
-		}
+// 		}
 		
 		$this->yuntpl(array('wap/index'));
 	}
