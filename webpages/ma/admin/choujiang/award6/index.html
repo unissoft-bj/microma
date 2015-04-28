@@ -46,7 +46,7 @@ function numRand() {
 	// var y = 1111; //下限
 	// var rand = parseInt(Math.random() * (x - y + 1) + y);
 	//alert("===");
-	htmlobj=$.ajax({url:"http://ihost-ma.yc/ma/admin/choujiang/choujiang.php",async:false});
+	htmlobj=$.ajax({url:"/ma/admin/choujiang/choujiang.php",async:false});
   	//$("#myDiv").html(htmlobj.responseText);
 	//alert(htmlobj.responseText);
 	return htmlobj.responseText;

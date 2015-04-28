@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.26, created on 2015-04-28 10:59:59
+<?php /* Smarty version 2.6.26, created on 2015-04-28 18:45:00
          compiled from ../template/wap/header.htm */ ?>
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -69,10 +69,10 @@ var banner = Swipe(document.getElementById('mySwipe'), {
 
 <?php if (! $this->_tpl_vars['cookie']['diaocha_url']): ?>
 <td width="30%" rowspan="2"><a href="<?php echo $this->_tpl_vars['config']['sy_weburl']; ?>
-/diaocha/view.php?id=12465"><p class="mune_c"><i></i><em>大问题<br>抽大奖</em></p></a></td>
+/diaocha/view.php?id=12465"><p class="mune_c"><i></i><em>答问题<br>抽大奖</em></p></a></td>
 <?php else: ?>
 <td width="30%" rowspan="2"><a href="../diaocha/<?php echo $this->_tpl_vars['cookie']['diaocha_url']; ?>
-"><p class="mune_c"><i></i><em>大问题<br>抽大奖</em></p></a></td>
+"><p class="mune_c"><i></i><em>答问题<br>抽大奖</em></p></a></td>
 <?php endif; ?>
 
 <td width="30%"><a href="/ma/meeting_show.php?id=178"><p class="mune_d"><i></i><em><?php echo $_SESSION['huodong2']; ?>
