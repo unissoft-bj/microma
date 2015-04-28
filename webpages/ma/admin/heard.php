@@ -19,8 +19,8 @@ if (! $cookia_a_flag) {
 							<li<?php if ($show1=="文章") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/news/index.php">文章</a></li>
 							
 							<li<?php if ($show1=="问卷抽奖设置") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/choujiang/index.php">问卷抽奖设置</a></li>
-							
-							
+							<li<?php if ($show1=="设置系统时间") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/sysmgr/timeget.php">设置系统时间</a></li>
+							<li<?php if ($show1=="重启设备") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/sysmgr/rbtmsg.php">重启设备</a></li>
 							<!-- li<?php if ($show1=="短信") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/sms/index.php">短信</a></li>
 							<li<?php if ($show1=="商城") echo " class=\"current\""; ?>><a href="<?php echo $cfg['siteurl'];?>admin/product/index.php">商城</a></li>
 							
